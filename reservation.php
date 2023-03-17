@@ -42,6 +42,9 @@ require "header.php";
                     else if($_GET['error3'] == "errortimeslot") {   
                         echo '<h5 class="bg-danger text-center">Il y a une erreur dans le créneau horaire choisi</h5>';
                     }
+                    else if($_GET['error3'] == "notsubmitted") {   
+                        echo '<h5 class="bg-danger text-center">Le formulaire de réservation n\'est pas soumis en cliquant sur le bouton soumettre</h5>';
+                    }
                 }
                 if(isset($_GET['reservation'])) {   
                     if($_GET['reservation'] == "success"){ 
@@ -58,7 +61,7 @@ require "header.php";
                     <div class="row formreservation">
                         <div class="form-group col-md-4">
                             <label>Entrez le nombre de Couverts</label>
-                            <input type="number" class="form-control" min="1" name="num_guests" placeholder="1" required="required">
+                            <input type="number" class="form-control" min="1" name="num_guests" placeholder="Nombres des personnes" required="required">
                             <small class="form-text text-muted">La valeur minimale est 1</small>
                         </div>
                         <div class="form-group col-md-4">
@@ -72,8 +75,8 @@ require "header.php";
                         require 'includes/dbh.inc.php';  // connection to mySQL Server
                         //SQL query to read all datas from the table "reservation_time_slot"
                         //So that the user can choose his time slot 
-                        $midifirst = true;
-                        $soirfirst = true;
+                        $midifirst = true;              //Variable to verify for the first time executioin do display the word "MIDI"
+                        $soirfirst = true;              //Variable to verify for the first time executioin do display the word "SOIR"
                         $sql = "SELECT * FROM reservation_time_slot"; 
                         $result = $conn->query($sql);
                         if ($result->num_rows > 0) {

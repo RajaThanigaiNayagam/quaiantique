@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 14 mars 2023 à 11:04
+-- Généré le : ven. 17 mars 2023 à 00:51
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 7.4.29
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `loginsystem`
+-- Base de données : `quaiantique`
 --
 
 -- --------------------------------------------------------
@@ -141,19 +141,21 @@ CREATE TABLE `reservation` (
   `telephone` text NOT NULL,
   `comment` mediumtext NOT NULL,
   `reg_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `user_fk` int(11) NOT NULL
+  `user_fk` int(11) NOT NULL,
+  `res_time_slot_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `reservation`
 --
 
-INSERT INTO `reservation` (`reserv_id`, `f_name`, `l_name`, `num_guests`, `num_tables`, `rdate`, `time_zone`, `telephone`, `comment`, `reg_date`, `user_fk`) VALUES
-(1, 'Antoine ', 'Eduard', 10, 4, '2019-05-30', '12:00 - 16:00', '21096321232', 'fsdfsd', '2019-05-04 23:38:47', 28),
-(73, 'Bill', 'dsadsadas', 30, 14, '2019-05-22', '12:00 - 16:00', '2109632123', 'dsadsadas', '2019-05-05 00:52:39', 28),
-(74, 'Bill', 'Fotos', 6, 2, '2019-05-10', '12:00 - 16:00', '2129632123', '312312312', '2019-05-05 00:54:08', 28),
-(75, 'Bill', 'Fotos', 6, 2, '2019-05-10', '16:00 - 20:00', '2109632123', '', '2019-05-05 00:54:40', 28),
-(77, 'ramassamypoulle', 'Rajathanigainayagam', 6, 2, '1968-08-25', '12:00 - 16:00', '123456789', '', '2023-03-06 18:31:52', 35);
+INSERT INTO `reservation` (`reserv_id`, `f_name`, `l_name`, `num_guests`, `num_tables`, `rdate`, `time_zone`, `telephone`, `comment`, `reg_date`, `user_fk`, `res_time_slot_id`) VALUES
+(1, 'Antoine ', 'Eduard', 10, 4, '2019-05-30', '12:00 - 16:00', '21096321232', 'fsdfsd', '2019-05-04 23:38:47', 28, 0),
+(73, 'Bill', 'dsadsadas', 30, 14, '2019-05-22', '12:00 - 16:00', '2109632123', 'dsadsadas', '2019-05-05 00:52:39', 28, 0),
+(74, 'Bill', 'Fotos', 6, 2, '2019-05-10', '12:00 - 16:00', '2129632123', '312312312', '2019-05-05 00:54:08', 28, 0),
+(75, 'Bill', 'Fotos', 6, 2, '2019-05-10', '16:00 - 20:00', '2109632123', '', '2019-05-05 00:54:40', 28, 0),
+(77, 'ramassamypoulle', 'Rajathanigainayagam', 6, 2, '1968-08-25', '12:00 - 16:00', '123456789', '', '2023-03-06 18:31:52', 35, 0),
+(78, '', '', 8, 4, '2023-03-30', '19:15;00', '0123456789', '', '2023-03-16 21:29:14', 35, 9);
 
 -- --------------------------------------------------------
 
@@ -163,25 +165,29 @@ INSERT INTO `reservation` (`reserv_id`, `f_name`, `l_name`, `num_guests`, `num_t
 
 CREATE TABLE `reservation_time_slot` (
   `Id` int(11) NOT NULL,
-  `time_slot` time NOT NULL
+  `time_slot` time NOT NULL,
+  `midi` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `reservation_time_slot`
 --
 
-INSERT INTO `reservation_time_slot` (`Id`, `time_slot`) VALUES
-(1, '12:00:00'),
-(2, '12:15:00'),
-(3, '12:30:00'),
-(4, '12:45:00'),
-(5, '13:00:00'),
-(6, '13:15:00'),
-(7, '13:30:00'),
-(8, '19:00:00'),
-(9, '19:15:00'),
-(10, '19:30:00'),
-(11, '19:45:00');
+INSERT INTO `reservation_time_slot` (`Id`, `time_slot`, `midi`) VALUES
+(1, '12:00:00', 1),
+(2, '12:15:00', 1),
+(3, '12:30:00', 1),
+(4, '12:45:00', 1),
+(5, '13:00:00', 1),
+(6, '13:15:00', 1),
+(7, '13:30:00', 1),
+(8, '19:00:00', NULL),
+(9, '19:15:00', NULL),
+(10, '19:30:00', NULL),
+(11, '19:45:00', NULL),
+(12, '20:00:00', NULL),
+(13, '20:15:00', NULL),
+(14, '20:30:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -341,7 +347,8 @@ ALTER TABLE `menu_foods`
 --
 ALTER TABLE `reservation`
   ADD PRIMARY KEY (`reserv_id`),
-  ADD KEY `users_fk` (`user_fk`);
+  ADD KEY `users_fk` (`user_fk`),
+  ADD KEY `res_time_slot_id` (`res_time_slot_id`);
 
 --
 -- Index pour la table `reservation_time_slot`
@@ -413,7 +420,7 @@ ALTER TABLE `menu_foods`
 -- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `reserv_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `reserv_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT pour la table `role`

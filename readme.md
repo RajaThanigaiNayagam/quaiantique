@@ -1,28 +1,34 @@
 
-Pour exécuter ce projet, vous devez avoir installé un serveur virtuel, c'est-à-dire XAMPP, sur votre PC (pour Windows). 
+     Pour exécuter ce projet, vous devez avoir installé un serveur virtuel, c'est-à-dire XAMPP, sur votre PC (pour Windows). 
 Ce PHP avec code source est téléchargeable gratuitement, à utiliser uniquement à des fins éducatives !
+
+
+En machine localhost 
+-----------------------
+   Il faut télécharger et installée XAMPP serveur depuis le site internet https://www.apachefriends.org/fr/index.html. Lancer le XAMPP depuis son emplacement et démarre le serveur "Apache" et "MySQL" en cliquant sur le premier bouton "Start" ensuite le deuxième bouton "Start". Une fois, les serveurs sont démarrés, vous pouvez ouvrir le "PHPmyadmin" en cliquant sur le deuxième "Admin" bouton sur le même niveau de MySQL. Ils ouvrent la page, "PHPmyadmin" dans un navigateur, où vous pouvez gérer les basse de donnés, les tables et les données.
+
+
+Création de compte Admin faite a la main. Pour ce faire, 
+--------------------------------------------------------
+   Ouvrez le page PHPmyadmin comme expliquée juste avant, et crée une base de données nommées "quaiantique" a l main. À l'intérieur de cette base de données "quaiantique" sur l'écran d'à droite, vous cliqué sur le bouton "Importer" juste en haut de l'écran. Sélectionné le fichier nommé "quaiantique" qui se trouve dans le répertoire "Dossier support/quaiantique" et lancer l'importation en cliquant sur le bouton "Importer" tout en bas de cette page.  
+
 
 Après avoir démarré Apache et MySQL dans XAMPP, suivez les étapes suivantes.
 
 1ere étape : Ce projet est téléchargeable depuis le github.com 
-		 https://github.com/RajaThanigaiNayagam/hotelanan.git
+		 https://github.com/RajaThanigaiNayagam/quaiantique.git
 2ème étape : copiez le dossier principal du projet.
 3ème étape : coller dans xampp/htdocs/
 
-4ème étape : ouvrez un navigateur et accédez à l'URL "http://localhost/phpmyadmin/"
-5ème étape : ensuite, cliquez sur l'onglet bases de données.
-6ème étape : créez une base de données en la nommant "hotelanan" puis cliquez sur l'onglet import
-7ème étape : cliquez sur Parcourir le fichier et sélectionnez le fichier "/sql/database.sql" qui se trouve dans le dossier "Database"
-8ème étape : cliquez sur go.
 
-Après avoir créé la base de données,
-
-9ème étape : ouvrez un navigateur et accédez à l'URL "http://localhost/"
+Après avoir créé la base de données, ouvrez un navigateur et accédez à l'URL "http://localhost/"
 
 Admin
 ------
 id: admin
 pwd: Test@123
+
+
 
 Utilisateur
 -----------
@@ -54,38 +60,30 @@ Module Admin
    réservations approuvées, les réservations annulées, le nombre total d’utilisateurs enregistrés,
    le total des demandes de lecture et le total des demandes non lues.
 
-2. Catégorie de plat : L’administrateur peut gérer la catégorie (ajouter / supprimer).
+2. Catégorie de plat : L’administrateur peut gérer la catégorie (ajouter / mettre à jour / supprimer).
 
-3. Gestion de plat : L’l’administrateur peut gérer les chambres (ajouter / mettre à jour).
+3. Gestion de plat : L’l’administrateur peut gérer les chambres (ajouter / mettre à jour / supprimer).
 
-4. Page : L’administrateur peut gérer les pages ‘about us’ et ‘contact us’.
+4. Gestion de plat : L’administrateur peut gérer les menu.  Il peut ajout, modifier et supprimer Entrer, 
+   plat et dessert dans un menu
 
-5. Réservation : L’administrateur peut afficher les nouvelles réservations approuvées et
+5. Gestion de Réservation : L’administrateur peut afficher les nouvelles réservations et
    annulées et également faire une remarque.
 
-6. Utilisateurs Enreg : L’administrateur peut afficher les détails des utilisateurs enregistrés.
+6. Utilisateurs  : L’administrateur peut afficher les détails des utilisateurs enregistrés.
 
-7. Enquête : L’administrateur peut afficher et gérer la demande.
 
-8. Recherche : L’administrateur peut rechercher les détails de la réservation à l’aide de son
-   numéro de téléphone portable et de son numéro de réservation respectivement.
-
-9. Rapports : L’administrateur peut afficher les détails de la demande et vérifier les détails de
-   la réservation au cours d’une période particulière.  L’administrateur peut également mettre à jour son profil, changer le mot de passe et récupérer le mot de passe.  
-   
 
    Module utilisateur
    ------------------
 
+1. Accueil : C’est une page d’accueil pour les utilisateurs.
 
-
-1. Home : C’est une page d’accueil pour les utilisateurs.
-
-2. À propos : Il s’agit d’une page de site Web sur nous.
+2. À propos de nous : Il s’agit d’une page de site web sur le restaurant Quai Antique et affiche les images plates importantes. Il se trouve sur la   même page d'accueil un peu plus bas. 
 
 3. Services : Les utilisateurs peuvent afficher les services fournis par l’organisation.
 
-4. Chambre : L’utilisateur peut voir les détails de la chambre disponible dans l’hôtel.
+4. Galerie : Les utilisateurs peuvent voir toutes les images de plat et menu disponible dans le restaurant.
 
 5. categorie des chambres : L’utilisateur peut voir la plusieur categories des chambres de l’hôtel.
 

@@ -3,7 +3,7 @@
 $servername = "localhost";
 $dBUsername = "root";
 $dBPassword = "";
-$dBName = "loginsystem";
+$dBName = "quaiantique";
 
 $conn = mysqli_connect($servername, $dBUsername, $dBPassword, $dBName);
 

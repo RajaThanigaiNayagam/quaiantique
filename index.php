@@ -117,6 +117,7 @@ require "header.php";
                         //SQL query to read all datas from the table "schedule"
                         $sql = "SELECT * FROM schedule"; 
                         $result = $conn->query($sql);
+                        //var_dump($result);
                         echo"<div>";
                         if ($result->num_rows > 0) {
                             echo" 
@@ -171,8 +172,7 @@ require "header.php";
                                     </div>";
                                 }//echo"<br>";
                             }
-                        }
-                        else{
+                        } else {
                             echo"
                             <table class='table table-sm table-striped table-dark text-center'>
                                 <thead>

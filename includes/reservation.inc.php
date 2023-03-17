@@ -1,6 +1,7 @@
 <?php
-require "../header.php";
+//require "../header.php";
 session_start();
+//error_reporting(0);   //Désactiver tous les rapports d'erreurs
 
 //between function.. checks if the characters are within the limits we set
 function between($val, $x, $y){
@@ -62,8 +63,7 @@ if(isset($_POST['reserv-submit'])) {//check whether the  submit button is clicke
         }
     }  
     
-    var_dump($rest_time_slot_id);
-    var_dump($time);
+
     // check for the given date and given reservation slot time, find if the restaurant is opened of closed at that particular given time.
                                 //  ***************todo
     //Here is to get the day of the date
@@ -88,58 +88,61 @@ if(isset($_POST['reserv-submit'])) {//check whether the  submit button is clicke
             }
         }
     }
-    else{$a_tables=5;}
 
-
+    $current_tables=0;
+    $nb_tables=20;
     //I check the unused tables (tables not reserved) per day
-    $sql = "SELECT r.rdate, rt.time_slot FROM reservation AS r LEFT JOIN reservation_time_slot AS rt ON r.res_time_slot_id=rt.Id  WHERE t_date='".$date."'AND res_time_slot_id = '". $rest_time_slot_id . "'" ;
-    $result = $conn->query($sql);
-    var_dump($sql);
-    var_dump($result);
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $a_tables=$row["t_tables"];
-        }
-        header("Location: ../reservation.php?error3=full" );
-        exit();
-    }
-    //I check the unused tables per day
-    $sql = "SELECT t_tables FROM tables WHERE t_date='$date'";
+    $sql = "SELECT sum(r.num_tables) AS res_tables FROM reservation AS r LEFT JOIN reservation_time_slot AS rt ON r.res_time_slot_id=rt.Id  WHERE rdate='".$date."'AND res_time_slot_id = '". $rest_time_slot_id . "'" ;
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            $a_tables=$row["t_tables"];
+            $current_tables=intval($row['res_tables']);
         }
     }
-    else{$a_tables=20;} //default value
-    //check tables up to 20  tables for each date
-    
-    $sql = "SELECT SUM(num_tables) FROM reservation WHERE rdate='$date' AND res_time_slot_id=' $rest_time_slot_id'";
+        
+    /* ************************* To count the number of tables in the restaurant  ************************* */
+    $sql = "SELECT count(tables_id) AS tot_tables FROM tables";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            $current_tables=$row["SUM(num_tables)"];
+            $nb_tables=intval($row['tot_tables']);
         }
     }
-    if($current_tables + $tables > $a_tables){
+    else{$nb_tables=20;} //default value
+    //check tables up to 10  tables for each date
+    /* ********************** End of the number of tables counted in the restaurant  ********************** */
+
+
+    /* ******* checking whether the total reserved tables are less than total tables of restaurant  ******* */
+    $total_reserved_table = $current_tables + $tables;
+    if ($total_reserved_table > $a_tables){
         header("Location: ../reservation.php?error3=full");
     }
     else {
         $sql = "INSERT INTO reservation(num_guests, num_tables, rdate, time_zone, telephone, comment, user_fk, res_time_slot_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)){
+            var_dump($mysqli_stmt_prepare);
             header("Location: ../reservation.php?error3=sqlerror1");
             exit();
         }
         else {       
-            mysqli_stmt_bind_param($stmt, "ssssssss", $guests, $tables, $date, $time, $tele, $comments, $user, $id);
-            mysqli_stmt_execute($stmt);
-            header("Location: ../reservation.php?reservation=success");
-            exit();
+            $tables=strval($tables);
+            mysqli_stmt_bind_param($stmt, "ssssssss", $guests, $tables, $date, $time, $tele, $comments, $user, $rest_time_slot_id);
+            if (mysqli_stmt_execute($stmt) ) {
+                header("Location: ../reservation.php?reservation=success");
+                exit();
+            } else {
+                header("Location: ../reservation.php?reservation=sqlerror1");
+                exit();
+            }
         }
     }
+}else {
+    header("Location: ../reservation.php?reservation=notsubmitted");
+    exit();
 }
 
-    mysqli_stmt_close($stmt);
-    mysqli_close($conn);
+mysqli_stmt_close($stmt);
+mysqli_close($conn);
 
