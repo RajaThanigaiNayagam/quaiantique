@@ -11,8 +11,10 @@ require "header.php";
             if(isset($_SESSION['user_id'])){
                 echo '<p class="text-white bg-dark text-center">Bienvenue '. $_SESSION['username'] .', Créez votre réservation ici!</p>';
                 // Display the messages to the user where he entered the wrong info in the reservation FORM
-                if(isset($_GET['error3'])){
-                    if($_GET['error3'] == "emptyfields") {   // Reservation form error handling
+                if(isset($_GET['error3'])){ 
+                    if($_GET['error3'] == "sqlerror1") {   // Reservation form error handling
+                        echo '<h5 class="bg-danger text-center">Erreur d\'exécuter la réservation. Problème technique. Veuillez réessayer plus tard. !</h5>';
+                    }if($_GET['error3'] == "emptyfields") {   // Reservation form error handling
                         echo '<h5 class="bg-danger text-center">Remplissez tous les champs, veuillez réessayer !</h5>';
                     }
                     else if($_GET['error3'] == "invalidfname") {   
@@ -76,6 +78,7 @@ require "header.php";
                         //SQL query to read all datas from the table "reservation_time_slot"
                         //So that the user can choose his time slot 
                         $midifirst = true;              //Variable to verify for the first time executioin do display the word "MIDI"
+                        $midifirst = true;              //Variable to verify for the last time executioin do display the word "MIDI"
                         $soirfirst = true;              //Variable to verify for the first time executioin do display the word "SOIR"
                         $sql = "SELECT * FROM reservation_time_slot"; 
                         $result = $conn->query($sql);
@@ -90,23 +93,23 @@ require "header.php";
                                     echo '<div class="form-group"> <button type="button" class="btn btn-danger btn-block" id="timebutton' . $row['Id'] . '" name="' . $row['Id'] . '">' . substr( $row['time_slot'], 0, -3) . '</button></div>&nbsp; &nbsp; &nbsp;';
                                 } else {
                                     if ( $soirfirst) { 
-                                        echo ' <div class="row">&nbsp; &nbsp; SOIR &nbsp; &nbsp; &nbsp;';
+                                        echo ' <div class="row formreservation">&nbsp;  SOIR &nbsp; &nbsp; ';
                                         $soirfirst = false;
                                     } 
                                     echo '<div class="form-group"> <button type="button" class="btn btn-danger btn-block" id="timebutton' . $row['Id'] . '" name="' . $row['Id'] . '">' . substr( $row['time_slot'], 0, -3) . '</button></div>&nbsp; &nbsp; &nbsp;';
                                 }
                             }
-                             
+                            echo '</div>';
                         }
-                    echo ' </div></div></div>
-                    <div class="row formreservation">
-                        <div class="form-group">
-                            <label for="guests">Entrez votre numéro de téléphone</label>
-                            <input type="telephone" class="form-control" name="tele" required="required">
-                            <small class="form-text text-muted">Le numéro de téléphone doit comporter entre 6 et 20 caractères</small>
-                        </div>
-                    </div>
-                    <div class="row formreservation">
+                    echo ' </div></div>';
+                    //<div class="row formreservation">
+                    //    <div class="form-group">
+                    //        <label for="guests">Entrez votre numéro de téléphone</label>
+                    //        <input type="telephone" class="form-control" name="tele" required="required">
+                    //        <small class="form-text text-muted">Le numéro de téléphone doit comporter entre 6 et 20 caractères</small>
+                    //    </div>
+                    //</div>
+                    echo '<div class="row formreservation">
                         <div class="form-group">
                             <label>Entrez des commentaires supplémentaires</label>
                             <textarea class="form-control" name="comments" placeholder="commentaires" rows="3"></textarea>

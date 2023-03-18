@@ -60,11 +60,11 @@ Module Admin
    réservations approuvées, les réservations annulées, le nombre total d’utilisateurs enregistrés,
    le total des demandes de lecture et le total des demandes non lues.
 
-2. Catégorie de plat : L’administrateur peut gérer la catégorie (ajouter / mettre à jour / supprimer).
+2. Gestion de Catégorie de plat : L’administrateur peut gérer la catégorie (ajouter / mettre à jour / supprimer).
 
-3. Gestion de plat : L’l’administrateur peut gérer les chambres (ajouter / mettre à jour / supprimer).
+3. Gestion de plat : L’l’administrateur peut gérer les plat (ajouter / mettre à jour / supprimer).
 
-4. Gestion de plat : L’administrateur peut gérer les menu.  Il peut ajout, modifier et supprimer Entrer, 
+4. Gestion de menu : L’administrateur peut gérer les menu.  Il peut ajout, modifier et supprimer Entrer, 
    plat et dessert dans un menu
 
 5. Gestion de Réservation : L’administrateur peut afficher les nouvelles réservations et

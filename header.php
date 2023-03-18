@@ -61,10 +61,12 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="view_reservations.php" >Voir les réservations</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.php#footer">Nos horaires</a>
                             </li>'  ;
+                            if($_SESSION['role']==1) {
+                                echo '<li class="nav-item">
+                                    <a class="nav-link" href="index.php#footer">Nos horaires</a>
+                                </li>'  ;
+                            }
                             //set navigation bar when logged in and role of ADMIN
                             if($_SESSION['role']==2) {   
                                 echo'
@@ -79,7 +81,10 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="view_menu.php" >Gérer le menu</a>
-                                </li>' ;    
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.php#footer">Nos horaires</a>
+                                </li>'  ;
                             }
                         }
                         //main page not logged in navigation bar
@@ -293,6 +298,10 @@
                                     </div>
                                     <div class="form-group">
                                             <input type="email" class="form-control" name="mail" placeholder="E-mail" required="required">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="telephone" class="form-control" name="tele" required="required">
+                                        <small class="form-text text-muted">Le numéro de téléphone doit comporter entre 6 et 20 caractères</small>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control" name="pwd" placeholder="Mot de passe" required="required">

@@ -15,7 +15,7 @@ if (isset($_POST['login-submit'])) {
         $sql = "SELECT * FROM users WHERE uidUsers=? OR emailUsers=?";     //login via website using email and password
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)) {
-            header("Location: ../index.php?error1=error");
+            header("Location: ../index.php?error1=error&sql=".$sql);
         exit();
         }
         else {
@@ -33,7 +33,6 @@ if (isset($_POST['login-submit'])) {
                     $_SESSION['user_id'] = $row['user_id'];
                     $_SESSION['username'] = $row['uidUsers'];
                     $_SESSION['role'] = $row['role_id'];
-                    
                     header("Location: ../reservation.php?login=success");
                     exit();
                 }

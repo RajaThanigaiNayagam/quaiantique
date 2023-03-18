@@ -5,7 +5,7 @@ require "header.php";
 <br><br>
 <div class="container">
     <h4 class="text-center"><br>Modifier les tables<br></h4>
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-8 offset-md-3">
         <?php 
         if(isset($_SESSION['user_id'])){
             if($_SESSION['role']==2){

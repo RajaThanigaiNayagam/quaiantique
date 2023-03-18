@@ -13,6 +13,7 @@ if(isset($_POST['signup-submit'])) {//very if the user clicked connexion button
     $username = $_POST['uid'];
     $email = $_POST['mail'];
     $password = $_POST['pwd'];
+    $tele = $_POST['tele'];
     $passwordRepeat = $_POST['pwd-repeat'];
     if(empty($fname) || empty($lname) || empty($username) || empty($email) || empty($password) || empty($passwordRepeat)) {
         header("Location: ../index.php?error=emptyfields");
@@ -23,15 +24,19 @@ if(isset($_POST['signup-submit'])) {//very if the user clicked connexion button
         exit();  
     }
     else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header("Location: ../index.php?error=invalidemail");
+        header("Location: ../index.php?error=invalidemail");   
         exit();
     }
+    else if(!preg_match("/^[a-zA-Z0-9]*$/", $tele) || !between($tele,6,20)) {
+        header("Location: ../index.php?error3=invalidtele");
+        exit();
+    } 
     else if(!preg_match("/^[a-zA-Z ]*$/", $fname) || !between($fname,2,20)) {
-        header("Location: ../reservation.php?error3=invalidfname");
+        header("Location: ../index.php?error3=invalidfname");
         exit();
     }
     else if(!preg_match("/^[a-zA-Z ]*$/", $lname) || !between($lname,2,40)) {
-        header("Location: ../reservation.php?error3=invalidlname");
+        header("Location: ../index.php?error3=invalidlname");
         exit();
     }
     else if(!preg_match("/^[a-zA-Z0-9]*$/", $username) || !between($username,4,20)) {
@@ -63,7 +68,7 @@ if(isset($_POST['signup-submit'])) {//very if the user clicked connexion button
                 exit();
             }
             else {
-                $sql = "INSERT INTO users(f_name, l_name, uidUsers, emailUsers, pwdUsers) VALUES(?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO users(f_name, l_name, uidUsers, telephone, emailUsers, pwdUsers) VALUES(?, ?, ?, ?, ?, ?)";
                 $stmt = mysqli_stmt_init($conn);
                 if(!mysqli_stmt_prepare($stmt, $sql)){
                     header("Location: ../index.php?error=error2");
@@ -71,7 +76,7 @@ if(isset($_POST['signup-submit'])) {//very if the user clicked connexion button
                 }
                 else {
                     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);    //encrypting password
-                    mysqli_stmt_bind_param($stmt, "sssss", $fname, $lname, $username, $email, $hashedPwd);
+                    mysqli_stmt_bind_param($stmt, "ssssss", $fname, $lname, $username, $tele, $email, $hashedPwd);
                     mysqli_stmt_execute($stmt);
                     header("Location: ../index.php?signup=success");
                     exit();
@@ -82,9 +87,8 @@ if(isset($_POST['signup-submit'])) {//very if the user clicked connexion button
     //closing the connection
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
-    }
-    else{
-        header("Location: ../index.php");
-        exit();
-        
-    }
+}
+else{
+    header("Location: ../index.php");
+    exit();
+}

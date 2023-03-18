@@ -1,7 +1,7 @@
 <?php
 require "header.php";
 ?>
-    
+
 <br><br>
 <div class="container">
     <?php
@@ -11,7 +11,7 @@ require "header.php";
                 echo '<h5 class="bg-danger text-center">Erreur!</h5>';
             }
             if($_GET['delete'] == "success"){ 
-                echo '<h5 class="bg-success text-center">La suppression d\'un menu a réussi</h5>';
+                echo '<h5 class="bg-success text-center">La suppression d\'plat a réussi</h5>';
             }
         }          
         if(isset($_GET['edit'])){
@@ -19,10 +19,10 @@ require "header.php";
                 echo '<h5 class="bg-danger text-center">Erreur!</h5>';
             }
             if($_GET['edit'] == "success"){ 
-                echo '<h5 class="bg-success text-center">La modification de menu est réussie.</h5>';
+                echo '<h5 class="bg-success text-center">La modification de plat est réussie.</h5>';
             }
         }          
-        require 'includes\manage.menu.inc.php';   
+        require 'includes\manage.food.inc.php';   
     }   
     else {
         echo '<p class="text-center"><br>Vous n\'avez aucune autorisation<br><br></p>';  

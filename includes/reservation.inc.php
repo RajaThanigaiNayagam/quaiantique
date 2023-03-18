@@ -17,7 +17,7 @@ if(isset($_POST['reserv-submit'])) {//check whether the  submit button is clicke
     $date= $_POST['date'];
     $time= $_POST['time'];
     $guests= $_POST['num_guests'];
-    $tele = $_POST['tele'];
+    //$tele = $_POST['tele'];
     $comments = $_POST['comments'];
 
     if($guests==1 || $guests==2){
@@ -26,14 +26,11 @@ if(isset($_POST['reserv-submit'])) {//check whether the  submit button is clicke
     else{
         $tables=ceil(($guests-2)/2);
     }
-    if(empty($date) || empty($time) || empty($guests) || empty($tele)) {
+    if(empty($date) || empty($time) || empty($guests) ) {
         header("Location: ../reservation.php?error3=emptyfields");
         exit();
     } else if(!preg_match("/^[0-9]*$/", $guests) || !between($guests,1,3)) {
         header("Location: ../reservation.php?error3=invalidguests");
-        exit();
-    } else if(!preg_match("/^[a-zA-Z0-9]*$/", $tele) || !between($tele,6,20)) {
-        header("Location: ../reservation.php?error3=invalidtele");
         exit();
     } else if(!preg_match("/^[a-zA-Z 0-9]*$/", $comments) || !between($comments,0,200)) {
         header("Location: ../reservation.php?error3=invalidcomment");
@@ -82,7 +79,7 @@ if(isset($_POST['reserv-submit'])) {//check whether the  submit button is clicke
             if ( $afternoonperiod && (   ( ($row["open_time"]) == "00:00:00" )  && ( ($row["close_time"])  == "00:00:00")  )  ) {   //&&  ( (($row["open_time"]) <= $time ) || ($time <= ($row["close_time"])) ) ) {
                 header("Location: ../reservation.php?error3=restaurantclosed" );
                 exit();
-            } else if  ( (   ( ($row["eveningopentime"]) == "00:00:00" )  && ( ($row["eveningclosetime"])  == "00:00:00")  )   ) {   //&&  ( (($row["eveningopentime"]) <= $time ) || ($time <= ($row["eveningclosetime"])) ) ) {
+            } else if  ($eveningperiod && (   ( ($row["eveningopentime"]) == "00:00:00" )  && ( ($row["eveningclosetime"])  == "00:00:00")  )   ) {   //&&  ( (($row["eveningopentime"]) <= $time ) || ($time <= ($row["eveningclosetime"])) ) ) {
                 header("Location: ../reservation.php?error3=restaurantclosed" );
                 exit();
             }
@@ -115,11 +112,11 @@ if(isset($_POST['reserv-submit'])) {//check whether the  submit button is clicke
 
     /* ******* checking whether the total reserved tables are less than total tables of restaurant  ******* */
     $total_reserved_table = $current_tables + $tables;
-    if ($total_reserved_table > $a_tables){
-        header("Location: ../reservation.php?error3=full");
+    if ($total_reserved_table > $nb_tables){
+        header("Location: ../reservation.php?error3=full&numbtable=".$total_reserved_table);
     }
     else {
-        $sql = "INSERT INTO reservation(num_guests, num_tables, rdate, time_zone, telephone, comment, user_fk, res_time_slot_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO reservation(num_guests, num_tables, rdate, time_zone, comment, status, user_fk, res_time_slot_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)){
             var_dump($mysqli_stmt_prepare);
@@ -128,7 +125,9 @@ if(isset($_POST['reserv-submit'])) {//check whether the  submit button is clicke
         }
         else {       
             $tables=strval($tables);
-            mysqli_stmt_bind_param($stmt, "ssssssss", $guests, $tables, $date, $time, $tele, $comments, $user, $rest_time_slot_id);
+            $approved="Approuvée";
+            var_dump($sql);
+            mysqli_stmt_bind_param($stmt, "ssssssss", $guests, $tables, $date, $time, $comments, $approved, $user, $rest_time_slot_id);
             if (mysqli_stmt_execute($stmt) ) {
                 header("Location: ../reservation.php?reservation=success");
                 exit();

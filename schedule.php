@@ -2,14 +2,14 @@
 require "header.php";
 ?>
 
-<br><br>
+<br><br><br>
 <div class="container">
     <h4 class="text-center"><br>Modifier l'horaire<br></h4>
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-8 offset-md-2">
     <?php 
     if(isset($_SESSION['user_id'])){
         if($_SESSION['role']==2){
-            echo '<p class="text-white bg-dark text-center">Définir le calendrier pour une date précise</p><br>';
+            echo '<p class="text-white bg-dark text-center schedulehour">Définir le calendrier pour une date précise</p><br>';
             if(isset($_GET['error5'])){
                 if($_GET['error5'] == "sqlerror1") {   //SQL Execution error
                     echo '<h5 class="bg-danger text-center">Erreur</h5>';
@@ -31,7 +31,7 @@ require "header.php";
                         echo"<div>";
                         if ($result->num_rows > 0) {
                             echo" 
-                            <div class='row'>
+                            <div class='row schedulehour'>
                                 <div class='col sheduleday'>Jour</div>
                                 <div class='col sheduleday'></div>
                                 <div class='col sheduleday'>Horaire d'ouverture</div>
@@ -40,10 +40,9 @@ require "header.php";
                             while($row = $result->fetch_assoc()) {
                                 if ( ($row['open_time'] == '00:00:00' && $row['close_time'] == '00:00:00') || ( $row['eveningopentime'] == '00:00:00' && $row['eveningclosetime'] == '00:00:00' ) ) {
                                     echo " 
-                                    <div class='row'>
-                                            <div class='col sheduleday'><em>". $row['day'] . "</em></div>
+                                    <div class='row schedulehour'>
+                                            <div class='col sheduleday'>". $row['day'] . "</div>
                                             <div class='col'>Matin</div>";
-
                                             if ( ($row['open_time'] == '00:00:00' && $row[ 'close_time'] == '00:00:00') ) {
                                                 echo"<div class='col scheduleData'></div>
                                                 <div class='col scheduleData'>ferme</div>";
@@ -53,10 +52,9 @@ require "header.php";
                                             }
 
                                     echo " </div>
-                                    <div class='row'>
+                                    <div class='row schedulehour'>
                                             <div class='col'><em> </em></div>
                                             <div class='col'>Après midi</div>";
-
                                             if ( $row['eveningopentime'] == '00:00:00' && $row['eveningclosetime'] == '00:00:00' )  {
                                                 echo "<div class='col scheduleData'></div>
                                                 <div class='col scheduleData'>fermé</div>"; 
@@ -68,13 +66,13 @@ require "header.php";
                                 }
                                 else{
                                     echo " 
-                                    <div class='row'>
-                                                <div class='col sheduleday'><em>". $row['day'] . "</em></div>
+                                    <div class='row schedulehour'>
+                                                <div class='col sheduleday'>". $row['day'] . "</div>
                                                 <div class='col'>Matin</div>
                                                 <div class='col scheduleData'>".$row['open_time']."</div>
                                                 <div class='col scheduleData'>".$row['close_time']."</div>
                                     </div>
-                                    <div class='row'>
+                                    <div class='row schedulehour'>
                                                 <div class='col'><em> </em></div>
                                                 <div class='col'>Après midi</div>
                                                 <div class='col scheduleData'>".$row['eveningopentime']."</div>
@@ -108,10 +106,10 @@ require "header.php";
 
             // FORM DATA GETS THE DATA FROM THE ADMIN AND SEND TO SCHEDULE.INC.PHP
             echo'  
-            <br><br>
+            <br>
             <div class="signup-form">
                 <form action="includes/schedule.inc.php" method="post">
-                    <div class="form-group">
+                    <div class="form-group schedulehour">
                         <label for="weekdays" class="form-label">Enter le jour</label>
                         <input class="form-control" list="dayOptions" id="weekdays" name="day" placeholder="jour de la semaine" required="required">
                         <datalist id="dayOptions">
@@ -125,29 +123,29 @@ require "header.php";
                             <option value="dimanche">dimanche</option>
                         </datalist>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group schedulehour">
                         <h4>Les horaires d\'aprèsmidi</h4>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group schedulehour">
                         <label>Heure d\'ouverture</label>
                         <input type="time" class="form-control" name="opentime" required="required">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group schedulehour">
                         <label>L\'heur de fermeture</label>
                         <input type="time" class="form-control" name="closetime" required="required">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group schedulehour">
                         <h4>Les horaires du soir</h4>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group schedulehour">
                         <label>Ouverture du soir</label>
                         <input type="time" class="form-control" name="eveningopentime" required="required">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group schedulehour">
                         <label>Fermeture du soir</label>
                         <input type="time" class="form-control" name="eveningclosetime" required="required">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group schedulehour">
                         <button type="submit" name="schedule" class="btn btn-dark btn-lg btn-block">Soumettre l\'horaire</button>
                     </div>
                 </form>

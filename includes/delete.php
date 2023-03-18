@@ -1,6 +1,22 @@
 <?php
+//require "../header.php";
 
-//delete reservation
+//update reservation done by admin
+if(isset($_GET['update-submit'])) {
+    require 'dbh.inc.php';
+    $action =  $_GET['action'];
+    $reservation_id = $_GET['reserv_id'];
+    $sql = "UPDATE reservation SET status='".$action."' WHERE reserv_id =$reservation_id";
+    //var_dump($sql);
+    if (mysqli_query($conn, $sql)) {
+        header("Location: ../view_reservations.php?update=success&action=".$action."&sql=".$sql);
+    } else {
+        header("Location: ../view_reservations.php?update=error&action=".$action."&sql=".$sql);
+    }
+}
+
+
+//delete réservation un user ou admin peut supprimer sa propre réservation saisie auparavant
 if(isset($_POST['delete-submit'])) {
     require 'dbh.inc.php';
     $reservation_id = $_POST['reserv_id'];

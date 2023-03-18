@@ -9,7 +9,7 @@
 body
 {
 	overflow-y: scroll;
-	overflow-x: hidden;
+	overflow-x: scroll;
 }
 
 h3{
@@ -21,7 +21,7 @@ h3{
 }
 
 
-/* Shedule table */
+/* Schedule table */
 /*---------------*/
 .horaireTitle{
 	font-family: 'Petit Formal Script', cursive;
@@ -41,11 +41,22 @@ h3{
 
 .sheduleday{
     font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
+	color: #3c3c3c;
+	text-align: right;
+}
+
+
+.schedulehour{
+	padding: auto;
+	margin: 0 !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
 	color: #3c3c3c;
 	text-align: center;
 }
+
 
 .scheduleData{
     font-family: 'Montserrat', sans-serif;
@@ -142,6 +153,16 @@ h3{
 	justify-content: center;
 }
 
+
+.reservupdatebutton{
+	width: 80px;
+	color: #906427 !important;
+	background-color: #906427 !important;
+}
+
+.reservupdatebutton a{
+	color: white;
+}
 /*------------------------------------------------------------*/
 /* To override bootstrap button color*/
 /* Gestion de menu & repas */

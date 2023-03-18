@@ -22,7 +22,7 @@
     
     <script type="text/javascript"> 
         let nboftimeslot = parseInt($("#nbtimeslot").val());
-        for (let i = 0; i < nboftimeslot; i++) {
+        for (let i = 0; i <= nboftimeslot; i++) {
             $("#timebutton"+i+"").on( "click", function(event) { $('#reservresponse').val( $("#timebutton"+i+"").text() ); console.log("val : " + $("#timebutton"+i+"").text() ); } );
         }
     </script>

@@ -4,16 +4,17 @@ require "header.php";
     
 <br><br>
 <div class="container">
-    <h4 class="text-center"><br>Voir les réservations<br></h4>     
+    <h4 class="text-center"><br>Voir les réservations<br></h4>    
+    <div class="col-md-12 offset-md-0"> 
     <?php
     if(isset($_SESSION['user_id'])){
         echo '<p class="text-white bg-dark text-center">'. $_SESSION['username'] .', ici, vous pouvez consulter l\'historique de vos réservations</p><br>';
         if(isset($_GET['delete'])){
-            if($_GET['delete'] == "error") {   //Checking - delete reservation
+            if($_GET['update'] == "error") {   //Checking - delete reservation
                 echo '<h5 class="bg-danger text-center">Error!</h5>';
             }
-            if($_GET['delete'] == "success"){ 
-                echo '<h5 class="bg-success text-center">La suppression a réussi</h5>';
+            if($_GET['update'] == "success"){ 
+                echo '<h5 class="bg-success text-center">La modification de l\'état de réservation a réussi.</h5>';
             }
         }  
         require 'includes/view.reservation.inc.php';

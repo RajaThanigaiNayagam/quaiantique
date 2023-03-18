@@ -15,9 +15,9 @@ require "header.php";
 
 
 
-<!--about us section-->
+<!--about us section   ************************  A propos de nous ************************ -->
 <section id="aboutus">
-    <div class="container">
+    <div class="container"><br><br>
         <h3 class="text-center"><br><br>Quai Antique</h3>
         <div class="row">
             <!--carousel-->
@@ -70,7 +70,7 @@ require "header.php";
 
 <!--<div class="header2"></div>-->
 
-<!----gallery -->
+<!----gallery    ****************************  GALLERY  **************************** -->
 <div class="gallery" id="gallery"><br><br><br>
     <div class="container">
         <h3 class="text-center"><br>Galerie</h3>
@@ -104,6 +104,8 @@ require "header.php";
 
 <!--<div class="header2"></div>-->
 
+
+<!--    **************************************  GALLERY  ************************************** -->
 <!-- main page opening and closing Hour  and Visit us section-->
 <section id="footer">
     <div class="container">
@@ -121,7 +123,7 @@ require "header.php";
                         echo"<div>";
                         if ($result->num_rows > 0) {
                             echo" 
-                            <div class='row'>
+                            <div class='row schedulehour'>
                                 <div class='col sheduleday'>Jour</div>
                                 <div class='col sheduleday'></div>
                                 <div class='col sheduleday'>Horaire d'ouverture</div>
@@ -130,7 +132,7 @@ require "header.php";
                             while($row = $result->fetch_assoc()) {
                                 if ( ($row['open_time'] == '00:00:00' && $row['close_time'] == '00:00:00') || ( $row['eveningopentime'] == '00:00:00' || $row['eveningclosetime'] == '00:00:00' ) ) {
                                     echo " 
-                                    <div class='row'>
+                                    <div class='row schedulehour'>
                                             <div class='col sheduleday'><em>". $row['day'] . "</em></div>
                                             <div class='col'>Matin</div>";
 
@@ -143,7 +145,7 @@ require "header.php";
                                             }
 
                                     echo " </div>
-                                    <div class='row'>
+                                    <div class='row schedulehour'>
                                             <div class='col'><em> </em></div>
                                             <div class='col'>Après midi</div>";
 
@@ -158,13 +160,13 @@ require "header.php";
                                 }
                                 else{
                                     echo " 
-                                    <div class='row'>
+                                    <div class='row schedulehour'>
                                                 <div class='col sheduleday'><em>". $row['day'] . "</em></div>
                                                 <div class='col'>Matin</div>
                                                 <div class='col scheduleData'>".$row['open_time']."</div>
                                                 <div class='col scheduleData'>".$row['close_time']."</div>
                                     </div>
-                                    <div class='row'>
+                                    <div class='row schedulehour'>
                                                 <div class='col'><em> </em></div>
                                                 <div class='col'>Après midi</div>
                                                 <div class='col scheduleData'>".$row['eveningopentime']."</div>
@@ -197,7 +199,7 @@ require "header.php";
                         ?>
                 </div><br>
             </div>
-            <div class="col-sm">
+            <div class="col-sm"><br><br><br><br><br><br>
                 <h4 class="text-right"><strong>Rendez nous visite</strong></h4>
                 <p class="text-right">Quai Antique<br><i class="fa fa-map-marker"></i>&nbsp; Avenue du Général de Gaulle, <br>Chambéry<br><br>email: info_Quai_Antique@gmail.com<br>mobile: +00 (33) 612345678</p>
             </div>
