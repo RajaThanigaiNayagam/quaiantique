@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    error_reporting(0);   //Désactiver tous les rapports d'erreurs
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,6 +57,9 @@
                         //set navigation bar when logged in
                         if(isset($_SESSION['user_id'])) { 
                             echo'
+                            <li class="nav-item">
+                                <a class="nav-link" href="carte.php" >Notre carte</a>
+                            </li>
                             <div class="dropdown nav-item">
                                 <label class="dropdown-toggle nav-link" type="text" id="dropdownReservationButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Réservation
@@ -74,14 +78,8 @@
                             if($_SESSION['role']==2) {   
                                 echo'
                                 <li class="nav-item">
-                                    <a class="nav-link" href="schedule.php" >Modifier l\'horaire</a>
+                                    <a class="nav-link" href="schedule.php" >Gérer l\'horaire</a>
                                 </li>';
-                                //<li class="nav-item">
-                                //    <a class="nav-link" href="tables.php" >Modifier les tables</a>
-                                //</li>
-                                //<li class="nav-item">
-                                //    <a class="nav-link" href="view_tables.php" >View Tables</a>
-                                //</li>
                                 echo'
                                 <div class="dropdown nav-item">
                                     <label class="dropdown-toggle nav-link" type="text" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,7 +99,10 @@
                         else {
                             echo'
                             <li class="nav-item">
-                            <a class="nav-link" href="#aboutus">À propos de nous</a>
+                                <a class="nav-link" href="view_carte.php" >Notre carte</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#aboutus">À propos de nous</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#gallery">Galerie</a>

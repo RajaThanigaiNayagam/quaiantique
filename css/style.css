@@ -12,6 +12,34 @@ body
 	overflow-x: scroll;
 }
 
+
+/*-------------------------------------------------------*/
+/*----                 MENU CARD PAGE                ----*/
+/*-------------------------------------------------------*/
+section{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#home img{
+    width: 35rem;
+    height: 25rem;
+    border-radius: 50px;
+}
+
+#home {
+	padding: 0;
+	margin: 0 !important;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 12px;
+	color: #3c3c3c;
+	text-align: center;
+}
+
+
 h3{
     /*text-shadow: 2px 1px grey;*/
 	font-family: 'Petit Formal Script', cursive;

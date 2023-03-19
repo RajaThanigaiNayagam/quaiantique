@@ -43,20 +43,17 @@ if(isset($_POST['submit-editfood'])) {//check whether the  submit button is clic
     require 'dbh.inc.php';
 
     $user= $_SESSION['user_id'];
+    $food_id= $_POST['food_id'];
     $foodname= $_POST['foodname'];
     $foodimage= $_POST['foodimage'];
     $foodprice= $_POST['foodprice'];
     $foodcategory = $_POST['foodcategory'];
     $foodsignature = $_POST['foodsignature'];
-    var_dump($foodname);
-    var_dump($foodimage);
-    var_dump($foodprice);
-    var_dump($foodcategory);
     if(empty($foodname) || empty($foodimage) || empty($foodprice) || empty($foodcategory) ) {
         header("Location: ..\manage.food.inc.php?error6=emptyfields");
         exit();
     } 
-    else if(!preg_match("/^[a-zA-Z ]*$/", $foodname) || !between($foodname,2,200)) {
+    else if(!preg_match("/^[a-z0-9áàâçéèêëïôöùü\s\-\,\!\?\.\;\/\:\%\*\(\)\"\'\&\+\=\°\€\£\$\@\_]+$/i", $foodname) || !between($foodname,2,200)) {
         header("Location: ..\manage.food.inc.php?error6=invalidfoodname");
         exit();
     } else if(!preg_match(('/^[0-9]+(\.[0-9]{1,2})?$/'), $foodprice) || !between($foodprice,0,20)) {
@@ -71,7 +68,7 @@ if(isset($_POST['submit-editfood'])) {//check whether the  submit button is clic
             header("Location: ..\manage.food.inc.php?error6=price&numbtable=".$price);
         }
         else {
-            $sql = "INSERT foods SET name = $foodname, price = ' . $price . ' , image = '  .$foodimage . ', signature = ' .  $foodsignature . ', category_id = ' . $foodcategory . ' WHERE Id = ' . $user . ' ";
+            $sql = "UPDATE foods SET name = '$foodname', price = '$foodprice' , image = '$foodimage', signature = '$foodsignature', category_id = '$foodcategory' WHERE Id = $food_id ";
             if ($conn->query($sql) ) {
                 header("Location: ..\manage.food.inc.php?addmenu=success");
                 exit();

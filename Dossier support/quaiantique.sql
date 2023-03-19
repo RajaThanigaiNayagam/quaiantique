@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 18 mars 2023 à 01:03
+-- Généré le : lun. 20 mars 2023 à 00:31
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 7.4.29
 
@@ -73,6 +73,14 @@ CREATE TABLE `foods` (
   `signature` tinyint(1) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `foods`
+--
+
+INSERT INTO `foods` (`Id`, `name`, `price`, `creationdate`, `image`, `signature`, `category_id`) VALUES
+(4, 'Steak tender', '18.85', '2023-03-19 21:11:56', 'img/4.jpg', 0, 3),
+(5, 'Steak sirloin tenderloin', '18.85', '2023-03-18 19:43:54', 'img/4.jpg', NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -340,6 +348,7 @@ ALTER TABLE `desserts`
 --
 ALTER TABLE `foods`
   ADD PRIMARY KEY (`Id`),
+  ADD UNIQUE KEY `name` (`name`),
   ADD KEY `category_id` (`category_id`);
 
 --
@@ -414,7 +423,7 @@ ALTER TABLE `desserts`
 -- AUTO_INCREMENT pour la table `foods`
 --
 ALTER TABLE `foods`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `menu`

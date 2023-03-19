@@ -10,11 +10,11 @@ require "header.php";
     
     <br>
     
-    <?php
+    <?php 
     /************************************************************************************/
     /**********************************  Edit new food **********************************/
     /************************************************************************************/
-    if( isset($_SESSION['user_id'])  && isset($_SESSION['foodedit-submit'])  ){
+    if( isset($_SESSION['user_id'])  && isset($_GET['foodedit-submit'])  ){
         if($_SESSION['role']==2){
             if( isset($_POST['submit-addmenu'] ) ){
                 echo '<h5 class="bg-danger text-center">Le nom du bouton "submit-addfood" est cliqué</h5>';
@@ -48,35 +48,37 @@ require "header.php";
                     }
                 }
                 
-                if (  isset($_SESSION['menu_id']) ) { $menuid = $_SESSION['menu_id']; } else {
+                if (  isset($_GET['food_id']) ) { $foodid = $_GET['food_id']; } else {
                     header("Location: ..\manage.food.inc.php?error6=invalidfoodname");
                     exit();
                 }
 
-                $sql = "SELECT * FROM foods"; 
+                require 'includes/dbh.inc.php';  // connection to mySQL Server
+                $sql = "SELECT * FROM foods WHERE Id=$foodid "; 
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while($menurow = $result->fetch_assoc()) {
-                        if ( $menurow['Id'] == $menuid ) {
+                        if ( $menurow['Id'] == $foodid ) {
                             // FORM DATA GETS THE DATA OF THE NEW FOOD FROM THE USER AND SEND IT TO MANAGE.FOOD.INC.PHP
                             echo'  
                             <div class="menu-form">
                                 <form action="includes\update.food.inc.php" id="foodform" method="post">
-
+                                    <input type="hidden" class="form-control" name="food_id" id="food_id" value='. $_GET['food_id'] .'>
+                                
                                     <div class="form-group">
                                         <h4>Ajouter un nouveau plat</h4>
                                     </div>
                                     <div class="form-group">
                                         <label>Entrez le nom du nouveau plat</label>
-                                        <input type="text" class="form-control" name="foodname" id="foodname" required="required" placeholder=" . $menurow["name"] . ">
+                                        <input type="text" class="form-control" name="foodname" id="foodname" required="required" value="' . $menurow["name"] . '">
                                     </div>
                                     <div class="form-group">
                                         <label>Entrez l\'image du plat avec le chemin complet</label>
-                                        <input type="text" class="form-control" name="foodimage" id="foodimage" required="required"  placeholder=" . $menurow["image"] . ">
+                                        <input type="text" class="form-control" name="foodimage" id="foodimage" required="required"  value="' . $menurow["image"] . '">
                                     </div>
                                     <div class="form-group">
                                         <label for="menuprice">Prix du plat</label>
-                                        <input type="number" class="form-control" name="foodprice" id="foodprice" step="any" required="required" placeholder=" . $menurow["price"] . ">
+                                        <input type="number" class="form-control" name="foodprice" id="foodprice" step="any" required="required" value="' . $menurow["price"] . '">
                                     </div>
                                     <div class="form-group">
                                         <label for="categoryoptions" class="form-label">Choisissez une catégorie</label>';
@@ -84,7 +86,6 @@ require "header.php";
                                         echo '<select class="form-control" id="categoryoptions" name="foodcategory">
                                             <option selected>Sélectionner un catégorie</option>';
 
-                                            require 'includes/dbh.inc.php';  // connection to mySQL Server
                                             //SQL query to read all datas from the table "category"
                                             //So that a menu can have multiple "main course" or "dessert" or "starter" or "Burger"
                                             $sql = "SELECT * FROM category"; 

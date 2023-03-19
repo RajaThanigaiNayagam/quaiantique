@@ -42,8 +42,8 @@ error_reporting(0);   //Désactiver tous les rapports d'erreurs
                             <td class='schedulehour'>".$row["price"]."</td>
                             <td class='schedulehour'>".$row["image"]."</td>
                             <td class='schedulehour'>".$row["creationdate"]."</td>
-                            <td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=edit.food.inc.php?foodedit-submit=1&menu_id=".$row["Id"]."&action=update>Éditer</button></td>
-                            <td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=includes\delete.php?fooddelete-submit=1&menu_id=".$row["Id"]."&action=delete>Supprimer</button></td>
+                            <td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=edit.food.inc.php?foodedit-submit=1&food_id=".$row["Id"]."&action=update>Éditer</button></td>
+                            <td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=includes\delete.php?fooddelete-submit=1&food_id=".$row["Id"]."&action=delete>Supprimer</button></td>
                         </tr>
                     </tbody>";
                     
