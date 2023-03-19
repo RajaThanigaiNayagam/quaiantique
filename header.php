@@ -56,12 +56,15 @@
                         //set navigation bar when logged in
                         if(isset($_SESSION['user_id'])) { 
                             echo'
-                            <li class="nav-item">
-                                <a class="nav-link" href="reservation.php" >Nouvelle réservation</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="view_reservations.php" >Voir les réservations</a>
-                            </li>'  ;
+                            <div class="dropdown nav-item">
+                                <label class="dropdown-toggle nav-link" type="text" id="dropdownReservationButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Réservation
+                                </label>
+                                <div class="dropdown-menu" aria-labelledby="dropdownReservationButton">
+                                    <a class="dropdown-item nav-link" href="reservation.php">Nouvelle réservation</a>
+                                    <a class="dropdown-item nav-link" href="view_reservations.php">Voir les réservations</a>
+                                </div>
+                            </div>'  ;
                             if($_SESSION['role']==1) {
                                 echo '<li class="nav-item">
                                     <a class="nav-link" href="index.php#footer">Nos horaires</a>
@@ -72,16 +75,23 @@
                                 echo'
                                 <li class="nav-item">
                                     <a class="nav-link" href="schedule.php" >Modifier l\'horaire</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="tables.php" >Modifier les tables</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="view_tables.php" >View Tables</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="view_menu.php" >Gérer le menu</a>
-                                </li>
+                                </li>';
+                                //<li class="nav-item">
+                                //    <a class="nav-link" href="tables.php" >Modifier les tables</a>
+                                //</li>
+                                //<li class="nav-item">
+                                //    <a class="nav-link" href="view_tables.php" >View Tables</a>
+                                //</li>
+                                echo'
+                                <div class="dropdown nav-item">
+                                    <label class="dropdown-toggle nav-link" type="text" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Les menus
+                                    </label>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item nav-link" href="view_menu.php">Afficher tous les menus</a>
+                                        <a class="dropdown-item nav-link" href="view_food.php">Gérer les plats</a>
+                                    </div>
+                                </div>
                                 <li class="nav-item">
                                     <a class="nav-link" href="index.php#footer">Nos horaires</a>
                                 </li>'  ;

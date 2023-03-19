@@ -22,7 +22,7 @@ require "header.php";
                 echo '<h5 class="bg-success text-center">La modification de plat est réussie.</h5>';
             }
         }          
-        require 'includes\manage.food.inc.php';   
+        require 'manage.food.inc.php';   
     }   
     else {
         echo '<p class="text-center"><br>Vous n\'avez aucune autorisation<br><br></p>';  

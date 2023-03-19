@@ -1,4 +1,7 @@
-
+<?php
+//require "header.php";
+error_reporting(0);   //Désactiver tous les rapports d'erreurs
+?>
 <div class="container">
     <h3 class="text-center menuTitle"><br>Gérer le menu<br></h3>
     <div class="col-md-8 offset-md-2">
@@ -8,8 +11,7 @@
     /*********************************  Liste des menu  *********************************/
     /************************************************************************************/
     if(isset($_SESSION['role']) ){$role=($_SESSION['role']);};  
-    if(isset($_SESSION['user_id'])){
-    if(isset($_SESSION['user_id'])){
+    if( (isset($_SESSION['user_id']) && (isset($_SESSION['role']))  )) {
         require 'includes/dbh.inc.php';
         if($role==2){
             $sql = "SELECT * FROM menu";
@@ -24,7 +26,6 @@
                             <th scope="col" class="schedulehour">Prix de menu</th>
                             <th scope="col" class="schedulehour">Images</th>
                             <th scope="col" class="schedulehour">Date de creation</th>
-                            <th scope="col" class="schedulehour">Éditer</th>
                             <th scope="col" class="schedulehour">Supprimer</th>
                         </tr>
                     </thead> ';
@@ -37,7 +38,7 @@
                             <td class='schedulehour'>".$row["price"]."</td>
                             <td class='schedulehour'>".$row["image"]."</td>
                             <td class='schedulehour'>".$row["creationdate"]."</td>
-                            <td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=includes/delete.php?update-submit=1&reserv_id=".$row["_id"]."&action=Approuvée>Annulée</button></td>
+                            <td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=includes/delete.php?menudelete-submit=1&menu_id=".$row["_id"]."&action=delete>Supprimer</button></td>
                         </tr>
                     </tbody>";
                     
@@ -48,7 +49,9 @@
                 echo "<p class='text-white text-center bg-danger'>Votre liste de réservation est vide !<p>"; 
             }
         }
-        
+    }
+    
+    
     /************************************************************************************/
     /*********************************  Create new menu *********************************/
     /************************************************************************************/
@@ -73,11 +76,11 @@
                 // FORM DATA GETS THE DATA OF THE NEW MENU FROM THE USER AND SEND IT TO MANAGE.MENU.INC.PHP
                 echo'  
                 <div class="menu-form">
-                    <form action="includes/view.menu.php" id="menuform" method="post">
+                    <form action="includes\menu.inc.php" id="menuform" method="post">
                         <div class="row form-group">
-                            <div class="col"><h4>Ajouter un nouveau menu</h4> </div>   
-                            <div class="col" style="margin:0;text-align: right;"><button class="menutofood reservupdatebutton" type="button"><a href="view_food.php">Gérer les plat</button></a></div>
-                        </div>
+                            <div class="col"><h4>Ajouter un nouveau menu</h4> </div>';   
+                            //<div class="col" style="margin:0;text-align: right;"><button class="menutofood reservupdatebutton" type="button"><a href="manage.food.inc.php">Gérer les plat</button></a></div>
+                        echo'</div>
                         <div class="form-group">
                             <label>Entrez le nom du nouveau menu</label>
                             <input type="text" class="form-control" name="manuname" id="manuname" required="required">
@@ -92,8 +95,8 @@
                         </div>
                         <div class="form-group">
                             <label for="foodid" class="form-label">Choisissez un ou plusieurs plats pour le menu</label>
-                            <input class="form-control" list="dayOptions" id="foodid" name="day" placeholder="Les plats">
-                            <select multiple id="foodoptions">
+                            <input class="form-control" list="foodOptions" id="foodid" name="menufood" placeholder="Les plats">
+                            <select multiple id="foodoptions"  name="menufood">
                                 <option selected>Sélectionner un ou plusieur plats</option>';
 
                             require 'includes/dbh.inc.php';  // connection to mySQL Server
@@ -103,7 +106,7 @@
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
-                                    echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                                    echo '<option value="' . $row['Id'] . '">' . $row['name'] . '</option>';
                                 }
                             }
                             echo'
@@ -139,10 +142,7 @@
         else {
             echo '<p class="text-center"><br>Vous n\'avez aucune autorisation<br><br></p>';  
         }  
-        
     } 
-}    
-}    
 ?>
     </div>
 </div>

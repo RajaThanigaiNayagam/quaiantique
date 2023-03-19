@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 17 mars 2023 à 00:51
+-- Généré le : sam. 18 mars 2023 à 01:03
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 7.4.29
 
@@ -141,6 +141,7 @@ CREATE TABLE `reservation` (
   `telephone` text NOT NULL,
   `comment` mediumtext NOT NULL,
   `reg_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` varchar(30) NOT NULL,
   `user_fk` int(11) NOT NULL,
   `res_time_slot_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -149,13 +150,20 @@ CREATE TABLE `reservation` (
 -- Déchargement des données de la table `reservation`
 --
 
-INSERT INTO `reservation` (`reserv_id`, `f_name`, `l_name`, `num_guests`, `num_tables`, `rdate`, `time_zone`, `telephone`, `comment`, `reg_date`, `user_fk`, `res_time_slot_id`) VALUES
-(1, 'Antoine ', 'Eduard', 10, 4, '2019-05-30', '12:00 - 16:00', '21096321232', 'fsdfsd', '2019-05-04 23:38:47', 28, 0),
-(73, 'Bill', 'dsadsadas', 30, 14, '2019-05-22', '12:00 - 16:00', '2109632123', 'dsadsadas', '2019-05-05 00:52:39', 28, 0),
-(74, 'Bill', 'Fotos', 6, 2, '2019-05-10', '12:00 - 16:00', '2129632123', '312312312', '2019-05-05 00:54:08', 28, 0),
-(75, 'Bill', 'Fotos', 6, 2, '2019-05-10', '16:00 - 20:00', '2109632123', '', '2019-05-05 00:54:40', 28, 0),
-(77, 'ramassamypoulle', 'Rajathanigainayagam', 6, 2, '1968-08-25', '12:00 - 16:00', '123456789', '', '2023-03-06 18:31:52', 35, 0),
-(78, '', '', 8, 4, '2023-03-30', '19:15;00', '0123456789', '', '2023-03-16 21:29:14', 35, 9);
+INSERT INTO `reservation` (`reserv_id`, `f_name`, `l_name`, `num_guests`, `num_tables`, `rdate`, `time_zone`, `telephone`, `comment`, `reg_date`, `status`, `user_fk`, `res_time_slot_id`) VALUES
+(1, 'Antoine ', 'Eduard', 10, 4, '2019-05-30', '12:00 - 16:00', '21096321232', 'fsdfsd', '2019-05-04 23:38:47', 'Annulée', 28, 0),
+(73, 'Bill', 'dsadsadas', 30, 14, '2019-05-22', '12:00 - 16:00', '2109632123', 'dsadsadas', '2019-05-05 00:52:39', 'Annulée', 28, 0),
+(74, 'Bill', 'Fotos', 6, 2, '2019-05-10', '12:00 - 16:00', '2129632123', '312312312', '2019-05-05 00:54:08', 'Annulée', 28, 0),
+(75, 'Bill', 'Fotos', 6, 2, '2019-05-10', '16:00 - 20:00', '2109632123', '', '2019-05-05 00:54:40', 'Annulée', 28, 0),
+(77, 'ramassamypoulle', 'Rajathanigainayagam', 6, 2, '1968-08-25', '12:00 - 16:00', '123456789', '', '2023-03-06 18:31:52', 'Annulée', 35, 0),
+(78, '', '', 8, 4, '2023-03-30', '19:15;00', '0123456789', '', '2023-03-16 21:29:14', '', 35, 9),
+(79, '', '', 5, 2, '2023-03-24', '19:15:00', '0628900352', '', '2023-03-17 06:01:01', 'Annulée', 38, 9),
+(80, '', '', 5, 2, '2023-03-24', '12:15:00', '0628900352', '', '2023-03-17 06:01:27', 'Annulée', 38, 2),
+(81, '', '', 5, 2, '2023-03-24', '12:15:00', '0628900352', '', '2023-03-17 06:06:56', 'Annulée', 38, 2),
+(82, '', '', 2, 1, '2023-04-09', '12:30:00', '0628900352', '', '2023-03-17 09:57:08', 'Approuvée', 26, 3),
+(83, '', '', 4, 1, '2023-03-17', '20:15:00', '0628900352', '', '2023-03-17 15:37:36', 'Approuvée', 39, 13),
+(85, '', '', 5, 2, '2023-04-03', '19:30:00', '', '', '2023-03-17 19:42:37', 'Approuvée', 40, 10),
+(86, '', '', 4, 1, '2023-04-03', '20:15:00', '', '', '2023-03-17 19:43:01', 'Approuvée', 40, 13);
 
 -- --------------------------------------------------------
 
@@ -284,6 +292,7 @@ CREATE TABLE `users` (
   `uidUsers` tinytext NOT NULL,
   `emailUsers` tinytext NOT NULL,
   `pwdUsers` longtext NOT NULL,
+  `telephone` text NOT NULL,
   `reg_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `role_id` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -292,20 +301,23 @@ CREATE TABLE `users` (
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`user_id`, `f_name`, `l_name`, `uidUsers`, `emailUsers`, `pwdUsers`, `reg_date`, `role_id`) VALUES
-(26, '', '', 'kappa', 'kapa@in.com', '$2y$10$AXUubKPLqRUX1DeorQ3AGOsBey7oaSNPF892EUR96unf..h25rsYq', '2019-04-30 19:51:07', 1),
-(27, '', '', 'kappa1', 'ka11pa@in.com', '$2y$10$/VK5CmjZavvC4gdv3WFk5u.Th5luQTfpzigiYPSryoVdULSE57A.a', '2019-04-30 20:18:57', 1),
-(28, '', '', 'kappa2', 'kappa2@hotmail.com', '$2y$10$jfiG7gFvyQo..Cx1ZwktaOcs.83Zhsn0fkvq.9CvQCRA4Ognb/cBK', '2019-04-30 20:46:20', 2),
-(29, '', '', 'ddsa', 'kapa@in.comq', '$2y$10$sH8sr2sI//qD5bg/D/sGeuDYb3COyUEwvNCKTLBfWUitVi2s/Z0ZG', '2019-05-01 00:25:37', 1),
-(30, '', '', 'kappakeepo', '1kapa@in.com', '$2y$10$ONn5KIyEJ.iyFKQIZVHjiurhibs/udkh6W8BLqz1Anj/z9j2VbL6y', '2019-05-01 00:37:43', 1),
-(31, '', '', 'kappakeepo12', 'kap11a@in.com', '$2y$10$WZjlyFoTvyAy/loojjLiE.0Ekka5nwcfAUnwIGM2FaR0g11ieVjeq', '2019-05-02 21:54:09', 1),
-(32, '', '', 'fwtis', 'kappa1@in.gr', '$2y$10$3rZoKKI5idzOeRK.YUfcwe/7bL66dkU0o54w2uQ/PWpFPYR7T/Zk2', '2019-05-03 01:11:03', 1),
-(33, '', '', 'kopelitsoua', 'effgfdgfdg@hotmail.com', '$2y$10$Ha0vNgl399uQveyAsp.MyuKteq9ZXZRH1yZ7XY2KZXU1O0HiQ0.CK', '2019-05-03 18:05:05', 1),
-(34, '', '', 'lolas', 'lolas@in.gr', '$2y$10$Fgzedyphz9nYpLkXaGOc2u.K2SZby5m5t23Uo/3u/4kC8a6Uf9xTe', '2019-05-05 00:59:10', 1),
-(35, '', '', 'raja', 'test@test.com', '$2y$10$HblSqojYA9mVV4olpgMty.sP7GeqD4.9n4MeSvLtugukGTkhVAQWW', '2023-03-06 18:30:11', 2),
-(36, '', '', 'thanigai', 'thanigainayagam@yahoo.fr', '$2y$10$HblSqojYA9mVV4olpgMty.sP7GeqD4.9n4MeSvLtugukGTkhVAQWW', '2023-03-09 17:35:59', 2),
-(37, 'Thanigai', 'Raja', 'test', 'test1@test.com', '$2y$10$G4l/yOULwzgR7eIiSgos5.lyAgNTU9xPv/jmJqAuM3GvLIu7YCxmW', '2023-03-13 21:13:47', 1),
-(38, 'Joseph', 'Ruben', 'ruben', 'ruben@test.com', '$2y$10$KDTjr93Hfd.kppCT8pRIlORP7GYgn8SiKFvAmIKLM/s9s38w7y8.6', '2023-03-14 06:11:48', 1);
+INSERT INTO `users` (`user_id`, `f_name`, `l_name`, `uidUsers`, `emailUsers`, `pwdUsers`, `telephone`, `reg_date`, `role_id`) VALUES
+(26, '', '', 'admin', 'admin@in.com', '$2y$10$HblSqojYA9mVV4olpgMty.sP7GeqD4.9n4MeSvLtugukGTkhVAQWW', '', '2019-04-30 19:51:07', 2),
+(27, '', '', 'kappa1', 'ka11pa@in.com', '$2y$10$/VK5CmjZavvC4gdv3WFk5u.Th5luQTfpzigiYPSryoVdULSE57A.a', '', '2019-04-30 20:18:57', 1),
+(28, '', '', 'kappa2', 'kappa2@hotmail.com', '$2y$10$jfiG7gFvyQo..Cx1ZwktaOcs.83Zhsn0fkvq.9CvQCRA4Ognb/cBK', '', '2019-04-30 20:46:20', 2),
+(29, '', '', 'ddsa', 'kapa@in.comq', '$2y$10$sH8sr2sI//qD5bg/D/sGeuDYb3COyUEwvNCKTLBfWUitVi2s/Z0ZG', '', '2019-05-01 00:25:37', 1),
+(30, '', '', 'kappakeepo', '1kapa@in.com', '$2y$10$ONn5KIyEJ.iyFKQIZVHjiurhibs/udkh6W8BLqz1Anj/z9j2VbL6y', '', '2019-05-01 00:37:43', 1),
+(31, '', '', 'kappakeepo12', 'kap11a@in.com', '$2y$10$WZjlyFoTvyAy/loojjLiE.0Ekka5nwcfAUnwIGM2FaR0g11ieVjeq', '', '2019-05-02 21:54:09', 1),
+(32, '', '', 'fwtis', 'kappa1@in.gr', '$2y$10$3rZoKKI5idzOeRK.YUfcwe/7bL66dkU0o54w2uQ/PWpFPYR7T/Zk2', '', '2019-05-03 01:11:03', 1),
+(33, '', '', 'kopelitsoua', 'effgfdgfdg@hotmail.com', '$2y$10$Ha0vNgl399uQveyAsp.MyuKteq9ZXZRH1yZ7XY2KZXU1O0HiQ0.CK', '', '2019-05-03 18:05:05', 1),
+(34, '', '', 'lolas', 'lolas@in.gr', '$2y$10$Fgzedyphz9nYpLkXaGOc2u.K2SZby5m5t23Uo/3u/4kC8a6Uf9xTe', '', '2019-05-05 00:59:10', 1),
+(35, '', '', 'raja', 'test@test.com', '$2y$10$HblSqojYA9mVV4olpgMty.sP7GeqD4.9n4MeSvLtugukGTkhVAQWW', '', '2023-03-06 18:30:11', 2),
+(36, '', '', 'thanigai', 'thanigainayagam@yahoo.fr', '$2y$10$HblSqojYA9mVV4olpgMty.sP7GeqD4.9n4MeSvLtugukGTkhVAQWW', '', '2023-03-09 17:35:59', 2),
+(37, 'Thanigai', 'Raja', 'test', 'test1@test.com', '$2y$10$G4l/yOULwzgR7eIiSgos5.lyAgNTU9xPv/jmJqAuM3GvLIu7YCxmW', '', '2023-03-13 21:13:47', 1),
+(38, 'Joseph', 'Ruben', 'ruben', 'ruben@test.com', '$2y$10$KDTjr93Hfd.kppCT8pRIlORP7GYgn8SiKFvAmIKLM/s9s38w7y8.6', '', '2023-03-14 06:11:48', 1),
+(39, 'Martin', 'Lucie', 'martin', 'lucie.martin@grouph.fr', '$2y$10$k7TKAJ6/VQL9lKBQchwxe.B9ghnIIRnjPnES2km/cHOZqWhS.Syj6', '', '2023-03-17 15:36:50', 1),
+(40, 'Xavier', 'saga', 'saga', 'xsaga@test.com', '$2y$10$zYdBnFeGumJb4gs2Ouk2guRXrzsCdbZaGCqpyn3rolJSVKX7/EZ1G', '1234567890', '2023-03-17 18:10:08', 1),
+(41, 'Raoul', 'Raja', 'RRR1006', 'test@gmail.com', '$2y$10$79IaU07z6cxfUHr1RLDLoO.7ihsXopOTZIStc.J9kmxf4iFqZx1Ca', '1234567890', '2023-03-17 19:37:01', 1);
 
 --
 -- Index pour les tables déchargées
@@ -420,7 +432,7 @@ ALTER TABLE `menu_foods`
 -- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `reserv_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `reserv_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT pour la table `role`
@@ -444,7 +456,7 @@ ALTER TABLE `tables`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Contraintes pour les tables déchargées

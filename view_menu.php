@@ -22,7 +22,7 @@ require "header.php";
                 echo '<h5 class="bg-success text-center">La modification de menu est réussie.</h5>';
             }
         }          
-        require 'includes\manage.menu.inc.php';   
+        require 'manage.menu.inc.php';   
     }   
     else {
         echo '<p class="text-center"><br>Vous n\'avez aucune autorisation<br><br></p>';  

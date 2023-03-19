@@ -26,6 +26,23 @@
             $("#timebutton"+i+"").on( "click", function(event) { $('#reservresponse').val( $("#timebutton"+i+"").text() ); console.log("val : " + $("#timebutton"+i+"").text() ); } );
         }
     </script>
+    <script>
+        $("#addfood").on(
+            "change",
+            function(event) {
+                console.log($("#foodprice").val());
+                if( document.querySelector("foodform").checkValidity() ) {
+                    console.log($("#foodprice").val());
+
+                    var foodprice_to_2_decimals =
+                        parseFloat($("#foodprice").val()).toFixed(2);
+
+                    console.log(foodprice_to_2_decimals);
+                    $("#foodprice").val(foodprice_to_2_decimals);
+                } 
+            } 
+        );
+    </script>
   </body>
   <!---end of body-->
 </html>

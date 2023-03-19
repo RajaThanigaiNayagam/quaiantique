@@ -18,6 +18,7 @@ h3{
     font-size: 30px;
     font-weight: bold;
 	color: #3c3c3c;
+	text-align: center;
 }
 
 
@@ -132,12 +133,37 @@ h3{
 }
 
 .navbar .navbar-nav .nav-item a{
-	color:#3A3B3B;
+	background-color: white !important;
+    font-weight: bold !important;
+	color:#3A3B3B !important;
+}
+
+
+.dropdown-menu, .dropdown-item{
+	font-family: 'Hind Madurai', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+	color: #3c3c3c;
+	text-align: center !important;
+}
+
+.navbar .container .collapse .dropdown, .navbar .container .collapse .dropdown .nav-link a{
+	font-family: 'Hind Madurai', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+	color: #3c3c3c !important;
+	text-align: center !important;
 }
 
 .navbar .navbar-nav .nav-item a:hover{
-	background-color: #d1c8c8;
-	color:black;
+	background-color: #d1c8c8 !important;
+	color:black !important;
+}
+
+
+.navbar .navbar-nav .nav-item .nav-link a:hover{
+	background-color: #d1c8c8 !important;
+	color:black !important;
 }
 
 
@@ -184,6 +210,8 @@ h3{
 }
 
 h4 {
+	
+	text-align: center;
 	font-family: 'Lora', serif;
     font-size: 35px;
 	color: #3c3c3c;

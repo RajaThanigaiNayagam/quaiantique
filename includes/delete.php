@@ -1,9 +1,9 @@
 <?php
 //require "../header.php";
+require 'dbh.inc.php';
 
 //update reservation done by admin
 if(isset($_GET['update-submit'])) {
-    require 'dbh.inc.php';
     $action =  $_GET['action'];
     $reservation_id = $_GET['reserv_id'];
     $sql = "UPDATE reservation SET status='".$action."' WHERE reserv_id =$reservation_id";
@@ -18,7 +18,6 @@ if(isset($_GET['update-submit'])) {
 
 //delete réservation un user ou admin peut supprimer sa propre réservation saisie auparavant
 if(isset($_POST['delete-submit'])) {
-    require 'dbh.inc.php';
     $reservation_id = $_POST['reserv_id'];
     $sql = "DELETE FROM reservation WHERE reserv_id =$reservation_id";
     if (mysqli_query($conn, $sql)) {
@@ -29,9 +28,8 @@ if(isset($_POST['delete-submit'])) {
 }
 
 
-//delete tables
+// ******************** delete tables ******************** //
 if(isset($_POST['delete-table'])) {
-    require 'dbh.inc.php';
     $tables_id = $_POST['tables_id'];
     $sql = "DELETE FROM tables WHERE tables_id =$tables_id";
     if (mysqli_query($conn, $sql)) {
@@ -40,6 +38,21 @@ if(isset($_POST['delete-table'])) {
         header("Location: ../view_tables.php?delete=error");
     }
 }
+
+
+
+// ******************** update menu  ******************** //
+if(isset($_POST['fooddelete-submit'])) {
+    $action =  $_GET['action'];
+    $menuid = $_POST['menu_id'];
+    $sql = "DELETE FROM foods WHERE Id =$menuid";
+    if (mysqli_query($conn, $sql)) {
+        header("Location: ../manage.food.inc.php.php?platdelete=success");
+    } else {
+        header("Location: ../manage.food.inc.php.php?platdelete=error");
+    }
+}
+
 
 
 mysqli_close($conn);
