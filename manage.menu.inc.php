@@ -1,18 +1,21 @@
 <?php
-//require "header.php";
+require "header.php";
 error_reporting(0);   //Désactiver tous les rapports d'erreurs
+
+
+require 'includes/dbh.inc.php';
 ?>
 <div class="container">
     <h3 class="text-center menuTitle"><br>Gérer le menu<br></h3>
     <div class="col-md-8 offset-md-2">
     
-    <?php    
+    <?php      
+    echo" <div style='text-align: right;'><button class='foodaddbutton' type='button'><a href='#menuform'>Ajouter le Menu</button></a></div><br><br>";
     /************************************************************************************/
     /*********************************  Liste des menu  *********************************/
     /************************************************************************************/
-    if(isset($_SESSION['role']) ){$role=($_SESSION['role']);};  
+    if(isset($_SESSION['role']) ){$role=($_SESSION['role']); };  
     if( (isset($_SESSION['user_id']) && (isset($_SESSION['role']))  )) {
-        require 'includes/dbh.inc.php';
         if($role==2){
             $sql = "SELECT * FROM menu";
             $result = $conn->query($sql);
@@ -38,7 +41,7 @@ error_reporting(0);   //Désactiver tous les rapports d'erreurs
                             <td class='schedulehour'>".$row["price"]."</td>
                             <td class='schedulehour'>".$row["image"]."</td>
                             <td class='schedulehour'>".$row["creationdate"]."</td>
-                            <td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=includes/delete.php?menudelete-submit=1&menu_id=".$row["_id"]."&action=delete>Supprimer</button></td>
+                            <td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=includes/delete.php?menudelete-submit=1&menu_id=".$row["Id"]."&action=delete>Supprimer</button></td>
                         </tr>
                     </tbody>";
                     
@@ -53,26 +56,51 @@ error_reporting(0);   //Désactiver tous les rapports d'erreurs
     
     
     /************************************************************************************/
-    /*********************************  Create new menu *********************************/
+    /*********************************  Create new menu *********************************/     
     /************************************************************************************/
     if(isset($_SESSION['user_id'])){
         if($_SESSION['role']==2){
             if( isset($_POST['submit-addmenu'] ) ){
                 echo '<h5 class="bg-danger text-center">Le nom du bouton "submit-addmenu" est cliqué</h5>';
             } else {
-                if(isset($_GET['error5'])){
-                    if($_GET['error5'] == "sqlerror1") {   //SQL Execution error
-                        echo '<h5 class="bg-danger text-center">Erreur</h5>';
+                if(isset($_GET['error6'])){
+                    if($_GET['error6'] == "sqlerror1") {   //SQL Execution error
+                        echo '<h5 class="bg-danger text-center">Erreur d\'ajouter le menu. Problème technique. Veuillez réessayer plus tard. !</h5>';
                     }
-                    if($_GET['error5'] == "emptyfields") {  
+                    if($_GET['error6'] == "emptyfields") {  
+                        echo '<h5 class="bg-danger text-center">Erreur, champs vides</h5>';
+                    }
+                    if($_GET['error6'] == "invalidmenuname") {  
+                        echo '<h5 class="bg-danger text-center">Erreur, champs vides</h5>';
+                    }
+                    if($_GET['error6'] == "invalidprice") {  
+                        echo '<h5 class="bg-danger text-center">Erreur, champs vides</h5>';
+                    }
+                    if($_GET['error6'] == "invalidimage") {  
                         echo '<h5 class="bg-danger text-center">Erreur, champs vides</h5>';
                     }
                 }
-                if(isset($_GET['schedule'])){
-                    if($_GET['schedule'] == "success") {   
-                        echo '<h5 class="bg-success text-center">Le menu a été soumis avec succès</h5>';
+                if(isset($_GET['menu_delete'])){
+                    if($_GET['menu_delete'] == "success") {   
+                        echo '<h5 class="bg-success text-center">Le plat a été supprimé avec succès</h5>';
+                    }
+                    else if($_GET['menu_delete'] == "error") {   
+                        echo '<h5 class="bg-success text-center">Erreur d\'ajouter la plat. Problème technique. Veuillez réessayer plus tard. !</h5>';
                     }
                 }
+                if(isset($_GET['updatemenu'])){
+                    if($_GET['updatemenu'] == "success") {   
+                        echo '<h5 class="bg-success text-center">Le plat a été soumis avec succès</h5>';
+                    }
+                    else if($_GET['updatemenu'] == "notsubmitted") {   
+                        echo '<h5 class="bg-success text-center">Le plat n\'a pas été soumis avec succès</h5>';
+                    }
+                    else if($_GET['updatemenu'] == "sqlerror1") {   
+                        echo '<h5 class="bg-success text-center">Erreur d\'ajouter la plat. Problème technique. Veuillez réessayer plus tard. !</h5>';
+                    }
+                }
+
+
                 // FORM DATA GETS THE DATA OF THE NEW MENU FROM THE USER AND SEND IT TO MANAGE.MENU.INC.PHP
                 echo'  
                 <div class="menu-form">
@@ -80,10 +108,11 @@ error_reporting(0);   //Désactiver tous les rapports d'erreurs
                         <div class="row form-group">
                             <div class="col"><h4>Ajouter un nouveau menu</h4> </div>';   
                             //<div class="col" style="margin:0;text-align: right;"><button class="menutofood reservupdatebutton" type="button"><a href="manage.food.inc.php">Gérer les plat</button></a></div>
-                        echo'</div>
+                            echo'</div>
+                        <input type="hidden" class="form-control" name="menuid" value="'. $_SESSION['user_id'] .'" required="required">
                         <div class="form-group">
                             <label>Entrez le nom du nouveau menu</label>
-                            <input type="text" class="form-control" name="manuname" id="manuname" required="required">
+                            <input type="text" class="form-control" name="menuname" id="menuname" required="required">
                         </div>
                         <div class="form-group">
                             <label>Entrez l\'image du menu avec le chemin complet</label>
@@ -95,8 +124,8 @@ error_reporting(0);   //Désactiver tous les rapports d'erreurs
                         </div>
                         <div class="form-group">
                             <label for="foodid" class="form-label">Choisissez un ou plusieurs plats pour le menu</label>
-                            <input class="form-control" list="foodOptions" id="foodid" name="menufood" placeholder="Les plats">
-                            <select multiple id="foodoptions"  name="menufood">
+                            <input class="form-control" list="foodOptions" id="foodid" name="menufood[]" placeholder="Les plats">
+                            <select multiple id="foodoptions"  name="menufood[]">
                                 <option selected>Sélectionner un ou plusieur plats</option>';
 
                             require 'includes/dbh.inc.php';  // connection to mySQL Server

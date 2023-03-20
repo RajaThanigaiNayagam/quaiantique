@@ -1,5 +1,5 @@
 <?php
-require "../header.php";
+//require "../header.php";
 session_start();
 //error_reporting(0);   //Désactiver tous les rapports d'erreurs
 
@@ -48,7 +48,8 @@ if(isset($_POST['submit-editfood'])) {//check whether the  submit button is clic
     $foodimage= $_POST['foodimage'];
     $foodprice= $_POST['foodprice'];
     $foodcategory = $_POST['foodcategory'];
-    $foodsignature = $_POST['foodsignature'];
+    if ($_POST['foodsignature'] == 'on') {$foodsignature = 1;} else {$foodsignature = 0;}
+    
     if(empty($foodname) || empty($foodimage) || empty($foodprice) || empty($foodcategory) ) {
         header("Location: ..\manage.food.inc.php?error6=emptyfields");
         exit();
@@ -59,7 +60,7 @@ if(isset($_POST['submit-editfood'])) {//check whether the  submit button is clic
     } else if(!preg_match(('/^[0-9]+(\.[0-9]{1,2})?$/'), $foodprice) || !between($foodprice,0,20)) {
         header("Location: ..\manage.food.inc.php?error6=invalidprice");
         exit();
-    } else if(!between($foodimage,0,200) || !(is_filepath($foodimage))  ) {
+    } else if(!between($foodimage,0,200) || !preg_match("/^[a-z0-9áàâçéèêëïôöùü\s\-\,\!\?\.\;\/\:\%\*\(\)\"\'\&\+\=\°\€\£\$\@\_]+$/i", $foodname) ) {      //!(is_filepath($foodimage))  ) {
         header("Location: ..\manage.food.inc.php?error6=invalidimage");
         exit();
     } else {
@@ -70,17 +71,17 @@ if(isset($_POST['submit-editfood'])) {//check whether the  submit button is clic
         else {
             $sql = "UPDATE foods SET name = '$foodname', price = '$foodprice' , image = '$foodimage', signature = '$foodsignature', category_id = '$foodcategory' WHERE Id = $food_id ";
             if ($conn->query($sql) ) {
-                header("Location: ..\manage.food.inc.php?addmenu=success");
+                header("Location: ..\manage.food.inc.php?updatefood=success&signature=".$_POST['foodsignature']);
                 exit();
             }else {
                 $sqlerror = $conn->error;
-                header("Location: ..\manage.food.inc.php?addmenu=sqlerror1&sqlerror=".$sqlerror);
+                header("Location: ..\manage.food.inc.php?updatefood=sqlerror1&sqlerror=".$sqlerror);
                 exit();
               }
         }
     } 
 } else {
-    header("Location: ..\manage.food.inc.php?addmenu=notsubmitted");
+    header("Location: ..\manage.food.inc.php?updatefood=notsubmitted");
     exit();
 }
 

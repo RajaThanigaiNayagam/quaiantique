@@ -1,32 +1,32 @@
 
 <?php
-//require "header.php";
+require "header.php";
 error_reporting(0);   //Désactiver tous les rapports d'erreurs
 ?>
-<div class="container">
+<div class="container"><br>
     <h3 class="text-center menuTitle"><br>Gérer le plat<br></h3>
-    <div class="col-md-8 offset-md-2">
-    
+    <div class="col-md-8 offset-md-2">                
+
     <br>
     <?php 
-    
+    require 'includes/dbh.inc.php';
+    echo" <div style='text-align: right;'><button class='foodaddbutton' type='button'><a href='#foodform'>Ajouter le Plat</button></a></div><br><br>";
     /************************************************************************************/
-    /*********************************  Liste des menu  *********************************/
+    /*********************************  Liste des food  *********************************/
     /************************************************************************************/
     if(isset($_SESSION['role']) ){$role=($_SESSION['role']);};  
     if( (isset($_SESSION['user_id']) && (isset($_SESSION['role']))  )) {
-        require 'includes/dbh.inc.php';
         if($role==2){
             $sql = "SELECT * FROM foods";
             $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
+            if ($result->num_rows > 0) {    
                 echo'
                 <table class="table table-hover table-responsive-sm text-center">
                     <thead>
                         <tr>
                             <th scope="col" class="schedulehour">Id</th>
                             <th scope="col" class="schedulehour">Nom </th>
-                            <th scope="col" class="schedulehour">Prix de menu</th>
+                            <th scope="col" class="schedulehour">Prix de plat</th>
                             <th scope="col" class="schedulehour">Images</th>
                             <th scope="col" class="schedulehour">Date de creation</th>
                             <th scope="col" class="schedulehour">Éditer</th>
@@ -42,7 +42,7 @@ error_reporting(0);   //Désactiver tous les rapports d'erreurs
                             <td class='schedulehour'>".$row["price"]."</td>
                             <td class='schedulehour'>".$row["image"]."</td>
                             <td class='schedulehour'>".$row["creationdate"]."</td>
-                            <td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=edit.food.inc.php?foodedit-submit=1&food_id=".$row["Id"]."&action=update>Éditer</button></td>
+                            <td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=edit.food.inc.php?foodedit-submit=1&food_id=".$row["Id"]."&signature=".$row["signature"]."&action=update>Éditer</button></td>
                             <td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=includes\delete.php?fooddelete-submit=1&food_id=".$row["Id"]."&action=delete>Supprimer</button></td>
                         </tr>
                     </tbody>";
@@ -67,44 +67,44 @@ error_reporting(0);   //Désactiver tous les rapports d'erreurs
                 if(isset($_GET['error6'])){
                     // Display the messages to the user where he entered the wrong info in the reservation FORM
                     if($_GET['error6'] == "sqlerror1") {   // Reservation form error handling
-                        echo '<h5 class="bg-danger text-center">Erreur d\'ajouter la plat. Problème technique. Veuillez réessayer plus tard. !</h5>';
+                        echo '<h5 class="bg-danger text-center">Erreur d\'ajouter le plat. Problème technique. Veuillez réessayer plus tard. !</h5>';
                     }if($_GET['error6'] == "emptyfields") {   // Reservation form error handling
                         echo '<h5 class="bg-danger text-center">Remplissez tous les champs, veuillez réessayer !</h5>';
                     }
                     else if($_GET['error6'] == "invalidfoodname") {   
                         echo '<h5 class="bg-danger text-center">Le nom de plat est invalide, veuillez réessayer!</h5>';
                     }
-                    else if($_GET['error6'] == "invalidprice") {   
+                    else if($_GET['error6'] == "invalidfoodprice") {   
                         echo '<h5 class="bg-danger text-center">Le prix du plat est invalide, veuillez réessayer!</h5>';
                     }
-                    else if($_GET['error6'] == "foodimage") {   
+                    else if($_GET['error6'] == "invalidfoodimage") {   
                         echo '<h5 class="bg-danger text-center">Le nom ou le chemin de l\'image est invalide, veuillez réessayer!</h5>';
                     }
                 }
-                if(isset($_GET['platdelete'])){
-                    if($_GET['menudelete'] == "success") {   
+                if(isset($_GET['fooddelete'])){
+                    if($_GET['fooddelete'] == "success") {   
                         echo '<h5 class="bg-success text-center">Le plat a été supprimé avec succès</h5>';
                     }
-                    else if($_GET['platdelete'] == "error") {   
-                        echo '<h5 class="bg-success text-center">Le plat n\'a pas été soumis avec succès</h5>';
-                    }
-                    else if($_GET['addmenu'] == "error") {   
+                    else if($_GET['fooddelete'] == "error") {   
                         echo '<h5 class="bg-success text-center">Erreur d\'ajouter la plat. Problème technique. Veuillez réessayer plus tard. !</h5>';
                     }
                 }
-                if(isset($_GET['addmenu'])){
-                    if($_GET['addmenu'] == "success") {   
+                if(isset($_GET['updatefood'])){
+                    if($_GET['updatefood'] == "success") {   
                         echo '<h5 class="bg-success text-center">Le plat a été soumis avec succès</h5>';
                     }
-                    else if($_GET['addmenu'] == "notsubmitted") {   
+                    else if($_GET['updatefood'] == "notsubmitted") {   
                         echo '<h5 class="bg-success text-center">Le plat n\'a pas été soumis avec succès</h5>';
                     }
-                    else if($_GET['addmenu'] == "sqlerror1") {   
+                    else if($_GET['updatefood'] == "sqlerror1") {   
                         echo '<h5 class="bg-success text-center">Erreur d\'ajouter la plat. Problème technique. Veuillez réessayer plus tard. !</h5>';
                     }
                 }
+
+
+
                 // FORM DATA GETS THE DATA OF THE NEW FOOD FROM THE USER AND SEND IT TO MANAGE.FOOD.INC.PHP
-                echo'  
+                echo' 
                 <div class="menu-form">
                     <form action="includes\food.inc.php" id="foodform" method="post">
                         <div class="form-group">
@@ -119,7 +119,7 @@ error_reporting(0);   //Désactiver tous les rapports d'erreurs
                             <input type="text" class="form-control" name="foodimage" id="foodimage" required="required">
                         </div>
                         <div class="form-group">
-                            <label for="menuprice">Prix du plat</label>
+                            <label for="foodprice">Prix du plat</label>
                             <input type="number" class="form-control" name="foodprice" id="foodprice" step="any" required="required">
                         </div>
                         <div class="form-group">
@@ -141,7 +141,7 @@ error_reporting(0);   //Désactiver tous les rapports d'erreurs
                             echo '</select>
                         </div>  
                         <div class="form-group">
-                            <label class="form-check-label" for="foodsignature">Voulez vous ajouter l\'image de plat sur le favori ?...</label>
+                            <label class="form-check-label" >Voulez vous ajouter l\'image de plat sur le favori ...      ?</label>
                             <input type="checkbox" class="form-check-input" name="foodsignature" id="foodsignature" script="margin : right;";>
                         </div>
                         <div class="form-group">

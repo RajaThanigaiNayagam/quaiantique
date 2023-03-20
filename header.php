@@ -58,7 +58,7 @@
                         if(isset($_SESSION['user_id'])) { 
                             echo'
                             <li class="nav-item">
-                                <a class="nav-link" href="carte.php" >Notre carte</a>
+                                <a class="nav-link" href="view_carte.php" >Notre carte</a>
                             </li>
                             <div class="dropdown nav-item">
                                 <label class="dropdown-toggle nav-link" type="text" id="dropdownReservationButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -86,7 +86,7 @@
                                         Les menus
                                     </label>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item nav-link" href="view_menu.php">Afficher tous les menus</a>
+                                        <a class="dropdown-item nav-link" href="view_menu.php">Gérer les menus</a>
                                         <a class="dropdown-item nav-link" href="view_food.php">Gérer les plats</a>
                                     </div>
                                 </div>

@@ -96,12 +96,12 @@ require "header.php";
                                                     echo '<option value="' . $row["Id"] . '" '. $selected . ' >' . $row["name"] . '</option>';
                                                 }
                                             }
-                                            if ($row["signature"] == $menurow["signature"] ) {  $checked = "checked"; } else { $checked = ""; }
+                                            if ($menurow["signature"] == "1" ) {  $checked = "checked"; } else { $checked = ""; }
                                         echo '</select>
                                     </div>  
                                     <div class="form-group">
-                                        <label class="form-check-label" for="foodsignature">Voulez vous ajouter l\'image de plat sur le favori ?...</label>
-                                        <input type="checkbox" class="form-check-input" name="foodsignature" id="foodsignature" script="margin : right;"; ' . $checked . '>
+                                        <label class="form-check-label" >Ajouter l\'image de plat sur le favori ...        ?</label>
+                                        <input type="checkbox" class="form-check-input" name="foodsignature" id="foodsignature" style="text-align : right;"; ' . $checked . '>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" name="submit-editfood" id="addfood" class="btn btn-dark btn-lg btn-block">Éditer le plat</button>

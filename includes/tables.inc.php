@@ -19,8 +19,6 @@ require 'dbh.inc.php';
     }
  
     else{
- 
-
      $sql = "SELECT t_date FROM tables WHERE t_date=?";
        $stmt = mysqli_stmt_init($conn);
        if(!mysqli_stmt_prepare($stmt, $sql)){
@@ -40,26 +38,24 @@ require 'dbh.inc.php';
                  if(!mysqli_stmt_prepare($stmt, $sql)){
                     header("Location: ../tables.php?error4=sqlerror1");
                     exit();
-                }
-                                           
-                    mysqli_stmt_bind_param($stmt, "ss", $tables, $date);
-                    mysqli_stmt_execute($stmt);
-                    header("Location: ../tables.php?tables=success");
-                    exit();
+                }                        
+                mysqli_stmt_bind_param($stmt, "ss", $tables, $date);
+                mysqli_stmt_execute($stmt);
+                header("Location: ../tables.php?tables=success");
+                exit();
            }
        
-           else{
-            $sql = "INSERT INTO tables(t_date, t_tables) VALUES(?, ?)";
-            $stmt = mysqli_stmt_init($conn);
-                 if(!mysqli_stmt_prepare($stmt, $sql)){
+            else{
+                $sql = "INSERT INTO tables(t_date, t_tables) VALUES(?, ?)";
+                $stmt = mysqli_stmt_init($conn);
+                if(!mysqli_stmt_prepare($stmt, $sql)){
                     header("Location: ../tables.php?error4=sqlerror1");
                     exit();
-                }
-                                           
-                    mysqli_stmt_bind_param($stmt, "ss", $date, $tables);
-                    mysqli_stmt_execute($stmt);
-                    header("Location: ../tables.php?tables=success");
-                    exit();
+                }                     
+                mysqli_stmt_bind_param($stmt, "ss", $date, $tables);
+                mysqli_stmt_execute($stmt);
+                header("Location: ../tables.php?tables=success");
+                exit();
            }
        }
     }
