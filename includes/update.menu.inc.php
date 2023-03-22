@@ -1,5 +1,5 @@
 <?php
-require "../header.php";
+//require "../header.php";
 session_start();
 //error_reporting(0);   //Désactiver tous les rapports d'erreurs
 
@@ -81,28 +81,19 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                     echo' ';
                     echo' ';
                     echo' ';
-                        var_dump ($countermenufoods) ;
                         $stmtmenufoods = $conn->prepare("INSERT INTO menu_foods(menu_id, food_id) VALUES(?, ?)" );
                         for ($i=0; $i<$countermenufoods; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
                             $foodid = intval($menufood[$i]);
                             $menuid = intval($menu_id);
-                            var_dump ($menuid ) ;
-                            var_dump ($foodid ) ;
+                            //var_dump ($menuid ) ;
+                            //var_dump ($menufood[$i] ) ;
                             if ($foodid>0){
-                                $stmtmenufoods->bind_param('ss', $menuid, $foodid );
+                                $stmtmenufoods->bind_param('ii', $menuid, $foodid );
                                 $stmtmenufoods->execute();
+                                var_dump ($stmtmenufoods->error);
                                 $countermenufoodsupdated++;
                             }
                         }
-
-                        //if ($menufood[$i] > 0) {
-                        //    $menufoodsupdatesql = "UPDATE menu_foods SET food_id = '$menufood[$i]' WHERE Id = $menu_id ";
-                        //    if ($conn->query($menufoodsupdatesql) ) {
-                        //        $menufoodsupdated = true;
-                        //        $countermenufoodsupdated++;
-                        //    }
-                        //}
-                    var_dump($countermenufoodsupdated);
                     if ($countermenufoodsupdated >= $countermenufoods ) {
                         header("Location: ..\manage.menu.inc.php?updatemenufoods=success&signature=".$_POST['menusignature']);
                         exit();
