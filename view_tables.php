@@ -4,7 +4,7 @@ require "header.php";
     
 <br><br>
 <div class="container">
-    <h4 class="text-center"><br>Voir les Tables<br></h4> 
+    <h4 class="text-center menuTitle"><br>Voir les Tables<br></h4> 
     <?php
     if(isset($_SESSION['user_id'])){
         

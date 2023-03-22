@@ -1,13 +1,13 @@
 <?php
 require "header.php";
-error_reporting(0);   //Désactiver tous les rapports d'erreurs
+//error_reporting(0);   //Désactiver tous les rapports d'erreurs
 
 
 require 'includes/dbh.inc.php';
 ?>
 <div class="container">
-    <h3 class="text-center menuTitle"><br>Gérer le menu<br></h3>
-    <div class="col-md-8 offset-md-2">
+    <h4 class="text-center menuSubTitle">Gérer le menu<br></h4>
+    <div class="col-md-12 offset-md-0">
     
     <?php      
     echo" <div style='text-align: right;'><button class='foodaddbutton' type='button'><a href='#menuform'>Ajouter le Menu</button></a></div><br><br>";
@@ -29,6 +29,7 @@ require 'includes/dbh.inc.php';
                             <th scope="col" class="schedulehour">Prix de menu</th>
                             <th scope="col" class="schedulehour">Images</th>
                             <th scope="col" class="schedulehour">Date de creation</th>
+                            <th scope="col" class="schedulehour">Éditer</th>
                             <th scope="col" class="schedulehour">Supprimer</th>
                         </tr>
                     </thead> ';
@@ -40,7 +41,8 @@ require 'includes/dbh.inc.php';
                             <td class='schedulehour'>".$row["name"]."</td>
                             <td class='schedulehour'>".$row["price"]."</td>
                             <td class='schedulehour'>".$row["image"]."</td>
-                            <td class='schedulehour'>".$row["creationdate"]."</td>
+                            <td class='schedulehour'>".$row["creationdate"]."</td>                            
+                            <td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=edit.menu.inc.php?menuedit-submit=1&menu_id=".$row["Id"]."&signature=".$row["signature"]."&action=update>Éditer</button></td>
                             <td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=includes/delete.php?menudelete-submit=1&menu_id=".$row["Id"]."&action=delete>Supprimer</button></td>
                         </tr>
                     </tbody>";
@@ -98,6 +100,9 @@ require 'includes/dbh.inc.php';
                     else if($_GET['updatemenu'] == "sqlerror1") {   
                         echo '<h5 class="bg-success text-center">Erreur d\'ajouter la plat. Problème technique. Veuillez réessayer plus tard. !</h5>';
                     }
+                    else if($_GET['updatemenufoods'] == "success") {   
+                        echo '<h5 class="bg-success text-center">Le plat a été soumis avec succès...  Et aussi, les plats correspondent à ce menu...</h5>';
+                    }
                 }
 
 
@@ -107,7 +112,7 @@ require 'includes/dbh.inc.php';
                     <form action="includes\menu.inc.php" id="menuform" method="post">
                         <div class="row form-group">
                             <div class="col"><h4>Ajouter un nouveau menu</h4> </div>';   
-                            //<div class="col" style="margin:0;text-align: right;"><button class="menutofood reservupdatebutton" type="button"><a href="manage.food.inc.php">Gérer les plat</button></a></div>
+                            //<div class="col" style="margin:0;text-align: right;"><button class="menutofood reservupdatebutton" type="button"><a href="manage.menu.inc.php">Gérer les plat</button></a></div>
                             echo'</div>
                         <input type="hidden" class="form-control" name="menuid" value="'. $_SESSION['user_id'] .'" required="required">
                         <div class="form-group">
@@ -131,39 +136,22 @@ require 'includes/dbh.inc.php';
                             require 'includes/dbh.inc.php';  // connection to mySQL Server
                             //SQL query to read all datas from the table "foods"
                             //So that a menu can have multiple "main course" or "dessert" or "starter" or "Burger"
-                            $sql = "SELECT * FROM foods"; 
+                            $sql = "SELECT f.name AS fname, f.Id AS id, c.name AS cname FROM foods f LEFT JOIN category AS c ON f.category_id=c.Id"; 
+                            //$sql = "SELECT f.name AS fname, f.Id AS id FROM foods f "; 
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
-                                    echo '<option value="' . $row['Id'] . '">' . $row['name'] . '</option>';
+                                    echo '<option value="' . $row['Id'] . '">' . $row['cname'] .'&nbsp;&nbsp;&nbsp;&nbsp; '. $row['fname'] . '</option>';
                                 }
                             }
                             echo'
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="submit" name="submit-addmenu" id="addmenu" class="btn btn-dark btn-lg btn-block">Ajouter le menu</button>
+                            <button type="submit" name="submit-addmenu" id="submit-addmenu" class="btn btn-dark btn-lg btn-block">Ajouter le menu</button>
                         </div>
                     </form>
                     
-                    
-                    <script>
-                        $("#submit-addmenu").on(
-                            "change",
-                            function(event) {
-                                console.log($("#menuprice").val());
-                                if( document.querySelector("menuform").checkValidity() ) {
-                                    console.log($("#menuprice").val());
-
-                                    var menuprice_to_2_decimals =
-                                        parseFloat($("#price_per_year").val()).toFixed(2);
-
-                                    console.log(price_to_2_decimals);
-                                    $("#price_per_year").val(menuprice_to_2_decimals);
-                                } 
-                            } 
-                        );
-                    </script>
                     <br><br>
                 </div>';       
             }   

@@ -60,7 +60,7 @@ if(isset($_POST['submit-editfood'])) {//check whether the  submit button is clic
     } else if(!preg_match(('/^[0-9]+(\.[0-9]{1,2})?$/'), $foodprice) || !between($foodprice,0,20)) {
         header("Location: ..\manage.food.inc.php?error6=invalidprice");
         exit();
-    } else if(!between($foodimage,0,200) || !preg_match("/^[a-z0-9áàâçéèêëïôöùü\s\-\,\!\?\.\;\/\:\%\*\(\)\"\'\&\+\=\°\€\£\$\@\_]+$/i", $foodname) ) {      //!(is_filepath($foodimage))  ) {
+    } else if(!between($menuimage,0,200) || !(is_filepath($menuimage))  ) {  
         header("Location: ..\manage.food.inc.php?error6=invalidimage");
         exit();
     } else {

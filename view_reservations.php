@@ -4,7 +4,7 @@ require "header.php";
     
 <br><br>
 <div class="container">
-    <h4 class="text-center"><br>Voir les réservations<br></h4>    
+    <h4 class="text-center  menuTitle"><br>Voir les réservations<br></h4>    
     <div class="col-md-12 offset-md-0"> 
     <?php
     if(isset($_SESSION['user_id'])){
@@ -27,6 +27,7 @@ require "header.php";
     ?>
 </div>
 <br><br>
+
 <?php
 require "footer.php";
 ?>

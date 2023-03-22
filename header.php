@@ -102,16 +102,16 @@
                                 <a class="nav-link" href="view_carte.php" >Notre carte</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#aboutus">À propos de nous</a>
+                                <a class="nav-link" href="index.php#aboutus">À propos de nous</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#gallery">Galerie</a>
+                                <a class="nav-link" href="index.php#gallery">Galerie</a>
                             </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#reservation">Réservation</a>
+                                    <a class="nav-link" href="index.php#reservation">Réservation</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#footer">Nos horaires</a>
+                                    <a class="nav-link" href="index.php#footer">Nos horaires</a>
                                 </li>' ;
                         }    ?>
                     </ul>

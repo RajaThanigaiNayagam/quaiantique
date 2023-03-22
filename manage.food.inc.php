@@ -1,16 +1,15 @@
 
 <?php
 require "header.php";
-error_reporting(0);   //Désactiver tous les rapports d'erreurs
+//error_reporting(0);   //Désactiver tous les rapports d'erreurs
 ?>
-<div class="container"><br>
-    <h3 class="text-center menuTitle"><br>Gérer le plat<br></h3>
+<div class="container"><br><br>
+    <h3 class="text-center menuTitle"><br>Gérer le plat</h3>
     <div class="col-md-8 offset-md-2">                
 
-    <br>
     <?php 
     require 'includes/dbh.inc.php';
-    echo" <div style='text-align: right;'><button class='foodaddbutton' type='button'><a href='#foodform'>Ajouter le Plat</button></a></div><br><br>";
+    echo" <div style='text-align: right;'><button class='foodaddbutton' type='button'><a href='#foodform'>Ajouter le Plat</button></a></div><br>";
     /************************************************************************************/
     /*********************************  Liste des food  *********************************/
     /************************************************************************************/
@@ -101,8 +100,6 @@ error_reporting(0);   //Désactiver tous les rapports d'erreurs
                     }
                 }
 
-
-
                 // FORM DATA GETS THE DATA OF THE NEW FOOD FROM THE USER AND SEND IT TO MANAGE.FOOD.INC.PHP
                 echo' 
                 <div class="menu-form">
@@ -127,7 +124,6 @@ error_reporting(0);   //Désactiver tous les rapports d'erreurs
                             //<input class="form-control" list="categoryOptions" id="categoryid" name="foodcategory" placeholder="Catégorie." required="required">
                             echo '<select class="form-control" id="categoryoptions" name="foodcategory">
                                 <option selected>Sélectionner un catégorie</option>';
-
                                 require 'includes/dbh.inc.php';  // connection to mySQL Server
                                 //SQL query to read all datas from the table "category"
                                 //So that a menu can have multiple "main course" or "dessert" or "starter" or "Burger"
@@ -141,32 +137,15 @@ error_reporting(0);   //Désactiver tous les rapports d'erreurs
                             echo '</select>
                         </div>  
                         <div class="form-group">
-                            <label class="form-check-label" >Voulez vous ajouter l\'image de plat sur le favori ...      ?</label>
-                            <input type="checkbox" class="form-check-input" name="foodsignature" id="foodsignature" script="margin : right;";>
+                            <label class="form-check-label" >Voulez vous ajouter l\'image de plat sur le favori ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      </label>
+                            <input type="checkbox" class="form-check-input" name="foodsignature" id="foodsignature" style="margin : right;";>
                         </div>
                         <div class="form-group">
-                            <button type="submit" name="submit-addfood" id="addfood" class="btn btn-dark btn-lg btn-block">Ajouter le plat</button>
+                            <button type="submit" name="submit-addfood" id="submit-addfood" class="btn btn-dark btn-lg btn-block">Ajouter le plat</button>
                         </div>
                     </form>
                     
                     
-                    <script>
-                        $("#addfood").on(
-                            "change",
-                            function(event) {
-                                console.log($("#foodprice").val());
-                                if( document.querySelector("foodform").checkValidity() ) {
-                                    console.log($("#foodprice").val());
-
-                                    var foodprice_to_2_decimals =
-                                        parseFloat($("#foodprice").val()).toFixed(2);
-
-                                    console.log(foodprice_to_2_decimals);
-                                    $("#foodprice").val(foodprice_to_2_decimals);
-                                } 
-                            } 
-                        );
-                    </script>
                     <br><br>
                 </div>';       
             }   

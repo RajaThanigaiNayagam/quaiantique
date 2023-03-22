@@ -1,5 +1,5 @@
 <?php
-//require "../header.php";
+require "../header.php";
 require 'dbh.inc.php';
 
 //php function to delete all the foods of a menu
@@ -101,11 +101,9 @@ if(isset($_GET['menufoodsdelete'])) {
     if ($menufoodsresult->num_rows > 0) {
         $menufoodsalreadexist=true;
         while($row = $menufoodsresult->fetch_assoc()) {
-        var_dump($row['menu_id']);
-        if ($row['menu_id'] > 0) {deletemenufoods($menuid);}
+            if ($row['menu_id'] > 0) {deletemenufoods($menuid);}
         }
     }
-
 
     $sql = "DELETE FROM menu WHERE Id =$menuid";
     if (mysqli_query($conn, $sql)) {

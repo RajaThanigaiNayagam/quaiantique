@@ -4,6 +4,8 @@ require "header.php";
 
 <br><br>
 <div class="container">
+    <h4 class="text-center menuTitle"><br>Voir les plats<br></h4>    
+    <div class="col-md-12 offset-md-0"> 
     <?php
     if(isset($_SESSION['user_id'])){
         if(isset($_GET['delete'])){
@@ -28,9 +30,9 @@ require "header.php";
         echo '<p class="text-center"><br>Vous n\'avez aucune autorisation<br><br></p>';  
     }
     ?>
+    </div>
 </div>
 <br><br>
-
 <?php
 require "footer.php";
 ?>

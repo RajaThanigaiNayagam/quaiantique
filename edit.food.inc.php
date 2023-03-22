@@ -1,7 +1,6 @@
 <?php
 require "header.php";
 //error_reporting(0);   //Désactiver tous les rapports d'erreurs
-
 ?>
 <br><br><br><br>
 <div class="container">
@@ -100,7 +99,7 @@ require "header.php";
                                         echo '</select>
                                     </div>  
                                     <div class="form-group">
-                                        <label class="form-check-label" >Ajouter l\'image de plat sur le favori ...        ?</label>
+                                        <label class="form-check-label" >Ajouter l\'image de plat sur le favori  ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                         <input type="checkbox" class="form-check-input" name="foodsignature" id="foodsignature" style="text-align : right;"; ' . $checked . '>
                                     </div>
                                     <div class="form-group">

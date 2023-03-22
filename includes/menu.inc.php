@@ -87,9 +87,8 @@ if(isset($_POST['submit-addmenu'])) {//check whether the  submit button is click
             if (mysqli_stmt_execute($stmt) ) {
                 $menuid = mysqli_stmt_insert_id($stmt);
                 if ( count($menufood) > 0 ) {
-                    var_dump($menuid);
                     $stmtmenufoods = $conn->prepare("INSERT INTO menu_foods(menu_id, food_id) VALUES(?, ?)" );
-                    for ($i=0; $i<count($menufood); $i++) {
+                    for ($i=0; $i<count($menufood); $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
                         $foodid = $menufood[$i];
                         if ($foodid>0){
                             $stmtmenufoods->bind_param('ss', $menuid, $foodid );
