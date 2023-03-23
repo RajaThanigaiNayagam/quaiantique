@@ -52,25 +52,27 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
     
     if(empty($menuname) || empty($menuimage) || empty($menuprice) || empty($menufood) ) {
         $errormenufoods="Mais les plats sont remplis.";
-        if(empty($menufood) ) {$errormenufoods="Les plats sont vides.";}
+        echo '<h5 class="bg-danger text-center">1.1 some field not found!</h5>';
+        //if(empty($menufood) ) {$errormenufoods="Les plats sont vides.";}  
+        echo '<h5 class="bg-danger text-center">1.2 some field not found!</h5>';
         header("Location: ..\manage.menu.inc.php?error6=emptyfields&errormenufoods=".$errormenufoods);
         exit();
     } 
     else if(!preg_match("/^[a-z0-9áàâçéèêëïôöùü\s\-\,\!\?\.\;\/\:\%\*\(\)\"\'\&\+\=\°\€\£\$\@\_]+$/i", $menuname) || !between($menuname,2,200)) {
+                            
+        echo '<h5 class="bg-danger text-center">2 menu name error!</h5>';
         header("Location: ..\manage.menu.inc.php?error6=invalidmenuname");
         exit();
     } else if(!preg_match(('/^[0-9]+(\.[0-9]{1,2})?$/'), $menuprice) || !between($menuprice,0,20)) {
+        echo '<h5 class="bg-danger text-center">3 menu price error!</h5>';
         header("Location: ..\manage.menu.inc.php?error6=invalidprice");
         exit();
     } else if(!between($menuimage,0,200) || !(is_filepath($menuimage))  ) {  
+        echo '<h5 class="bg-danger text-center">4 menu image error!</h5>';
         header("Location: ..\manage.menu.inc.php?error6=invalidimage");
         exit();
     } else {
         /* ******************************** checking whether the true  ******************************** */
-        if (false){
-            header("Location: ..\manage.menu.inc.php?error6=price&numbtable=".$price);
-        }
-        else {
             $sql = "UPDATE menu SET name = '$menuname', price = '$menuprice' , image = '$menuimage' WHERE Id = $menu_id ";
             if ($conn->query($sql) ) {
                 if (!empty($menufood)){
@@ -80,6 +82,7 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                     if ($countermenufoods>0){
                         require "delete.php";
                         deletemenufoods($menu_id);
+                        echo '<h5 class="bg-danger text-center">6 menu deleted</h5>';
                         $stmtmenufoods = $conn->prepare("INSERT INTO menu_foods(menu_id, food_id) VALUES(?, ?)" );
                         for ($i=0; $i<$countermenufoods; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
                             $foodid = intval($menufood[$i]);
@@ -91,15 +94,18 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                             }
                         }
                         if ($countermenufoodsupdated >= $countermenufoods ) {
+                            echo '<h5 class="bg-danger text-center">7 some field not found!</h5>';
                             header("Location: ..\manage.menu.inc.php?updatemenufoods=success&signature=".$_POST['menusignature']);
                             exit();
                         } else {
                             $sqlerror = $conn->error;
+                            echo '<h5 class="bg-danger text-center">2 some field not found...!</h5>'.$sqlerror;
                             header("Location: ..\manage.menu.inc.php?updatemenu=sqlerror1&sqlerror=".$sqlerror);
                             exit();
                         }
                     }
                 }
+                echo '<h5 class="bg-danger text-center">10 the foods of menu is field not found!</h5>';
                 header("Location: ..\manage.menu.inc.php?updatemenu=success&signature=".$_POST['menusignature']);
                 exit();
             }else {
@@ -107,7 +113,6 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                 header("Location: ..\manage.menu.inc.php?updatemenu=sqlerror1&sqlerror=".$sqlerror);
                 exit();
               }
-        }
     } 
 } else {
     header("Location: ..\manage.menu.inc.php?updatemenu=notsubmitted");
