@@ -88,6 +88,7 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                             $foodid = intval($menufood[$i]);
                             $menuid = intval($menu_id);
                             if ($foodid>0){
+                                echo '<h5 class="bg-danger text-center">7 adding menu.  The nmber of menu is </h5>'.$countermenufoodsupdated .' and the food id is... ' . $foodid;
                                 $stmtmenufoods->bind_param('ss', $menuid, $foodid );
                                 $stmtmenufoods->execute();
                                 $countermenufoodsupdated++;
