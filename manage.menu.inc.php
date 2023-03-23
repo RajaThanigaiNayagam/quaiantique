@@ -98,7 +98,7 @@ require 'includes/dbh.inc.php';
                         echo '<h5 class="bg-success text-center">Le plat n\'a pas été soumis avec succès</h5>';
                     }
                     else if($_GET['updatemenu'] == "sqlerror1") {   
-                        echo '<h5 class="bg-success text-center">Erreur d\'ajouter la plat. Problème technique. Veuillez réessayer plus tard. !</h5>';
+                        echo '<h5 class="bg-success text-center">Erreur de modification du menu. Erreur technique. Veuillez réessayer plus tard. sqlerror !</h5>';
                     }
                     else if($_GET['updatemenufoods'] == "success") {   
                         echo '<h5 class="bg-success text-center">Le plat a été soumis avec succès...  Et aussi, les plats correspondent à ce menu...</h5>';

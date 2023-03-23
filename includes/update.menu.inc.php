@@ -71,28 +71,31 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
         else {
             $sql = "UPDATE menu SET name = '$menuname', price = '$menuprice' , image = '$menuimage' WHERE Id = $menu_id ";
             if ($conn->query($sql) ) {
-                $countermenufoods=count($menufood);
-                $countermenufoodsupdated=0;
-                $menufoodsupdated= false;
-                if ($countermenufoods>0){
-                    require "delete.php";
-                    deletemenufoods($menu_id);
-                    echo' ';
-                    echo' ';
-                    echo' ';
+                if (!empty($menufood)){
+                    $countermenufoods=count($menufood);
+                    $countermenufoodsupdated=0;
+                    $menufoodsupdated= false;
+                    if ($countermenufoods>0){
+                        require "delete.php";
+                        deletemenufoods($menu_id);
                         $stmtmenufoods = $conn->prepare("INSERT INTO menu_foods(menu_id, food_id) VALUES(?, ?)" );
                         for ($i=0; $i<$countermenufoods; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
                             $foodid = intval($menufood[$i]);
                             $menuid = intval($menu_id);
                             if ($foodid>0){
-                                $stmtmenufoods->bind_param('ii', $menuid, $foodid );
+                                $stmtmenufoods->bind_param('ss', $menuid, $foodid );
                                 $stmtmenufoods->execute();
                                 $countermenufoodsupdated++;
                             }
                         }
-                    if ($countermenufoodsupdated >= $countermenufoods ) {
-                        header("Location: ..\manage.menu.inc.php?updatemenufoods=success&signature=".$_POST['menusignature']);
-                        exit();
+                        if ($countermenufoodsupdated >= $countermenufoods ) {
+                            header("Location: ..\manage.menu.inc.php?updatemenufoods=success&signature=".$_POST['menusignature']);
+                            exit();
+                        } else {
+                            $sqlerror = $conn->error;
+                            header("Location: ..\manage.menu.inc.php?updatemenu=sqlerror1&sqlerror=".$sqlerror);
+                            exit();
+                        }
                     }
                 }
                 header("Location: ..\manage.menu.inc.php?updatemenu=success&signature=".$_POST['menusignature']);
