@@ -1,4 +1,7 @@
 <?php
+session_start();      //demarrage du session d'un utilisateur admin/clinet 
+error_reporting(0);   //Désactiver tous les rapports d'erreurs
+
 if (isset($_POST['login-submit'])) {
     
     require 'dbh.inc.php';

@@ -119,14 +119,12 @@ if(isset($_POST['reserv-submit'])) {//check whether the  submit button is clicke
         $sql = "INSERT INTO reservation(num_guests, num_tables, rdate, time_zone, comment, status, user_fk, res_time_slot_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)){
-            var_dump($mysqli_stmt_prepare);
             header("Location: ../reservation.php?error3=sqlerror1");
             exit();
         }
         else {       
             $tables=strval($tables);
             $approved="Approuvée";
-            var_dump($sql);
             mysqli_stmt_bind_param($stmt, "ssssssss", $guests, $tables, $date, $time, $comments, $approved, $user, $rest_time_slot_id);
             if (mysqli_stmt_execute($stmt) ) {
                 header("Location: ../reservation.php?reservation=success");

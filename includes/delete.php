@@ -21,7 +21,6 @@ if(isset($_GET['update-submit'])) {
     $action =  $_GET['action'];
     $reservation_id = $_GET['reserv_id'];
     $sql = "UPDATE reservation SET status='".$action."' WHERE reserv_id =$reservation_id";
-    //var_dump($sql);
     if (mysqli_query($conn, $sql)) {
         header("Location: ../view_reservations.php?update=success&action=".$action."&sql=".$sql);
         exit;

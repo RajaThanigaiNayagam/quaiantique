@@ -132,9 +132,7 @@ require "header.php";
             echo '<p class="text-center"><br>Vous n\'avez aucune autorisation<br><br></p>';  
         }  
     }   
-    //var_dump($foodsinmenu);
     //for ($i=0; $i<$counterfoods; $i++) {
-    //    var_dump($foodsinmenu[$i]);
     //    if ($foodsinmenu[$i] == $row['Id']) {
     //        $foodsinmenifound=true;
     //    } 

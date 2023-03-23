@@ -23,7 +23,6 @@ require "header.php";
                     //SELECT sum(r.num_tables) AS res_tables FROM reservation AS r LEFT JOIN reservation_time_slot AS rt ON r.res_time_slot_id=rt.Id  WHERE rdate='".$date."'AND res_time_slot_id = '". $rest_time_slot_id . "'" ;
                     $sql = "SELECT m.image AS menuimage, m.name AS menuname, m.price AS menuprice, f.name AS foodname, c.name as categoryname  FROM menu AS m INNER JOIN menu_foods AS mf ON mf.menu_id = m.Id INNER JOIN foods AS f ON mf.food_id=f.Id INNER JOIN category AS c ON f.category_id = c.Id WHERE m.Id=$menuid" ;
                     //$sql = "SELECT * FORM menu";
-                    //var_dump($sql);
                     $counterstarter=0;
                     $counterburger=0;
                     $countermaincourse=0;

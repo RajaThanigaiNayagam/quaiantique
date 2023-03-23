@@ -1,5 +1,5 @@
 <?php 
-    session_start();
+    session_start();      //demarrage du session d'un utilisateur admin/clinet 
     error_reporting(0);   //Désactiver tous les rapports d'erreurs
 ?>
 <!DOCTYPE html>

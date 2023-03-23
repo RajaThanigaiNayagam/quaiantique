@@ -73,7 +73,6 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
             if ($conn->query($sql) ) {
                 $countermenufoods=count($menufood);
                 $countermenufoodsupdated=0;
-                //var_dump($countermenufoods);
                 $menufoodsupdated= false;
                 if ($countermenufoods>0){
                     require "delete.php";
@@ -85,12 +84,9 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                         for ($i=0; $i<$countermenufoods; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
                             $foodid = intval($menufood[$i]);
                             $menuid = intval($menu_id);
-                            //var_dump ($menuid ) ;
-                            //var_dump ($menufood[$i] ) ;
                             if ($foodid>0){
                                 $stmtmenufoods->bind_param('ii', $menuid, $foodid );
                                 $stmtmenufoods->execute();
-                                var_dump ($stmtmenufoods->error);
                                 $countermenufoodsupdated++;
                             }
                         }
