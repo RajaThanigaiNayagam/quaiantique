@@ -52,7 +52,8 @@ require "header.php";
                                     for ($i=0; $i<$counterstarter; $i++) {
                                         echo '<h4 class="display-5 schedulehour">' . $foodstarters[$i] . '</span> </h4>';
                                     }
-                                }
+                                }else { echo '<h5 class="bg-success text-center">1 Le plat a été soumis avec succès...  Et aussi, les plats correspondent à ce menu...</h5>'; }
+
                                 if ( ( count($foodburgers) > 0) ||  count($foodmaincourses) > 0 ){
                                     echo '<h3 class="display-5 sheduledaycenter"> Choix d\'un plat</span> </h3>';
                                     for ($i=0; $i<$counterburger; $i++) {
@@ -61,21 +62,24 @@ require "header.php";
                                     for ($i=0; $i<$countermaincourse; $i++) {
                                         echo '<h4 class="display-5 schedulehour">' . $foodmaincourses[$i] . '</span> </h4>';
                                     }
-                                }
+                                }else { echo '<h5 class="bg-success text-center">2 Le plat a été soumis avec succès...  Et aussi, les plats correspondent à ce menu...</h5>'; }
+
                                 
                                 if ( ( count($fooddesserts) > 0) ){
                                     echo '<h3 class="display-5 sheduledaycenter"> Choix d\'un dessert</span> </h3>';
                                     for ($i=0; $i<$counterdessert; $i++) {
                                         echo '<div class="display-5 schedulehour">' . $fooddesserts[$i] . '</span> </div>';
                                     }
-                                }
+                                }else { echo '<h5 class="bg-success text-center">3 Le plat a été soumis avec succès...  Et aussi, les plats correspondent à ce menu...</h5>'; }
+
                                 
                                 if ( count($foodboissions) > 0){
                                     echo '<h3 class="display-5 sheduledaycenter"> Choix d\'un boisson</span> </h3>';
                                     for ($i=0; $i<$counterboisson; $i++) {
                                         echo '<div class="display-5" schedulehour>' . $foodboissions[$i] . '</span> </div>';
                                     }
-                                }
+                                }else { echo '<h5 class="bg-success text-center">4 Le plat a été soumis avec succès...  Et aussi, les plats correspondent à ce menu...</h5>'; }
+
                                 echo '<h4 class="my-lg-2 my-3 sheduledaycenter">prix du menu  : &nbsp;&nbsp;' . $menuprice . '</h4>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12 py-lg-0 py-3 order-sm-2"><br><br><br>
@@ -84,7 +88,10 @@ require "header.php";
                         </div>
                     </section>';
                 }
-            }
+            } else { echo '<h5 class="bg-success text-center">5 Le plat a été soumis avec succès...  Et aussi, les plats correspondent à ce menu...</h5>'; }
+
+
+
             //SQL query to read all datas from the table "plat" to display in the menu
             echo ' <br><br><h1 class="text-center">Nos Plats</h1> 
             <section id="service">
