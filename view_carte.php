@@ -46,6 +46,8 @@ require "header.php";
                     <section id="home">
                         <div  class="row">
                             <div class="col-lg-6 col-md-6 col-12 order-1 pt-5">
+                                <h5 class="bg-success text-center">0 ' . $foodstarters . ' Le plat a été soumis avec succès...  Et aussi, les plats correspondent à ce menu...</h5> 
+
                                 <h1 class="display-5 horaireSubTitle">' . $menuname . '</span> </h1>';
                                 if ( count($foodstarters) > 0) {
                                     echo '<h3 class="display-5 sheduledaycenter"> Choix d\'une entrée</span> </h3>';
