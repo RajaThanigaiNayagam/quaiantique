@@ -70,7 +70,7 @@ require 'includes/dbh.inc.php';
                         echo '<h5 class="bg-danger text-center">Erreur d\'ajouter le menu. Problème technique. Veuillez réessayer plus tard. !</h5>';
                     }
                     if($_GET['error6'] == "emptyfields") {  
-                        echo '<h5 class="bg-danger text-center">Erreur, champs vides</h5>';
+                        echo '<h5 class="bg-danger text-center">Erreur, champs vides. '.$_GET['errormenufoods'] . ' </h5>';
                     }
                     if($_GET['error6'] == "invalidmenuname") {  
                         echo '<h5 class="bg-danger text-center">Erreur, champs vides</h5>';

@@ -51,7 +51,9 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
     $menufood= $_POST['menufood'];
     
     if(empty($menuname) || empty($menuimage) || empty($menuprice) || empty($menufood) ) {
-        header("Location: ..\manage.menu.inc.php?error6=emptyfields");
+        $errormenufoods="Les plats sont remplis.";
+        if(empty($menufood) ) {$errormenufoods="Les plats sont vides.";}
+        header("Location: ..\manage.menu.inc.php?error6=emptyfields&errormenufoods=".$errormenufoods);
         exit();
     } 
     else if(!preg_match("/^[a-z0-9áàâçéèêëïôöùü\s\-\,\!\?\.\;\/\:\%\*\(\)\"\'\&\+\=\°\€\£\$\@\_]+$/i", $menuname) || !between($menuname,2,200)) {
