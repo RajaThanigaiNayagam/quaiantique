@@ -36,11 +36,11 @@ require "header.php";
                     $result = $conn->query($sql); 
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
-                            if ($row['categoryname'] == 'Entrées') {$foodstarters[$counterstarter]=$row['foodname']; $counterstarter++;}
-                            if ($row['categoryname'] == 'Burgers') {$foodburgers[$counterburger]=$row['foodname']; $counterburger++;}
-                            if ($row['categoryname'] == 'Plats') {$foodmaincourses[$countermaincourse]=$row['foodname']; $countermaincourse++;}
-                            if ($row['categoryname'] == 'Desserts') {$fooddesserts[$counterdessert]=$row['foodname']; $counterdessert++;}
-                            if ($row['categoryname'] == 'Boisson') {$foodboissions[$counterboisson]=$row['foodname']; $counterboisson++;}
+                                if ($row['categoryname'] == 'Entrées') {$foodstarters[$counterstarter]=$row['foodname']; $counterstarter++;}
+                                if ($row['categoryname'] == 'Burgers') {$foodburgers[$counterburger]=$row['foodname']; $counterburger++;}
+                                if ($row['categoryname'] == 'Plats') {$foodmaincourses[$countermaincourse]=$row['foodname']; $countermaincourse++;}
+                                if ($row['categoryname'] == 'Desserts') {$fooddesserts[$counterdessert]=$row['foodname']; $counterdessert++;}
+                                if ($row['categoryname'] == 'Boisson') {$foodboissions[$counterboisson]=$row['foodname']; $counterboisson++;}
                         }
                     }
                     echo '
@@ -54,7 +54,7 @@ require "header.php";
                                         echo '<h4 class="display-5 schedulehour">' . $foodstarters[$i] . '</span> </h4>';
                                     }
                                 }
-                                if ( ( count($foodburgers) > 0) ||  count($foodmaincourses) ){
+                                if ( ( count($foodburgers) > 0) ||  count($foodmaincourses) > 0 ){
                                     echo '<h3 class="display-5 sheduledaycenter"> Choix d\'un plat</span> </h3>';
                                     for ($i=0; $i<$counterburger; $i++) {
                                         echo '<h4 class="display-5 schedulehour">' . $foodburgers[$i] . '</span> </h4>';
@@ -71,7 +71,7 @@ require "header.php";
                                     }
                                 }
                                 
-                                if ( count($foodboissions) ){
+                                if ( count($foodboissions) > 0){
                                     echo '<h3 class="display-5 sheduledaycenter"> Choix d\'un boisson</span> </h3>';
                                     for ($i=0; $i<$counterboisson; $i++) {
                                         echo '<div class="display-5" schedulehour>' . $foodboissions[$i] . '</span> </div>';

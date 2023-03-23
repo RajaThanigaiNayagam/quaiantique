@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 20 mars 2023 à 00:31
+-- Généré le : mer. 22 mars 2023 à 21:04
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 7.4.29
 
@@ -41,22 +41,8 @@ INSERT INTO `category` (`Id`, `name`, `creationdate`) VALUES
 (1, 'Entrées', '2023-03-13 06:42:58'),
 (2, 'Burgers', '2023-01-28 06:43:18'),
 (3, 'Plats', '2023-03-13 06:44:03'),
-(4, 'Desserts', '2023-01-28 06:45:18');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `desserts`
---
-
-CREATE TABLE `desserts` (
-  `Id` int(11) NOT NULL,
-  `name` varchar(200) NOT NULL,
-  `prix` float NOT NULL,
-  `image` varchar(200) NOT NULL,
-  `creationdate` date DEFAULT NULL,
-  `best` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(4, 'Desserts', '2023-01-28 06:45:18'),
+(7, 'Boisson', '2023-03-20 07:31:40');
 
 -- --------------------------------------------------------
 
@@ -79,8 +65,22 @@ CREATE TABLE `foods` (
 --
 
 INSERT INTO `foods` (`Id`, `name`, `price`, `creationdate`, `image`, `signature`, `category_id`) VALUES
-(4, 'Steak tender', '18.85', '2023-03-19 21:11:56', 'img/4.jpg', 0, 3),
-(5, 'Steak sirloin tenderloin', '18.85', '2023-03-18 19:43:54', 'img/4.jpg', NULL, 3);
+(4, 'Steak tender', '18.85', '2023-03-21 14:51:17', 'img/4.jpg', 1, 3),
+(6, 'plat Double rosti burger', '9.99', '2023-03-20 16:02:20', 'img/plat Double rosti burger.jpg', 1, 2),
+(8, 'Veggieburger plat', '7.99', '2023-03-20 16:02:30', 'img/plat Veggieburger plat9.99.jpg', 1, 2),
+(9, 'Grande assiette de legumes', '6.99', '2023-03-20 15:22:57', 'img/plat Grande assiette de legumes 6.99.jpg', 1, 3),
+(10, 'Coca', '2.00', '2023-03-20 08:15:47', 'img/Boisson coca 2.00.jpg', NULL, 7),
+(11, 'fanta', '2.00', '2023-03-20 08:16:58', 'img/Boisson fanta 2.00.jpg', NULL, 7),
+(13, 'Pepsi', '2.00', '2023-03-20 08:18:51', 'img\\Boisson pepsi 2.00.jpg', NULL, 7),
+(14, 'Piece du boucher marinee', '11.99', '2023-03-20 15:23:34', 'img/plat Piece du boucher marinee 11.99.jpg', 1, 3),
+(15, 'Quart poulet roti', '8.99', '2023-03-20 15:23:20', 'img/plat Quart poulet roti 8.99.jpg', 1, 3),
+(16, 'Steak-haché façon bouchère viande bovine française', '7.99', '2023-03-20 08:36:38', 'img\\plat Steak-haché façon bouchère viande bovine française 7.99.jpg', 0, 3),
+(17, 'Assiette de crostinis', '3.65', '2023-03-21 21:46:26', 'img/6.jpg', 1, 1),
+(18, 'Frite', '2.90', '2023-03-20 14:18:32', 'img/Entrer frites 2.99.jpg', 1, 1),
+(19, 'Filet de poisson pané sauce tartare', '7.95', '2023-03-20 14:17:43', 'img/plat Filet de poisson pané sauce tartare entrer 7.95.jpg', 1, 3),
+(20, 'Pancakes fourrés au caramel', '4.50', '2023-03-20 16:35:18', 'img/dessert5 Pancakes fourrés au caramel.jpeg', 1, 4),
+(21, 'pancakes au miel', '4.50', '2023-03-20 15:00:26', 'img/dessert6 pancakes au miel.jpeg', 1, 4),
+(22, 'Poireaux vinaigrette', '8.90', '2023-03-22 15:54:35', 'img/plat Poireaux vinaigrette.jpg', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -92,21 +92,20 @@ CREATE TABLE `menu` (
   `Id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `creationdate` date DEFAULT NULL,
+  `creationdate` timestamp NULL DEFAULT NULL,
   `image` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Menu de Restaurant';
 
--- --------------------------------------------------------
-
 --
--- Structure de la table `menu_desserts`
+-- Déchargement des données de la table `menu`
 --
 
-CREATE TABLE `menu_desserts` (
-  `Id` int(11) NOT NULL,
-  `meni_id` int(11) NOT NULL,
-  `desserts_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `menu` (`Id`, `name`, `price`, `creationdate`, `image`) VALUES
+(8, 'Burger', '13.90', NULL, 'img/plat Double rosti burger.jpg..'),
+(9, 'Menu Beauf', '18.90', NULL, 'img\\10.jpg'),
+(10, 'Menu fruit de mer', '18.90', NULL, 'img\\7.jpg'),
+(11, 'Menu Végétarien', '12.90', NULL, 'plat Poireaux vinaigrette.jpg'),
+(12, 'tessgft', '25.00', NULL, 'img/plat Double rosti burger.jpg');
 
 -- --------------------------------------------------------
 
@@ -117,20 +116,33 @@ CREATE TABLE `menu_desserts` (
 CREATE TABLE `menu_foods` (
   `id` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL,
-  `food_id` int(11) DEFAULT NULL
+  `food_id` int(11) DEFAULT NULL,
+  `creationdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Structure de la table `menu_starters`
+-- Déchargement des données de la table `menu_foods`
 --
 
-CREATE TABLE `menu_starters` (
-  `Id` int(11) NOT NULL,
-  `meni_id` int(11) NOT NULL,
-  `starters_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `menu_foods` (`id`, `menu_id`, `food_id`, `creationdate`) VALUES
+(47, 9, 4, '2023-03-21 14:02:25'),
+(48, 9, 10, '2023-03-21 14:02:25'),
+(49, 9, 11, '2023-03-21 14:02:25'),
+(50, 9, 13, '2023-03-21 14:02:25'),
+(51, 9, 14, '2023-03-21 14:02:25'),
+(52, 9, 16, '2023-03-21 14:02:25'),
+(53, 9, 17, '2023-03-21 14:02:25'),
+(54, 9, 18, '2023-03-21 14:02:25'),
+(55, 9, 20, '2023-03-21 14:02:25'),
+(56, 9, 21, '2023-03-21 14:02:25'),
+(57, 10, 10, '2023-03-21 18:46:28'),
+(58, 10, 11, '2023-03-21 18:46:28'),
+(59, 10, 13, '2023-03-21 18:46:28'),
+(60, 10, 17, '2023-03-21 18:46:28'),
+(61, 10, 18, '2023-03-21 18:46:28'),
+(62, 10, 19, '2023-03-21 18:46:28'),
+(63, 10, 20, '2023-03-21 18:46:28'),
+(64, 10, 21, '2023-03-21 18:46:28');
 
 -- --------------------------------------------------------
 
@@ -140,13 +152,10 @@ CREATE TABLE `menu_starters` (
 
 CREATE TABLE `reservation` (
   `reserv_id` int(11) NOT NULL,
-  `f_name` text NOT NULL,
-  `l_name` text NOT NULL,
   `num_guests` int(11) NOT NULL,
   `num_tables` int(11) NOT NULL,
   `rdate` date NOT NULL,
   `time_zone` text NOT NULL,
-  `telephone` text NOT NULL,
   `comment` mediumtext NOT NULL,
   `reg_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` varchar(30) NOT NULL,
@@ -158,20 +167,15 @@ CREATE TABLE `reservation` (
 -- Déchargement des données de la table `reservation`
 --
 
-INSERT INTO `reservation` (`reserv_id`, `f_name`, `l_name`, `num_guests`, `num_tables`, `rdate`, `time_zone`, `telephone`, `comment`, `reg_date`, `status`, `user_fk`, `res_time_slot_id`) VALUES
-(1, 'Antoine ', 'Eduard', 10, 4, '2019-05-30', '12:00 - 16:00', '21096321232', 'fsdfsd', '2019-05-04 23:38:47', 'Annulée', 28, 0),
-(73, 'Bill', 'dsadsadas', 30, 14, '2019-05-22', '12:00 - 16:00', '2109632123', 'dsadsadas', '2019-05-05 00:52:39', 'Annulée', 28, 0),
-(74, 'Bill', 'Fotos', 6, 2, '2019-05-10', '12:00 - 16:00', '2129632123', '312312312', '2019-05-05 00:54:08', 'Annulée', 28, 0),
-(75, 'Bill', 'Fotos', 6, 2, '2019-05-10', '16:00 - 20:00', '2109632123', '', '2019-05-05 00:54:40', 'Annulée', 28, 0),
-(77, 'ramassamypoulle', 'Rajathanigainayagam', 6, 2, '1968-08-25', '12:00 - 16:00', '123456789', '', '2023-03-06 18:31:52', 'Annulée', 35, 0),
-(78, '', '', 8, 4, '2023-03-30', '19:15;00', '0123456789', '', '2023-03-16 21:29:14', '', 35, 9),
-(79, '', '', 5, 2, '2023-03-24', '19:15:00', '0628900352', '', '2023-03-17 06:01:01', 'Annulée', 38, 9),
-(80, '', '', 5, 2, '2023-03-24', '12:15:00', '0628900352', '', '2023-03-17 06:01:27', 'Annulée', 38, 2),
-(81, '', '', 5, 2, '2023-03-24', '12:15:00', '0628900352', '', '2023-03-17 06:06:56', 'Annulée', 38, 2),
-(82, '', '', 2, 1, '2023-04-09', '12:30:00', '0628900352', '', '2023-03-17 09:57:08', 'Approuvée', 26, 3),
-(83, '', '', 4, 1, '2023-03-17', '20:15:00', '0628900352', '', '2023-03-17 15:37:36', 'Approuvée', 39, 13),
-(85, '', '', 5, 2, '2023-04-03', '19:30:00', '', '', '2023-03-17 19:42:37', 'Approuvée', 40, 10),
-(86, '', '', 4, 1, '2023-04-03', '20:15:00', '', '', '2023-03-17 19:43:01', 'Approuvée', 40, 13);
+INSERT INTO `reservation` (`reserv_id`, `num_guests`, `num_tables`, `rdate`, `time_zone`, `comment`, `reg_date`, `status`, `user_fk`, `res_time_slot_id`) VALUES
+(78, 8, 4, '2023-03-30', '19:15;00', '', '2023-03-16 21:29:14', '', 35, 9),
+(79, 5, 2, '2023-03-24', '19:15:00', '', '2023-03-17 06:01:01', 'Annulée', 38, 9),
+(80, 5, 2, '2023-03-24', '12:15:00', '', '2023-03-17 06:01:27', 'Annulée', 38, 2),
+(81, 5, 2, '2023-03-24', '12:15:00', '', '2023-03-17 06:06:56', 'Annulée', 38, 2),
+(82, 2, 1, '2023-04-09', '12:30:00', '', '2023-03-17 09:57:08', 'Approuvée', 26, 3),
+(83, 4, 1, '2023-03-17', '20:15:00', '', '2023-03-17 15:37:36', 'Approuvée', 39, 13),
+(85, 5, 2, '2023-04-03', '19:30:00', '', '2023-03-17 19:42:37', 'Approuvée', 40, 10),
+(86, 4, 1, '2023-04-03', '20:15:00', '', '2023-03-17 19:43:01', 'Approuvée', 40, 13);
 
 -- --------------------------------------------------------
 
@@ -273,7 +277,23 @@ INSERT INTO `tables` (`tables_id`, `t_date`, `t_tables`) VALUES
 (6, '2019-05-17', 5),
 (7, '2019-05-15', 10),
 (8, '2019-05-10', 2),
-(9, '2023-03-14', 8);
+(9, '2023-03-14', 8),
+(10, '2023-02-16', 1),
+(11, '2023-02-16', 1),
+(12, '2023-02-17', 1),
+(13, '2023-02-17', 1),
+(14, '2023-02-17', 1),
+(15, '2023-02-17', 1),
+(16, '2023-02-18', 1),
+(17, '2023-02-18', 1),
+(18, '2023-02-18', 1),
+(19, '2023-02-18', 1),
+(20, '2023-02-20', 1),
+(21, '2023-03-20', 1),
+(22, '2023-02-20', 1),
+(23, '2023-03-20', 1),
+(24, '2023-03-21', 1),
+(25, '2023-03-21', 1);
 
 -- --------------------------------------------------------
 
@@ -335,12 +355,6 @@ INSERT INTO `users` (`user_id`, `f_name`, `l_name`, `uidUsers`, `emailUsers`, `p
 -- Index pour la table `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`Id`);
-
---
--- Index pour la table `desserts`
---
-ALTER TABLE `desserts`
   ADD PRIMARY KEY (`Id`);
 
 --
@@ -411,31 +425,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `category`
 --
 ALTER TABLE `category`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT pour la table `desserts`
---
-ALTER TABLE `desserts`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `foods`
 --
 ALTER TABLE `foods`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pour la table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `menu_foods`
 --
 ALTER TABLE `menu_foods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT pour la table `reservation`
@@ -459,7 +467,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT pour la table `tables`
 --
 ALTER TABLE `tables`
-  MODIFY `tables_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `tables_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT pour la table `users`
