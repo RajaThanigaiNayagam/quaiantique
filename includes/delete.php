@@ -84,6 +84,7 @@ if(isset($_GET['menudelete-submit'])) {
         exit;
     } else {
         header("Location: ../manage.menu.inc.php?menudelete=error");
+        exit;
     }
 } 
 
@@ -107,6 +108,7 @@ if(isset($_GET['menufoodsdelete'])) {
     $sql = "DELETE FROM menu WHERE Id =$menuid";
     if (mysqli_query($conn, $sql)) {
         header("Location: ../manage.menu.inc.php?menu_delete=success");
+        exit;
     } else {
         header("Location: ../manage.menu.inc.php?menu_delete=error");
         exit;
