@@ -1,14 +1,14 @@
 
 <?php
-require "header.php";
+//require "header.php";
 //error_reporting(0);   //Désactiver tous les rapports d'erreurs
-?>
+    require 'includes/dbh.inc.php';
+    
+echo '
 <div class="container"><br><br>
     <h3 class="text-center menuTitle"><br>Gérer le plat</h3>
-    <div class="col-md-8 offset-md-2">                
+    <div class="col-md-8 offset-md-2"> ';               
 
-    <?php 
-    require 'includes/dbh.inc.php';
     echo" <div style='text-align: right;'><button class='foodaddbutton' type='button'><a href='#foodform'>Ajouter le Plat</button></a></div><br>";
     /************************************************************************************/
     /*********************************  Liste des food  *********************************/

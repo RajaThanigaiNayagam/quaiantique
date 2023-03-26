@@ -79,8 +79,7 @@
                                 echo'
                                 <li class="nav-item">
                                     <a class="nav-link" href="schedule.php" >Gérer l\'horaire</a>
-                                </li>';
-                                echo'
+                                </li>
                                 <div class="dropdown nav-item">
                                     <label class="dropdown-toggle nav-link" type="text" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Les menus

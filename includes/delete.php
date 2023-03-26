@@ -16,6 +16,52 @@ function deletemenufoods($menufoodsid){
 }
 
 
+
+//Insert into any table by sending table as array, data name as array and data values as array
+function inserttable( $table, $dataname, $menuid, $datavalue){
+    require 'dbh.inc.php';
+    if (!empty($table)){
+        $tables="";
+        $counttables=sizeof($table);
+        for ($i=0; $i<$counttables; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
+            if ($i<$counttables-1){$tables = $tables . $table[$i].", ";} else {$tables = $tables . $table[$i];}
+        }
+        $tables = $tables . ' ';
+    }
+    if (!empty($dataname)){
+        $datanames="";
+        $countdatanames=sizeof($dataname);
+        for ($i=0; $i<$countdatanames; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
+            if ( !empty($dataname[$i]) ){
+                if ($i<$countdatanames-1){$datanames = $datanames . $dataname[$i].", ";} else {$datanames = $datanames . $dataname[$i];}
+            }
+        }
+        $datanames = $datanames . ' ';
+    }
+    
+    if (!empty($datavalue)){
+        $datavalues = $menuid. ", ";
+        $countdatavalues=sizeof($datavalue);
+        if ($countdatavalues <> 1){
+            for ($i=0; $i<$countdatavalues; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
+                if ( !empty($datavalue[$i]) ){
+                    if ($i<$countdatavalues-1){$datavalues = $datavalues . $datavalue[$i].", "; } else {$datavalues = $datavalues . $datavalue[$i];}
+                    //$datavalueq=$datavalueq.'?';
+                }
+            }
+        } else {
+            $datavalues = $datavalues . $datavalue;
+        }
+        $datavalues = $datavalues . ' ';
+    }
+    if ( (!empty($table)) && (!empty($dataname)) && (!empty($datavalue)) && (!empty($menuid)) ){
+        $insertsql = 'INSERT INTO ' . $tables . '(' . $datanames . ') VALUES('.  $datavalues .')';
+        
+        $conn->query($insertsql);
+    }
+}
+
+
 //update reservation done by admin
 if(isset($_GET['update-submit'])) {
     $action =  $_GET['action'];

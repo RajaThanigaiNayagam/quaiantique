@@ -1,15 +1,15 @@
 <?php
-require "header.php";
+//require "header.php";
 //error_reporting(0);   //Désactiver tous les rapports d'erreurs
 
 
 require 'includes/dbh.inc.php';
-?>
+echo '
 <div class="container">
     <h4 class="text-center menuSubTitle">Gérer le menu<br></h4>
-    <div class="col-md-12 offset-md-0">
+    <div class="col-md-12 offset-md-0"> ';
     
-    <?php      
+      
     echo" <div style='text-align: right;'><button class='foodaddbutton' type='button'><a href='#menuform'>Ajouter le Menu</button></a></div><br><br>";
     /************************************************************************************/
     /*********************************  Liste des menu  *********************************/
@@ -107,9 +107,9 @@ require 'includes/dbh.inc.php';
 
 
                 // FORM DATA GETS THE DATA OF THE NEW MENU FROM THE USER AND SEND IT TO MANAGE.MENU.INC.PHP
-                echo'  
+                echo'  <div id="menuform"></div><br><br><br>
                 <div class="menu-form">
-                    <form action="includes\menu.inc.php" id="menuform" method="post">
+                    <form action="includes\menu.inc.php" method="post">
                         <div class="row form-group">
                             <div class="col"><h4>Ajouter un nouveau menu</h4> </div>';   
                             //<div class="col" style="margin:0;text-align: right;"><button class="menutofood reservupdatebutton" type="button"><a href="manage.menu.inc.php">Gérer les plat</button></a></div>

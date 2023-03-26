@@ -253,6 +253,17 @@ a:link {
 	justify-content: center;
 }
 
+.formreservation a{
+
+	color: #392C1E !important;
+}
+
+
+.formreservation a:link{
+
+	color: #392C1E !important;
+}
+
 
 .reservupdatebutton{
 	width: 80px;
@@ -265,7 +276,7 @@ a:link {
 }
 
 .reservupdatebutton a:link {
-	color: white !important;
+	color: #392C1E !important;
 }
 .reservupdatebutton a:link :hover {
 	color: white;
@@ -285,7 +296,7 @@ a:link {
 }
 
 .foodaddbutton a {
-	color: white  !important;
+	color: #392C1E  !important;
 }
 .foodaddbutton a:hover {
 	color: black  !important;
