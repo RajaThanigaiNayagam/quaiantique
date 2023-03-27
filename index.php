@@ -46,9 +46,7 @@ mysqli_close($conn);
             <!--carousel-->
             <div class="col-sm"><br><br>
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"> <!-- A Bootstrap slideshow component -->
-                    
                     <div class="carousel-inner">
-                        
                         <?php
                         $firstimage = true;
                         for ($i=0; $i<$foodlistcounter; $i++) {
@@ -72,7 +70,6 @@ mysqli_close($conn);
                 </div>
                 <br><br>
             </div><!--end of carousel-->
-
             <div class="col-sm">
                 <div class="arranging"><br><hr>
                     <h4 class="text-center">Notre histoire</h4>
@@ -114,7 +111,7 @@ mysqli_close($conn);
 <!--<div class="header2"></div>-->
 
 
-<!--    **************************************  GALLERY  ************************************** -->
+<!--OPEN HOURS    *************************** OPEN HOURS *************************** -->
 <!-- main page opening and closing Hour  and Visit us section-->
 <section id="footer">
     <div class="container">

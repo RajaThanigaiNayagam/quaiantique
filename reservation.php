@@ -122,8 +122,7 @@ require "header.php";
                     </div>
                     </form>
                     <br><br>
-                </div>  ';  
-            
+                </div>  ';
             }
             else {
                 echo '	<p class="text-center text-danger"><br>Vous n\'êtes pas connecté!<br></p>

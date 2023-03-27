@@ -1,6 +1,7 @@
-
-<?php
-//require "header.php";
+<?php    
+if (isset(  $_GET['submit-editfood']  )) {
+    require "header.php";
+}
 //error_reporting(0);   //Désactiver tous les rapports d'erreurs
     require 'includes/dbh.inc.php';
     

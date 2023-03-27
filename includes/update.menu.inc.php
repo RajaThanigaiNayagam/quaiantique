@@ -55,21 +55,21 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
         echo '<h5 class="bg-danger text-center">1.1 some field not found!</h5>';
         //if(empty($menufood) ) {$errormenufoods="Les plats sont vides.";}  
         echo '<h5 class="bg-danger text-center">1.2 some field not found!</h5>';
-        header("Location: ..\manage.menu.inc.php?error6=emptyfields&errormenufoods=".$errormenufoods);
+        header("Location: ..\manage.menu.inc.php?error6=emptyfields&submit-editmenu=1&errormenufoods=".$errormenufoods);
         exit();
     } 
     else if(!preg_match("/^[a-z0-9áàâçéèêëïôöùü\s\-\,\!\?\.\;\/\:\%\*\(\)\"\'\&\+\=\°\€\£\$\@\_]+$/i", $menuname) || !between($menuname,2,200)) {
                             
         echo '<h5 class="bg-danger text-center">2 menu name error!</h5>';
-        header("Location: ..\manage.menu.inc.php?error6=invalidmenuname");
+        header("Location: ..\manage.menu.inc.php?error6=invalidmenuname&submit-editmenu=1");
         exit();
     } else if(!preg_match(('/^[0-9]+(\.[0-9]{1,2})?$/'), $menuprice) || !between($menuprice,0,20)) {
         echo '<h5 class="bg-danger text-center">3 menu price error!</h5>';
-        header("Location: ..\manage.menu.inc.php?error6=invalidprice");
+        header("Location: ..\manage.menu.inc.php?error6=invalidprice&submit-editmenu=1");
         exit();
     } else if(!between($menuimage,0,200) || !(is_filepath($menuimage))  ) {  
         echo '<h5 class="bg-danger text-center">4 menu image error!</h5>';
-        header("Location: ..\manage.menu.inc.php?error6=invalidimage");
+        header("Location: ..\manage.menu.inc.php?error6=invalidimage&submit-editmenu=1");
         exit();
     } else {
         /* ******************************** checking whether the true  ******************************** */
@@ -96,16 +96,16 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                         }
                     }
                 }
-                header("Location: ..\manage.menu.inc.php?updatemenu=success&signature=".$_POST['menusignature']);
+                header("Location: ..\manage.menu.inc.php?updatemenu=success&submit-editmenu=1&signature=".$_POST['menusignature']);
                 exit();
             } else {
                 $sqlerror = $conn->error;
-                header("Location: ..\manage.menu.inc.php?updatemenu=sqlerror1&sqlerror=".$sqlerror);
+                header("Location: ..\manage.menu.inc.php?updatemenu=sqlerror1&submit-editmenu=1&sqlerror=".$sqlerror);
                 exit();
             }
     } 
 } else {
-    header("Location: ..\manage.menu.inc.php?updatemenu=notsubmitted");
+    header("Location: ..\manage.menu.inc.php?updatemenu=notsubmitted&submit-editmenu=1");
     exit();
 }
 

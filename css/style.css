@@ -254,14 +254,12 @@ a:link {
 }
 
 .formreservation a{
-
-	color: #392C1E !important;
+	color: white !important;
 }
 
 
 .formreservation a:link{
-
-	color: #392C1E !important;
+	color: white !important;
 }
 
 
@@ -276,7 +274,7 @@ a:link {
 }
 
 .reservupdatebutton a:link {
-	color: #392C1E !important;
+	color: white !important;
 }
 .reservupdatebutton a:link :hover {
 	color: white;
@@ -296,10 +294,10 @@ a:link {
 }
 
 .foodaddbutton a {
-	color: #392C1E  !important;
+	color:  white !important;
 }
 .foodaddbutton a:hover {
-	color: black  !important;
+	color: #392C1E  !important;
 }
 /*------------------------------------------------------------*/
 

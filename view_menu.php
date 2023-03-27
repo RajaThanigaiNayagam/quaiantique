@@ -12,7 +12,7 @@ require "header.php";
                 if($_GET['delete'] == "error") {   //deletion error
                     echo '<h5 class="bg-danger text-center">Erreur!</h5>';
                 }
-                if($_GET['delete'] == "success"){ 
+                if($_GET['delete'] == "success"){
                     echo '<h5 class="bg-success text-center">La suppression d\'un menu a réussi</h5>';
                 }
             }          

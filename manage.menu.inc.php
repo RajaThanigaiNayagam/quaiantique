@@ -1,7 +1,7 @@
 <?php
-//require "header.php";
-//error_reporting(0);   //Désactiver tous les rapports d'erreurs
-
+if ( isset(  $_GET['submit-editmenu']  ) ) {
+    require "header.php";
+}
 
 require 'includes/dbh.inc.php';
 echo '

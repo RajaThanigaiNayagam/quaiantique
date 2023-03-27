@@ -1,5 +1,5 @@
 <?php
-require "../header.php";
+//require "../header.php";
 require 'dbh.inc.php';
 
 //php function to delete all the foods of a menu
@@ -58,6 +58,11 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
         $insertsql = 'INSERT INTO ' . $tables . '(' . $datanames . ') VALUES('.  $datavalues .')';
         
         $conn->query($insertsql);
+        mysqli_close($conn);
+        return true;
+    } else {
+        mysqli_close($conn);
+        return false;
     }
 }
 
@@ -68,9 +73,11 @@ if(isset($_GET['update-submit'])) {
     $reservation_id = $_GET['reserv_id'];
     $sql = "UPDATE reservation SET status='".$action."' WHERE reserv_id =$reservation_id";
     if (mysqli_query($conn, $sql)) {
+        mysqli_close($conn);
         header("Location: ../view_reservations.php?update=success&action=".$action."&sql=".$sql);
         exit;
     } else {
+        mysqli_close($conn);
         header("Location: ../view_reservations.php?update=error&action=".$action."&sql=".$sql);
         exit;
     }
@@ -82,9 +89,11 @@ if(isset($_GET['delete-submit'])) {
     $reservation_id = $_GET['reserv_id'];
     $sql = "DELETE FROM reservation WHERE reserv_id =$reservation_id";
     if (mysqli_query($conn, $sql)) {
+        mysqli_close($conn);
         header("Location: ../view_reservations.php?delete=success");
         exit;
     } else {
+        mysqli_close($conn);
         header("Location: ../view_reservations.php?delete=error");
         exit;
     }
@@ -96,9 +105,11 @@ if(isset($_POST['delete-table'])) {
     $tables_id = $_POST['tables_id'];
     $sql = "DELETE FROM tables WHERE tables_id =$tables_id";
     if (mysqli_query($conn, $sql)) {
+        mysqli_close($conn);
         header("Location: ../view_tables.php?delete=success");
         exit;
     } else {
+        mysqli_close($conn);
         header("Location: ../view_tables.php?delete=error");
         exit;
     }
@@ -111,9 +122,11 @@ if(isset($_GET['fooddelete-submit'])) {
     $foodid = $_GET['food_id'];
     $sql = "DELETE FROM foods WHERE Id =$foodid";
     if (mysqli_query($conn, $sql)) {
+        mysqli_close($conn);
         header("Location: ../manage.food.inc.php?fooddelete=success");
         exit;
     } else {
+        mysqli_close($conn);
         header("Location: ../manage.food.inc.php?fooddelete=error");
         exit;
     }
@@ -126,9 +139,11 @@ if(isset($_GET['menudelete-submit'])) {
     $menuid = $_GET['menu_id'];
     $sql = "DELETE FROM menu WHERE Id =$menuid";
     if (mysqli_query($conn, $sql)) {
+        mysqli_close($conn);
         header("Location: ../manage.menu.inc.php?menudelete=success");
         exit;
     } else {
+        mysqli_close($conn);
         header("Location: ../manage.menu.inc.php?menudelete=error");
         exit;
     }
@@ -153,9 +168,11 @@ if(isset($_GET['menufoodsdelete'])) {
 
     $sql = "DELETE FROM menu WHERE Id =$menuid";
     if (mysqli_query($conn, $sql)) {
+        mysqli_close($conn);
         header("Location: ../manage.menu.inc.php?menu_delete=success");
         exit;
     } else {
+        mysqli_close($conn);
         header("Location: ../manage.menu.inc.php?menu_delete=error");
         exit;
     }
