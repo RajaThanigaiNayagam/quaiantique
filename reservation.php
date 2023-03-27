@@ -57,7 +57,7 @@ require "header.php";
 
 
                 //reservation form  
-                echo '  
+                echo '   <div id="reservationform"></div><br><br><br>
                 <div class="signup-form row formreservation">
                     <form action="includes/reservation.inc.php" method="post">
                     <div class="row formreservation">
@@ -101,15 +101,8 @@ require "header.php";
                             }
                             echo '</div>';
                         }
-                    echo ' </div></div>';
-                    //<div class="row formreservation">
-                    //    <div class="form-group">
-                    //        <label for="guests">Entrez votre numéro de téléphone</label>
-                    //        <input type="telephone" class="form-control" name="tele" required="required">
-                    //        <small class="form-text text-muted">Le numéro de téléphone doit comporter entre 6 et 20 caractères</small>
-                    //    </div>
-                    //</div>
-                    echo '<div class="row formreservation">
+                    echo ' </div></div>
+                    <div class="row formreservation">
                         <div class="form-group">
                             <label>Entrez des commentaires supplémentaires</label>
                             <textarea class="form-control" name="comments" placeholder="commentaires" rows="3"></textarea>

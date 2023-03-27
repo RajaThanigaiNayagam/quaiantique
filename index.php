@@ -14,6 +14,29 @@ require "header.php";
 </header>
 
 
+<!--    ************  Read all the sinature dishes from the table "foods" ************    -->
+<?php
+$foodsignaturelist = array();
+$foodnamelist = array();
+$foodimagelist = array();
+$foodlistcounter = 0;
+require 'includes/dbh.inc.php';// connection to mySQL Server
+//SQL query to read all datas from the table "schedule"
+$sql = "SELECT name, image, signature FROM foods"; 
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $foodnamelist[$foodlistcounter] = $row['name'];
+        $foodimagelist[$foodlistcounter] = $row['image'];
+        $foodsignaturelist[$foodlistcounter] = $row['signature'];
+        $foodlistcounter++;
+    }
+}
+//close connection
+mysqli_close($conn);
+//--    ************  Read all the sinature dishes from the table "foods" ************    -->
+?>
+
 
 <!--about us section   ************************  A propos de nous ************************ -->
 <section id="aboutus">
@@ -23,27 +46,20 @@ require "header.php";
             <!--carousel-->
             <div class="col-sm"><br><br>
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"> <!-- A Bootstrap slideshow component -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
+                    
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="img/3.jpg" alt="Première diapositive">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="img/4.jpg" alt="Deuxième diapositive">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="img/5.jpg" alt="Troisième diapositive">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="img/6.jpg" alt="Quatrième diapositive">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="img/7.jpg" alt="Cinqième diapositive">
-                        </div>
+                        
+                        <?php
+                        $firstimage = true;
+                        for ($i=0; $i<$foodlistcounter; $i++) {
+                            if ($foodsignaturelist[$i] == 1){
+                                if ($firstimage){echo '<div class="carousel-item active">';$firstimage=false;}else{echo '<div class="carousel-item">';}
+                                echo '
+                                <img class="d-block w-100" src=\'' .$foodimagelist[$i]. '\' title=\'' .$foodnamelist[$i]. '\' alt=\'' .$foodnamelist[$i]. '\'>
+                                </div>';
+                            }
+                        }
+                        ?>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -75,22 +91,15 @@ require "header.php";
     <div class="container">
         <h3 class="text-center"><br>Galerie</h3>
         <div class="d-flex flex-row flex-wrap justify-content-center">
-           <div class="d-flex flex-column">
-              <img src="img/1.jpg" class="img-fluid">
-              <img src="img/2.jpg" class="img-fluid">
-           </div>
-           <div class="d-flex flex-column">
-              <img src="img/3.jpg" class="img-fluid">
-              <img src="img/4.jpg" class="img-fluid">
-           </div>
-           <div class="d-flex flex-column">
-               <img src="img/5.jpg" class="img-fluid">
-               <img src="img/6.jpg" class="img-fluid">
-           </div>
-           <div class="d-flex flex-column">
-               <img src="img/7.jpg" class="img-fluid">
-               <img src="img/8.jpg" class="img-fluid">
-           </div>
+            <?php
+            for ($i=0; $i<$foodlistcounter; $i++) {
+                if ($foodsignaturelist[$i] == 1){
+                    echo '<div class="d-flex flex-column">
+                    <img class="img-fluid" src=\'' .$foodimagelist[$i]. '\' title=\'' .$foodnamelist[$i]. '\' alt=\'' .$foodnamelist[$i]. '\'>
+                    </div>';
+                }
+            }
+            ?>
         </div>
     </div>
 </div><br><br>

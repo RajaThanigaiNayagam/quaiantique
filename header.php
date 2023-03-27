@@ -1,5 +1,5 @@
 <?php 
-    session_start();      //demarrage du session d'un utilisateur admin/clinet 
+    session_start();      //demarrage du session d'un utilisateur admin/clinet
     error_reporting(0);   //Désactiver tous les rapports d'erreurs
 ?>
 <!DOCTYPE html>
@@ -39,10 +39,10 @@
     <body>
 
 
-        <!--     *****************************************************************************    -->  
-        <!--     ************************    Main Navigation bar     *************************    -->  
-        <!--     ***********   The Navigation bar which displays the main menu     ***********    --> 
-        <!--     *****************************************************************************    --> 
+        <!--     *****************************************************************************    -->
+        <!--     ************************    Main Navigation bar     *************************    -->
+        <!--     ***********   The Navigation bar which displays the main menu     ***********    -->
+        <!--     *****************************************************************************    -->
         <nav class="navbar navbar-expand-md navbar-light fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="index.php">
@@ -141,10 +141,10 @@
         </nav>
 
         
-        <!--     *****************************************************************************    -->  
-        <!--     *************************    dialog box SIGN-IN     *************************    -->  
-        <!--     ************   The Modal Bootstrap 4.1.0 display for SIGN-IN     ************    --> 
-        <!--     *****************************************************************************    --> 
+        <!--     *****************************************************************************     -->  
+        <!--     *************************    dialog box SIGN-IN     *************************     -->  
+        <!--     ************   The Modal Bootstrap 4.1.0 display for SIGN-IN     ************     --> 
+        <!--     *****************************************************************************     --> 
         <div class="container">
             <!--   The Modal Bootstrap 4.1.0 display for dialog box SIGN-IN   -->                          
             <div class="modal fade" id="myModal_login">
@@ -214,13 +214,13 @@
 
 
         
-        <!--     *****************************************************************************   -->  
-        <!--     *************************    dialog box SIGN-UP     *************************   -->  
-        <!--     ************   The Modal Bootstrap 4.1.0 display for SIGN-UP     ************   --> 
-        <!--     *****************************************************************************   --> 
+        <!--     *****************************************************************************     -->
+        <!--     *************************    dialog box SIGN-UP     *************************     -->
+        <!--     ************   The Modal Bootstrap 4.1.0 display for SIGN-UP     ************     -->
+        <!--     *****************************************************************************     -->
         <div class="container">
-            <!--   dialog box SIGN-UP   -->  
-            <!--   The Modal Bootstrap 4.1.0 display for SIGN-UP   -->  
+            <!--   dialog box SIGN-UP   -->
+            <!--   The Modal Bootstrap 4.1.0 display for SIGN-UP   -->
             <div class="modal fade" id="myModal_reg">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -233,7 +233,7 @@
                         <div class="modal-body">
                             <?php
                             if(isset($_GET['error'])){
-                                //script for modal to appear when error 
+                                //script for modal to appear when error
                                 echo'  
                                     <script>
                                         $(document).ready(function(){

@@ -96,14 +96,10 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                         }
                     }
                 }
-
-                
-                echo '<h5 class="bg-danger text-center">10 the foods of menu is field not found!</h5>';
                 header("Location: ..\manage.menu.inc.php?updatemenu=success&signature=".$_POST['menusignature']);
                 exit();
             } else {
                 $sqlerror = $conn->error;
-                echo '<h5 class="bg-danger text-center">2 some field not found...!</h5>'.$sqlerror;
                 header("Location: ..\manage.menu.inc.php?updatemenu=sqlerror1&sqlerror=".$sqlerror);
                 exit();
             }

@@ -101,7 +101,7 @@ echo '
                 }
 
                 // FORM DATA GETS THE DATA OF THE NEW FOOD FROM THE USER AND SEND IT TO MANAGE.FOOD.INC.PHP
-                echo' 
+                echo'   <div id="foodform"></div><br><br><br>
                 <div class="menu-form">
                     <form action="includes\food.inc.php" id="foodform" method="post">
                         <div class="form-group">
