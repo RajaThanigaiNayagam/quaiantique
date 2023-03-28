@@ -82,9 +82,9 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                     if ($countermenufoods>0){
                         require "delete.php";
                         if ( deletemenufoods($menu_id) ) {
-                            echo '<h5 class="bg-success text-center">The food exist in the menu deleted!</h5>';
+                            echo '<h5 class="bg-success text-center">The food exist in the menu deleted number of foods to add are = '. $countermenufoods .'  </h5>';
                         } else {
-                            echo '<h5 class="bg-success text-center">There is no food exist in the menu deleted!</h5>';
+                            echo '<h5 class="bg-success text-center">There is no food exist in the menu deleted number of foods to add are = '. $countermenufoods .'  </h5>';
                         };
                         // Inserting all the food items of a menu  -  in the table "menu_foods"
                         $tables[0]='menu_foods';
