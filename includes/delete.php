@@ -66,7 +66,7 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
     
     echo '<h5 class="bg-success text-center">2 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
 
-    if ( (!empty($tables)) && (!empty($datanames)) && (!empty($datavalues)) && (!empty($menuid)) ){
+    if ( (!empty($tables)) && (!empty($datanames)) && (!empty($datavalues)) ){
         $insertsql = 'INSERT INTO ' . $tables . '(' . $datanames . ') VALUES('.  $datavalues .')';
         $conn->query($insertsql);
         //mysqli_close($conn);
