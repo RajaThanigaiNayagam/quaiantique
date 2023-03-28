@@ -90,7 +90,10 @@ if(isset($_SESSION['user_id'])){
                         }else{
                             echo "<td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=includes/delete.php?update-submit=1&reserv_id=".$row["reserv_id"]."&action=Annulée>Approuvée</button></td>";
                         }                            
-                        echo "<td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=includes/delete.php?delete-submit=1&reserv_id=".$row["reserv_id"]."&action=delete>Supprimer</button></td>";
+                        echo "<td class='schedulehour'>
+                            <button class='reservupdatebutton' type='button' onclick='return confirm('Etes-vous sûr que vous voulez supprimer?');'><a href=includes/delete.php?delete-submit=1&reserv_id=".$row["reserv_id"]."&action=delete>Supprimer
+                            </button>
+                        </td>";
                     "</form>
                 </tr>
             </tbody>";

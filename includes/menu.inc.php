@@ -61,17 +61,17 @@ if(isset($_POST['submit-addmenu'])) {//check whether the  submit button is click
 
 
     if(empty($menuname) || empty($menuimage) || empty($menuprice) || empty($menufood) ) {
-        header("Location: ..\manage.menu.inc.php?error6=emptyfields");
+        header("Location: ..\manage.menu.inc.php?error6=emptyfields&submit-editmenu=1");
         exit();
     } 
     else if(!preg_match('/^[a-z0-9áàâçéèêëïôöùü\s\-\,\!\?\.\;\/\:\%\*\(\)\"\'\&\+\=\°\€\£\$\@\_]+$/i', $menuname) || !between($menuname,2,200)) {
-        header("Location: ..\manage.menu.inc.php?error6=invalidmenuname");
+        header("Location: ..\manage.menu.inc.php?error6=invalidmenuname&submit-editmenu=1");
         exit();
     } else if(!preg_match(('/^[0-9]+(\.[0-9]{1,2})?$/'), $menuprice) || !between($menuprice,0,20)) {
-        header("Location: ..\manage.menu.inc.php?error6=invalidprice");
+        header("Location: ..\manage.menu.inc.php?error6=invalidprice&submit-editmenu=1");
         exit();
     } else if(!between($menuimage,0,200) || !(is_filepath($menuimage))  ) {
-        header("Location: ..\manage.menu.inc.php?error6=invalidimage");
+        header("Location: ..\manage.menu.inc.php?error6=invalidimage&submit-editmenu=1");
         exit();
     } else {
 
@@ -79,7 +79,7 @@ if(isset($_POST['submit-addmenu'])) {//check whether the  submit button is click
         $sql = "INSERT INTO menu(name, price, image) VALUES(?, ?, ?)";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)){
-            header("Location: ..\manage.menu.inc.php?error6=sqlerror1");
+            header("Location: ..\manage.menu.inc.php?error6=sqlerror1&submit-editmenu=1");
             exit();
         }
         else {       
@@ -95,19 +95,19 @@ if(isset($_POST['submit-addmenu'])) {//check whether the  submit button is click
                             $stmtmenufoods->execute();
                         }
                     }
-                    header("Location: ..\manage.menu.inc.php?addmenu=success");
+                    header("Location: ..\manage.menu.inc.php?addmenu=success&submit-editmenu=1");
                 } else {
-                    header("Location: ..\manage.menu.inc.php?error6=sqlerror1");
+                    header("Location: ..\manage.menu.inc.php?error6=sqlerror1&submit-editmenu=1");
                     exit();
                 }
             } else {
-                header("Location: ..\manage.menu.inc.php?addmenu=sqlerror1");
+                header("Location: ..\manage.menu.inc.php?addmenu=sqlerror1&submit-editmenu=1");
                 exit();
             }
         }
     } 
 } else {
-    header("Location: ..\manage.menu.inc.php?addmenu=notsubmitted");
+    header("Location: ..\manage.menu.inc.php?addmenu=notsubmitted&submit-editmenu=1");
     exit();
 }
 

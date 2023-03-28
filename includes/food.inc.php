@@ -51,40 +51,39 @@ if(isset($_POST['submit-addfood'])) {//check whether the  submit button is click
     if ($_POST['foodsignature'] == 'on') {$foodsignature = 1;} else {$foodsignature = 0;}
     
     if(empty($foodname) || empty($foodimage) || empty($foodprice) || empty($foodcategory) ) {
-        header("Location: ..\manage.food.inc.php?error6=emptyfields");
+        header("Location: ..\manage.food.inc.php?error6=emptyfields&submit-editfood=1");
         exit();
     } 
     else if(!preg_match('/^[a-z0-9áàâçéèêëïôöùü\s\-\,\!\?\.\;\/\:\%\*\(\)\"\'\&\+\=\°\€\£\$\@\_]+$/i', $foodname) || !between($foodname,2,200)) {
-        header("Location: ..\manage.food.inc.php?error6=invalidfoodname");
+        header("Location: ..\manage.food.inc.php?error6=invalidfoodname&submit-editfood=1");
         exit();
     } else if(!preg_match(('/^[0-9]+(\.[0-9]{1,2})?$/'), $foodprice) || !between($foodprice,0,20)) {
-        header("Location: ..\manage.food.inc.php?error6=invalidfoodprice");
+        header("Location: ..\manage.food.inc.php?error6=invalidfoodprice&submit-editfood=1");
         exit();
     } else if(!between($foodimage,0,200) || !(is_filepath($foodimage))  ) {
-        header("Location: ..\manage.food.inc.php?error6=invalidfoodimage");
+        header("Location: ..\manage.food.inc.php?error6=invalidfoodimage&submit-editfood=1");
         exit();
     } else {
         /* ******************************** checking whether the true  ******************************** */
         $sql = "INSERT INTO foods(name, price, image, signature, category_id) VALUES(?, ?, ?, ?, ?)";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)){
-            header("Location: ..\manage.food.inc.php?error6=sqlerror1");
+            header("Location: ..\manage.food.inc.php?error6=sqlerror1&submit-editfood=1");
             exit();
         }
         else {       
             mysqli_stmt_bind_param($stmt, "sssss", $foodname, $foodprice, $foodimage, $foodsignature, $foodcategory);
             if (mysqli_stmt_execute($stmt) ) {
-                header("Location: ..\manage.food.inc.php?addfood=success");
+                header("Location: ..\manage.food.inc.php?addfood=success&submit-editfood=1");
                 exit();
             } else {
-                header("Location: ..\manage.food.inc.php?addfood=sqlerror1");
+                header("Location: ..\manage.food.inc.php?addfood=sqlerror1&submit-editfood=1");
                 exit();
             }
         }
     } 
 } else {
-    header("Location: ..\manage.food.inc.php?addfood
-    =notsubmitted");
+    header("Location: ..\manage.food.inc.php?addfood=notsubmitted&submit-editfood=1");
     exit();
 }
 

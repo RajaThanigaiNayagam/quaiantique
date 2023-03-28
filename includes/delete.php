@@ -123,11 +123,11 @@ if(isset($_GET['fooddelete-submit'])) {
     $sql = "DELETE FROM foods WHERE Id =$foodid";
     if (mysqli_query($conn, $sql)) {
         mysqli_close($conn);
-        header("Location: ../manage.food.inc.php?fooddelete=success");
+        header("Location: ../manage.food.inc.php?fooddelete=success&submit-editfood=1");
         exit;
     } else {
         mysqli_close($conn);
-        header("Location: ../manage.food.inc.php?fooddelete=error");
+        header("Location: ../manage.food.inc.php?fooddelete=error&submit-editfood=1");
         exit;
     }
 }
@@ -140,11 +140,11 @@ if(isset($_GET['menudelete-submit'])) {
     $sql = "DELETE FROM menu WHERE Id =$menuid";
     if (mysqli_query($conn, $sql)) {
         mysqli_close($conn);
-        header("Location: ../manage.menu.inc.php?menudelete=success");
+        header("Location: ../manage.menu.inc.php?menudelete=success&submit-editmenu=1");
         exit;
     } else {
         mysqli_close($conn);
-        header("Location: ../manage.menu.inc.php?menudelete=error");
+        header("Location: ../manage.menu.inc.php?menudelete=error&submit-editmenu=1");
         exit;
     }
 } 
@@ -169,11 +169,11 @@ if(isset($_GET['menufoodsdelete'])) {
     $sql = "DELETE FROM menu WHERE Id =$menuid";
     if (mysqli_query($conn, $sql)) {
         mysqli_close($conn);
-        header("Location: ../manage.menu.inc.php?menu_delete=success");
+        header("Location: ../manage.menu.inc.php?menu_delete=success&submit-editmenu=1");
         exit;
     } else {
         mysqli_close($conn);
-        header("Location: ../manage.menu.inc.php?menu_delete=error");
+        header("Location: ../manage.menu.inc.php?menu_delete=error&submit-editmenu=1");
         exit;
     }
 } 

@@ -42,8 +42,14 @@ echo '
                             <td class='schedulehour'>".$row["price"]."</td>
                             <td class='schedulehour'>".$row["image"]."</td>
                             <td class='schedulehour'>".$row["creationdate"]."</td>
-                            <td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=edit.food.inc.php?foodedit-submit=1&food_id=".$row["Id"]."&signature=".$row["signature"]."&action=update>Éditer</button></td>
-                            <td class='schedulehour'><button class='reservupdatebutton' type='button'><a href=includes\delete.php?fooddelete-submit=1&food_id=".$row["Id"]."&action=delete>Supprimer</button></td>
+                            <td class='schedulehour'>
+                                <button class='reservupdatebutton' type='button'><a href=edit.food.inc.php?foodedit-submit=1&food_id=".$row["Id"]."&signature=".$row["signature"]."&action=update>Éditer
+                                </button>
+                            </td>
+                            <td class='schedulehour'>
+                                <button class='reservupdatebutton' type='button'><a href=includes\delete.php?fooddelete-submit=1&food_id=".$row["Id"]."&action=delete  onclick='return confirm('Etes-vous sûr que vous voulez supprimer?')'>Supprimer
+                                </button>
+                            </td>
                         </tr>
                     </tbody>";
                     
