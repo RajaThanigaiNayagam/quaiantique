@@ -52,23 +52,17 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
     
     if(empty($menuname) || empty($menuimage) || empty($menuprice) || empty($menufood) ) {
         $errormenufoods="Mais les plats sont remplis.";
-        echo '<h5 class="bg-danger text-center">1.1 some field not found!</h5>';
-        //if(empty($menufood) ) {$errormenufoods="Les plats sont vides.";}  
-        echo '<h5 class="bg-danger text-center">1.2 some field not found!</h5>';
+        if(empty($menufood) ) {$errormenufoods="Les plats sont vides.";}  
         header("Location: ..\manage.menu.inc.php?error6=emptyfields&submit-editmenu=1&errormenufoods=".$errormenufoods);
         exit();
     } 
     else if(!preg_match("/^[a-z0-9áàâçéèêëïôöùü\s\-\,\!\?\.\;\/\:\%\*\(\)\"\'\&\+\=\°\€\£\$\@\_]+$/i", $menuname) || !between($menuname,2,200)) {
-                            
-        echo '<h5 class="bg-danger text-center">2 menu name error!</h5>';
         header("Location: ..\manage.menu.inc.php?error6=invalidmenuname&submit-editmenu=1");
         exit();
     } else if(!preg_match(('/^[0-9]+(\.[0-9]{1,2})?$/'), $menuprice) || !between($menuprice,0,20)) {
-        echo '<h5 class="bg-danger text-center">3 menu price error!</h5>';
         header("Location: ..\manage.menu.inc.php?error6=invalidprice&submit-editmenu=1");
         exit();
     } else if(!between($menuimage,0,200) || !(is_filepath($menuimage))  ) {  
-        echo '<h5 class="bg-danger text-center">4 menu image error!</h5>';
         header("Location: ..\manage.menu.inc.php?error6=invalidimage&submit-editmenu=1");
         exit();
     } else {
@@ -81,11 +75,7 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                     $menufoodsupdated= false;
                     if ($countermenufoods>0){
                         require "delete.php";
-                        if ( deletemenufoods($menu_id) ) {
-                            echo '<h5 class="bg-success text-center">The food exist in the menu deleted number of foods to add are = '. $countermenufoods .'  </h5>';
-                        } else {
-                            echo '<h5 class="bg-success text-center">There is no food exist in the menu deleted number of foods to add are = '. $countermenufoods .'  </h5>';
-                        };
+                        deletemenufoods($menu_id);
                         // Inserting all the food items of a menu  -  in the table "menu_foods"
                         $tables[0]='menu_foods';
                         
@@ -96,12 +86,7 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                         $someFoodsAddedToMenu[0]='';
                         for ($i=0; $i<$countermenufoods; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
                             $foodid = $menufood[$i];  //intval($menufood[$i]); 
-                            echo '<h5 class="bg-success text-center">The food  to the menu to add are = '. $foodid .'  </h5>';
-                            if ( inserttable( $tables, $dataname, $menuid, $foodid) ) {
-                                echo '<h5 class="bg-success text-center">some foods added to the menu...</h5>';
-                            } else {
-                                echo '<h5 class="bg-success text-center">There is no food added to the menu...</h5>';
-                            };
+                            inserttable( $tables, $dataname, $menuid, $foodid) ;
                         }
                         mysqli_close($conn);
                         header("Location: ..\manage.menu.inc.php?updatemenu=success&submit-editmenu=1"); 
