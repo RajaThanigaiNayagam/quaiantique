@@ -91,7 +91,7 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                         
                         $dataname[0]='menu_id';
                         $dataname[1]='food_id';
-                        $menuid = intval($menu_id);
+                        $menuid = ($menu_id);
                         $countdatanames=count($dataname);       
                         $someFoodsAddedToMenu[0]='';
                         for ($i=0; $i<$countermenufoods; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
