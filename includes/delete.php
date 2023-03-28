@@ -42,7 +42,7 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
     echo '<h5 class="bg-success text-center">1 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
 
     if (!empty($datavalue)){
-        $datavalues = $menuid. ", ";
+        if ( $menuid <>"" ) {$datavalues = $menuid. ", ";}
         echo '<h5 class="bg-success text-center">1 The datavalue = '. $datavalue .'</h5>';
         if (is_array( $datavalue ) ) {$countdatavalues=sizeof($datavalue);} else {$countdatavalues=1;}
         echo '<h5 class="bg-success text-center">1 The countdatavalues = '. $countdatavalues .'</h5>';
