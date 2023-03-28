@@ -61,12 +61,13 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
     if ( (!empty($table)) && (!empty($dataname)) && (!empty($datavalue)) && (!empty($menuid)) ){
         $insertsql = 'INSERT INTO ' . $tables . '(' . $datanames . ') VALUES('.  $datavalues .')';
         $conn->query($insertsql);
-        mysqli_close($conn);
+        //mysqli_close($conn);
         return true;
     } else {
-        mysqli_close($conn);
+        //mysqli_close($conn);
         return false;
     }
+    mysqli_close($conn);
 }
 
 

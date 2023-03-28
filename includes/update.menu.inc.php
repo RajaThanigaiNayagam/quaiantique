@@ -96,6 +96,7 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                         $someFoodsAddedToMenu[0]='';
                         for ($i=0; $i<$countermenufoods; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
                             $foodid = $menufood[$i];  //intval($menufood[$i]); 
+                            echo '<h5 class="bg-success text-center">The food  to the menu to add are = '. $foodid .'  </h5>';
                             if ( inserttable( $tables, $dataname, $menuid, $foodid) ) {
                                 echo '<h5 class="bg-success text-center">some foods added to the menu...</h5>';
                             } else {
