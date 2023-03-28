@@ -74,7 +74,7 @@ if(isset($_POST['submit-addmenu'])) {//check whether the  submit button is click
         header("Location: ..\manage.menu.inc.php?error6=invalidimage&submit-editmenu=1");
         exit();
     } else {
-
+        
         /* ******************************** checking whether the true  ******************************** */
         $sql = "INSERT INTO menu(name, price, image) VALUES(?, ?, ?)";
         $stmt = mysqli_stmt_init($conn);

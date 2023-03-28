@@ -64,6 +64,11 @@ if(isset($_POST['submit-addfood'])) {//check whether the  submit button is click
         header("Location: ..\manage.food.inc.php?error6=invalidfoodimage&submit-editfood=1");
         exit();
     } else {
+        
+        var_dump($foodname);
+        var_dump($foodimage);
+        var_dump($foodprice);
+        var_dump($foodcategory);
         /* ******************************** checking whether the true  ******************************** */
         $sql = "INSERT INTO foods(name, price, image, signature, category_id) VALUES(?, ?, ?, ?, ?)";
         $stmt = mysqli_stmt_init($conn);
