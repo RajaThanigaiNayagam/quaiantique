@@ -88,6 +88,7 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                             $foodid = $menufood[$i];  //intval($menufood[$i]); 
                             inserttable( $tables, $dataname, $menuid, $foodid) ;
                         }
+                        echo '<h5 class="bg-danger text-center">success  exiting update menu ...</h5>';
                         mysqli_close($conn);
                         header("Location: ..\manage.menu.inc.php?updatemenu=success&submit-editmenu=1"); 
                         exit();
