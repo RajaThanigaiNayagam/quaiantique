@@ -39,10 +39,14 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
         }
         $datanames = $datanames . ' ';
     }
+    echo '<h5 class="bg-success text-center">1 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
 
     if (!empty($datavalue)){
         $datavalues = $menuid. ", ";
+        echo '<h5 class="bg-success text-center">1 The datavalue = '. $datavalue .'</h5>';
         if (is_array( $datavalue ) ) {$countdatavalues=sizeof($datavalue);} else {$countdatavalues=1;}
+        echo '<h5 class="bg-success text-center">1 The countdatavalues = '. $countdatavalues .'</h5>';
+
         if ($countdatavalues <> 1){
             for ($i=0; $i<$countdatavalues; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
                 if ( !empty($datavalue[$i]) ){
@@ -55,7 +59,8 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
         }
         $datavalues = $datavalues . ' ';
     }                            
-    //echo '<h5 class="bg-success text-center">1 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
+    
+    echo '<h5 class="bg-success text-center">2 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
 
     if ( (!empty($tables)) && (!empty($datanames)) && (!empty($datavalues)) && (!empty($menuid)) ){
         $insertsql = 'INSERT INTO ' . $tables . '(' . $datanames . ') VALUES('.  $datavalues .')';
