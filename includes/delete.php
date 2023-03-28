@@ -19,7 +19,9 @@ function deletemenufoods($menufoodsid){
 
 
 //Insert into any table by sending table as array, data name as array and data values as array
-function inserttable( $table, $dataname, $menuid, $datavalue){
+function inserttable( $table, $dataname, $menuid, $datavalue){   
+     echo '<h5 class="bg-success text-center">1 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
+
     require 'dbh.inc.php';    
     echo '<h5 class="bg-success text-center">1 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
 
