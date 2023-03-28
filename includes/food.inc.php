@@ -1,6 +1,6 @@
 <?php
 //require "../header.php";
-session_start();
+//session_start();
 //error_reporting(0);   //Désactiver tous les rapports d'erreurs
 
 //php function to check, if the characters of the variable "$val" are within the limits of "$x" and "$y"
@@ -90,13 +90,14 @@ if(isset($_POST['submit-addfood'])) {//check whether the  submit button is click
         var_dump($dataname);
         var_dump($valueses);
         require "delete.php";
-        if ( inserttable($tables, $dataname, $menuid, $valueses)) {  
-            header("Location: ..\manage.food.inc.php?addfood=success&submit-editfood=1");
-            exit();
-        } else {
-            header("Location: ..\manage.food.inc.php?addfood=sqlerror1&submit-editfood=1");
-            exit();
-        }
+        inserttable($tables, $dataname, $menuid, $valueses);
+        //if ( inserttable($tables, $dataname, $menuid, $valueses)) {  
+        //    header("Location: ..\manage.food.inc.php?addfood=success&submit-editfood=1");
+        //    exit();
+        //} else {
+        //    header("Location: ..\manage.food.inc.php?addfood=sqlerror1&submit-editfood=1");
+        //    exit();
+        //}
         //$sql = "INSERT INTO foods(name, price, image, signature, category_id) VALUES(?, ?, ?, ?, ?)";
         //$stmt = mysqli_stmt_init($conn);
         //if(!mysqli_stmt_prepare($stmt, $sql)){
