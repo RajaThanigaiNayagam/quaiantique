@@ -56,16 +56,14 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
         $datavalues = $datavalues . ' ';
     }                            
     
-    echo '<h5 class="bg-success text-center">2 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
+    //echo '<h5 class="bg-success text-center">2 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
 
     if ( (!empty($tables)) && (!empty($datanames)) && (!empty($datavalues)) ){
         $insertsql = 'INSERT INTO ' . $tables . '(' . $datanames . ') VALUES('.  $datavalues .')';
-        echo '<h5 class="bg-success text-center">1 The insertsql = '. $insertsql .'</h5>';
+        //echo '<h5 class="bg-success text-center">1 The insertsql = '. $insertsql .'</h5>';
         $conn->query($insertsql);
-        //mysqli_close($conn);
         return true;
     } else {
-        //mysqli_close($conn);
         return false;
     }
     mysqli_close($conn);

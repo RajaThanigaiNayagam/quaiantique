@@ -53,10 +53,6 @@ if(isset($_POST['submit-addmenu'])) {//check whether the  submit button is click
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $menufoodsalreadexist=true;
-        while($row = $result->fetch_assoc()) {
-
-            //echo '<option value="' . $row['Id'] . '">' . $row['name'] . '</option>';
-        }
     }
 
 

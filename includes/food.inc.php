@@ -64,56 +64,31 @@ if(isset($_POST['submit-addfood'])) {//check whether the  submit button is click
         header("Location: ..\manage.food.inc.php?error6=invalidfoodimage&submit-editfood=1");
         exit();
     } else {
-        
-        var_dump($foodname);
-        var_dump($foodimage);
-        var_dump($foodprice);
-        var_dump($foodcategory);
-        var_dump($foodsignature);
         /* ******************************** checking whether the true  ******************************** */
         
-        $tables[0]='foods';
+        $tables[0]='foods';             // Name of the table 
                         
-        $dataname[0]='name';
+        $dataname[0]='name';            // Field names of insertion
         $dataname[1]='price';
         $dataname[2]='image';
         $dataname[3]='signature';
         $dataname[4]='category_id';
         $menuid = "";
-        $valueses[0]=$foodname;
+        $valueses[0]=$foodname;         // datas to be inserted in the corresponding field
         $valueses[1]=$foodprice;
         $valueses[2]=$foodimage;
         $valueses[3]=$foodsignature;
         $valueses[4]=$foodcategory;
 
-        var_dump($tables);
-        var_dump($dataname);
-        var_dump($valueses);
         require "delete.php";
-        inserttable($tables, $dataname, $menuid, $valueses);
-        //if ( inserttable($tables, $dataname, $menuid, $valueses)) {  
-        //    header("Location: ..\manage.food.inc.php?addfood=success&submit-editfood=1");
-        //    exit();
-        //} else {
-        //    header("Location: ..\manage.food.inc.php?addfood=sqlerror1&submit-editfood=1");
-        //    exit();
-        //}
-        //$sql = "INSERT INTO foods(name, price, image, signature, category_id) VALUES(?, ?, ?, ?, ?)";
-        //$stmt = mysqli_stmt_init($conn);
-        //if(!mysqli_stmt_prepare($stmt, $sql)){
-        //    header("Location: ..\manage.food.inc.php?error6=sqlerror1&submit-editfood=1");
-        //    exit();
-        //}
-        //else {       
-        //    mysqli_stmt_bind_param($stmt, "sssss", $foodname, $foodprice, $foodimage, $foodsignature, $foodcategory);
-        //    if (mysqli_stmt_execute($stmt) ) {
-        //        header("Location: ..\manage.food.inc.php?addfood=success&submit-editfood=1");
-        //        exit();
-        //    } else {
-        //        header("Location: ..\manage.food.inc.php?addfood=sqlerror1&submit-editfood=1");
-        //        exit();
-        //    }
-        //}
+        //inserttable($tables, $dataname, $menuid, $valueses);
+        if ( inserttable($tables, $dataname, $menuid, $valueses)) {  
+            header("Location: ..\manage.food.inc.php?addfood=success&submit-editfood=1");
+            exit();
+        } else {
+            header("Location: ..\manage.food.inc.php?addfood=sqlerror1&submit-editfood=1");
+            exit();
+        }
     } 
 } else {
     header("Location: ..\manage.food.inc.php?addfood=notsubmitted&submit-editfood=1");
