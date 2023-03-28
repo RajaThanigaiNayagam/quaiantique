@@ -43,8 +43,8 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
 
     if (!empty($datavalue)){
         $datavalues = $menuid. ", ";
-        echo '<h5 class="bg-success text-center">1 The countdatavalues = '. $datavalue .'</h5>';
-        $countdatavalues=sizeof($datavalue);
+        echo '<h5 class="bg-success text-center">1 The datavalue = '. $datavalue .'</h5>';
+        if (is_array( $datavalue ) ) {$countdatavalues=sizeof($datavalue);} else {$countdatavalues=1;}
         echo '<h5 class="bg-success text-center">1 The countdatavalues = '. $countdatavalues .'</h5>';
 
         if ($countdatavalues <> 1){
