@@ -55,7 +55,7 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
         }
         $datavalues = $datavalues . ' ';
     }                            
-    echo '<h5 class="bg-success text-center">1 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
+    //echo '<h5 class="bg-success text-center">1 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
 
     if ( (!empty($tables)) && (!empty($datanames)) && (!empty($datavalues)) && (!empty($menuid)) ){
         $insertsql = 'INSERT INTO ' . $tables . '(' . $datanames . ') VALUES('.  $datavalues .')';
