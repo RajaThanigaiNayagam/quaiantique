@@ -67,6 +67,7 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
         exit();
     } else {
         /* ******************************** checking whether the true  ******************************** */
+            var_dump($menufood);
             $sql = "UPDATE menu SET name = '$menuname', price = '$menuprice' , image = '$menuimage' WHERE Id = $menu_id ";
             if ($conn->query($sql) ) {
                 if (!empty($menufood)){
