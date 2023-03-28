@@ -89,8 +89,8 @@ if(isset($_POST['submit-addfood'])) {//check whether the  submit button is click
         var_dump($tables);
         var_dump($dataname);
         var_dump($valueses);
-        require "../delete.php";
-        if ( $inserttable($tables, $dataname, $menuid, $valueses)) {  
+        require "delete.php";
+        if ( inserttable($tables, $dataname, $menuid, $valueses)) {  
             header("Location: ..\manage.food.inc.php?addfood=success&submit-editfood=1");
             exit();
         } else {
