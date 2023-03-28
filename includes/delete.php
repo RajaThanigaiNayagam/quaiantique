@@ -39,7 +39,8 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
         }
         $datanames = $datanames . ' ';
     }
-    
+    echo '<h5 class="bg-success text-center">1 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
+
     if (!empty($datavalue)){
         $datavalues = $menuid. ", ";
         $countdatavalues=sizeof($datavalue);
@@ -56,9 +57,9 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
         $datavalues = $datavalues . ' ';
     }                            
     
-    echo '<h5 class="bg-success text-center">The food are table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
+    echo '<h5 class="bg-success text-center">2 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
 
-    if ( (!empty($table)) && (!empty($dataname)) && (!empty($datavalue)) && (!empty($menuid)) ){
+    if ( (!empty($tables)) && (!empty($datanames)) && (!empty($datavalues)) && (!empty($menuid)) ){
         $insertsql = 'INSERT INTO ' . $tables . '(' . $datanames . ') VALUES('.  $datavalues .')';
         $conn->query($insertsql);
         //mysqli_close($conn);
