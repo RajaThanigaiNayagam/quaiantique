@@ -43,7 +43,10 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
 
     if (!empty($datavalue)){
         $datavalues = $menuid. ", ";
+        echo '<h5 class="bg-success text-center">1 The countdatavalues = '. $datavalue .'</h5>';
         $countdatavalues=sizeof($datavalue);
+        echo '<h5 class="bg-success text-center">1 The countdatavalues = '. $countdatavalues .'</h5>';
+
         if ($countdatavalues <> 1){
             for ($i=0; $i<$countdatavalues; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
                 if ( !empty($datavalue[$i]) ){
