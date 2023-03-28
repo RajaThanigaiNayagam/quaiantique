@@ -69,6 +69,7 @@ if(isset($_POST['submit-addfood'])) {//check whether the  submit button is click
         var_dump($foodimage);
         var_dump($foodprice);
         var_dump($foodcategory);
+        var_dump($foodsignature);
         /* ******************************** checking whether the true  ******************************** */
         $sql = "INSERT INTO foods(name, price, image, signature, category_id) VALUES(?, ?, ?, ?, ?)";
         $stmt = mysqli_stmt_init($conn);
