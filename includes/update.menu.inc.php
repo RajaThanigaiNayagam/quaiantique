@@ -93,12 +93,18 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                         $dataname[1]='food_id';
                         $menuid = intval($menu_id);
                         $countdatanames=count($dataname);       
-                        $datavalue[0]='';
+                        $someFoodsAddedToMenu[0]='';
                         for ($i=0; $i<$countermenufoods; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
                             $foodid = $menufood[$i];  //intval($menufood[$i]); 
-                            inserttable( $tables, $dataname, $menuid, $foodid);
-                            mysqli_close($conn);
+                            if ( inserttable( $tables, $dataname, $menuid, $foodid) ) {
+                                echo '<h5 class="bg-success text-center">some foods added to the menu...</h5>';
+                            } else {
+                                echo '<h5 class="bg-success text-center">There is no food added to the menu...</h5>';
+                            };
                         }
+                        mysqli_close($conn);
+                        header("Location: ..\manage.menu.inc.php?updatemenu=success&submit-editmenu=1"); 
+                        exit();
                     }
                 }
                 mysqli_close($conn);
