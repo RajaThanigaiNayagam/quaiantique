@@ -1,6 +1,6 @@
 <?php
 //require "../header.php";
-session_start();
+//session_start();
 error_reporting(0);   //Désactiver tous les rapports d'erreurs
 
 //php function to check, if the characters of the variable "$val" are within the limits of "$x" and "$y"
@@ -81,7 +81,11 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                     $menufoodsupdated= false;
                     if ($countermenufoods>0){
                         require "delete.php";
-                        deletemenufoods($menu_id);
+                        if ( deletemenufoods($menu_id) ) {
+                            echo '<h5 class="bg-success text-center">The food exist in the menu deleted!</h5>';
+                        } else {
+                            echo '<h5 class="bg-success text-center">There is no food exist in the menu deleted!</h5>';
+                        };
                         // Inserting all the food items of a menu  -  in the table "menu_foods"
                         $tables[0]='menu_foods';
                         
@@ -93,18 +97,22 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                         for ($i=0; $i<$countermenufoods; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
                             $foodid = $menufood[$i];  //intval($menufood[$i]); 
                             inserttable( $tables, $dataname, $menuid, $foodid);
+                            mysqli_close($conn);
                         }
                     }
                 }
-                header("Location: ..\manage.menu.inc.php?updatemenu=success&submit-editmenu=1&signature=".$_POST['menusignature']);
+                mysqli_close($conn);
+                header("Location: ..\manage.menu.inc.php?updatemenu=success&submit-editmenu=1");   //&signature=".$_POST['menusignature']);
                 exit();
             } else {
                 $sqlerror = $conn->error;
+                mysqli_close($conn);
                 header("Location: ..\manage.menu.inc.php?updatemenu=sqlerror1&submit-editmenu=1&sqlerror=".$sqlerror);
                 exit();
             }
     } 
 } else {
+    mysqli_close($conn);
     header("Location: ..\manage.menu.inc.php?updatemenu=notsubmitted&submit-editmenu=1");
     exit();
 }

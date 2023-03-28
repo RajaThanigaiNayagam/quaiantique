@@ -1,6 +1,7 @@
 <?php
 //require "../header.php";
 require 'dbh.inc.php';
+error_reporting(0);   //Désactiver tous les rapports d'erreurs
 
 //php function to delete all the foods of a menu
 function deletemenufoods($menufoodsid){
@@ -56,7 +57,6 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
     }
     if ( (!empty($table)) && (!empty($dataname)) && (!empty($datavalue)) && (!empty($menuid)) ){
         $insertsql = 'INSERT INTO ' . $tables . '(' . $datanames . ') VALUES('.  $datavalues .')';
-        
         $conn->query($insertsql);
         mysqli_close($conn);
         return true;
@@ -158,7 +158,7 @@ if(isset($_GET['menufoodsdelete'])) {
     
     //check the existance of foods assigned to a menu
     $menufoodssql = "SELECT * FROM menu_foods WHERE Id = $menuid"; 
-    $menufoodsresult = $conn->query($sql);
+    $menufoodsresult = $conn->query($menufoodssql);
     if ($menufoodsresult->num_rows > 0) {
         $menufoodsalreadexist=true;
         while($row = $menufoodsresult->fetch_assoc()) {
