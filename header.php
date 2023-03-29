@@ -1,6 +1,6 @@
 <?php 
     session_start();      //demarrage du session d'un utilisateur admin/clinet
-    error_reporting(0);   //Désactiver tous les rapports d'erreurs
+    //error_reporting(0);   //Désactiver tous les rapports d'erreurs
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -147,7 +147,7 @@
         <!--     *****************************************************************************     --> 
         <div class="container">
             <!--   The Modal Bootstrap 4.1.0 display for dialog box SIGN-IN   -->                          
-            <div class="modal fade" id="myModal_login">
+            <div class="modal" id="myModal_login">   <!-- Removing the class name "fade" because bs4 leads javascript error  -->
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <!--   Modal Header in the dialog box SIGN-IN   -->
@@ -161,13 +161,13 @@
                             if(isset($_GET['error1'])){ 
                                 //script for modal to appear when error 
                                 echo 
-                                '<script>
+                                "<script>
                                     $(document).ready(
                                         function(){
-                                            $("#myModal_login").modal("show");
+                                            $('#myModal_login').modal('show');
                                         }
                                     );
-                                </script>  ' ;
+                                </script>  " ;
                                 //error handling of log in
                                 if($_GET['error1'] == "emptyfields") {   
                                     echo '<h5 class="text-danger text-center">Remplissez tous les champs, veuillez réessayer !</h5>';
@@ -221,7 +221,7 @@
         <div class="container">
             <!--   dialog box SIGN-UP   -->
             <!--   The Modal Bootstrap 4.1.0 display for SIGN-UP   -->
-            <div class="modal fade" id="myModal_reg">
+            <div class="modal" id="myModal_reg">       <!-- Removing the class name "fade" because bs4 leads javascript error  -->
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <!--   Modal Header in the dialog box SIGN-UP   -->
@@ -234,12 +234,12 @@
                             <?php
                             if(isset($_GET['error'])){
                                 //script for modal to appear when error
-                                echo'  
+                                echo"  
                                     <script>
                                         $(document).ready(function(){
-                                            $("#myModal_reg").modal("show");
+                                            $('#myModal_reg').modal('show');
                                         });
-                                    </script>'
+                                    </script>"
                                 ;
                                 //error handling for errors and success --sign up form
                                 if($_GET['error'] == "emptyfields") {   
