@@ -1,6 +1,6 @@
 <?php 
     session_start();      //demarrage du session d'un utilisateur admin/clinet
-    //error_reporting(0);   //Désactiver tous les rapports d'erreurs
+    error_reporting(0);   //Désactiver tous les rapports d'erreurs
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,24 +59,34 @@
                             echo'
                             <li class="nav-item">
                                 <a class="nav-link" href="view_carte.php" >Notre carte</a>
-                            </li>
-                            <div class="dropdown nav-item">
-                                <label class="dropdown-toggle nav-link" type="text" id="dropdownReservationButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Réservation
-                                </label>
-                                <div class="dropdown-menu" aria-labelledby="dropdownReservationButton">
-                                    <a class="dropdown-item nav-link" href="reservation.php">Nouvelle réservation</a>
-                                    <a class="dropdown-item nav-link" href="view_reservations.php">Voir les réservations</a>
-                                </div>
-                            </div>'  ;
+                            </li>'  ;
                             if($_SESSION['role']==1) {
-                                echo '<li class="nav-item">
+                                echo '<div class="dropdown nav-item">
+                                    <label class="dropdown-toggle nav-link" type="text" id="dropdownReservationButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Réservation
+                                    </label>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownReservationButton">
+                                        <a class="dropdown-item nav-link" href="reservation.php">Nouvelle réservation</a>
+                                        <a class="dropdown-item nav-link" href="view_reservations.php">Voir les réservations</a>
+                                    </div>
+                                </div>
+                                <li class="nav-item">
                                     <a class="nav-link" href="index.php#footer">Nos horaires</a>
                                 </li>'  ;
                             }
                             //set navigation bar when logged in and role of ADMIN
                             if($_SESSION['role']==2) {   
                                 echo'
+                                <div class="dropdown nav-item">
+                                    <label class="dropdown-toggle nav-link" type="text" id="dropdownReservationButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Réservation
+                                    </label>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownReservationButton">
+                                        <a class="dropdown-item nav-link" href="reservation.php">Nouvelle réservation</a>
+                                        <a class="dropdown-item nav-link" href="view_reservations.php?ownreservation=1">voir sa propre réservation</a>
+                                        <a class="dropdown-item nav-link" href="view_reservations.php?ownreservation=0">Voir les réservations</a>
+                                    </div>
+                                </div>
                                 <li class="nav-item">
                                     <a class="nav-link" href="schedule.php" >Gérer l\'horaire</a>
                                 </li>

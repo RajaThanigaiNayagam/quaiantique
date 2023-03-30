@@ -14,6 +14,7 @@ function deletemenufoods($menufoodsid){
         mysqli_close($conn);
         return false;
     }
+    return false;
 }
 
 
@@ -67,6 +68,7 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
         return false;
     }
     mysqli_close($conn);
+    return false;
 }
 
 
@@ -84,6 +86,8 @@ if(isset($_GET['update-submit'])) {
         header("Location: ../view_reservations.php?update=error&action=".$action."&sql=".$sql);
         exit;
     }
+    header("Location: ../view_reservations.php?update=error&action=".$action."&sql=".$sql);
+    exit;
 } 
 
 
@@ -100,6 +104,8 @@ if(isset($_GET['delete-submit'])) {
         header("Location: ../view_reservations.php?delete=error");
         exit;
     }
+    header("Location: ../view_reservations.php?delete=error");
+    exit;
 } 
 
 
