@@ -353,12 +353,7 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
+<div>here it is working at the level header 10 ...</div>
 
         
         
@@ -444,15 +439,13 @@
                                     echo '<h5 class="bg-success text-center">Le modification a réussi ! Veuillez vous connecter!</h5>';
                                 }
                             }
-                            //echo'<br>';
-                            ?>
+                            echo'<br>
 
 
                             <div class="editprofil-form">
                                 <form action="includes/edit.profil.inc.php" method="post">
                                     <p class="hint-text">Modifier votre compte.</p>
-                                    <!-- ------------------   EDIT PROFIL FORM -------------------------- -->
-                                    <?php
+                                    <!-- ------------------   EDIT PROFIL FORM -------------------------- -->';
                                     require 'includes/dbh.inc.php';// connection to mySQL Server
                                     //SQL query to read all datas from the table "schedule"    $_SESSION['user_id']
                                                 
@@ -521,5 +514,4 @@
                 </div>
             </div>
         </div>
-        
-<div>here it is working at the level header ...</div>
+<div>here it is working at the level header lost ...</div>
