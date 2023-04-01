@@ -449,8 +449,8 @@
                                     require 'includes/dbh.inc.php';// connection to mySQL Server
                                     echo '<div>here it is working at the level header 10 ...</div>';
                                     //SQL query to read all datas from the table "schedule"    $_SESSION['user_id']
-                                                
-                                    $sql = "SELECT * FROM users WHERE user_id=".$_SESSION['user_id']; 
+                                    if ( is_null($_SESSION['user_id']) ){$userid=1;}else {$userid=$_SESSION['user_id'];}
+                                    $sql = "SELECT * FROM users WHERE user_id=".$userid; 
                                     echo '<div>here it is working at the level header 11 ...  The SQL is -  '.$sql.'</div>';
                                     $result = $conn->query($sql);
                                     echo '<div>here it is working at the level header 12 ...  The SQL is -  '.$sql.'</div>';
