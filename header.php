@@ -448,7 +448,7 @@
                                     
                                     require 'includes/dbh.inc.php';// connection to mySQL Server
                                     //SQL query to read all datas from the table "schedule"    $_SESSION['user_id']
-                                    if ( is_null($_SESSION['user_id']) ){$userid=1;}else {$userid=$_SESSION['user_id'];}
+                                    //if ( is_null($_SESSION['user_id']) ){$userid=1;}else {$userid=$_SESSION['user_id'];}
                                     if(isset($_SESSION['user_id'])) {
                                         $sql = "SELECT * FROM users WHERE user_id=".$userid; 
                                         $result = $conn->query($sql);
