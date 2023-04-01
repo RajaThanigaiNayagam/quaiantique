@@ -215,4 +215,5 @@ mysqli_close($conn);
 <!--end of main page map section-->
 <?php
 require "footer.php";
+echo'<div>here it is working at the level lost ...</div>';
 ?>
