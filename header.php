@@ -353,7 +353,6 @@
                 </div>
             </div>
         </div>
-<div>here it is working at the level header 10 ...</div>
 
         
         
@@ -444,9 +443,12 @@
 
                             <div class="editprofil-form">
                                 <form action="includes/edit.profil.inc.php" method="post">
-                                    <p class="hint-text">Modifier votre compte.</p>
-                                    <!-- ------------------   EDIT PROFIL FORM -------------------------- -->';
+                                    <p class="hint-text">Modifier votre compte.</p>';
+                                    //<!-- ------------------   EDIT PROFIL FORM -------------------------- -->
+                                    echo '<div>here it is working at the level header 10 ...</div>';
+                                    
                                     require 'includes/dbh.inc.php';// connection to mySQL Server
+                                    echo '<div>here it is working at the level header 10 ...</div>';
                                     //SQL query to read all datas from the table "schedule"    $_SESSION['user_id']
                                                 
                                     $sql = "SELECT * FROM users WHERE user_id=".$_SESSION['user_id']; 
