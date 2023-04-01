@@ -451,15 +451,16 @@
                                     //SQL query to read all datas from the table "schedule"    $_SESSION['user_id']
                                                 
                                     $sql = "SELECT * FROM users WHERE user_id=".$_SESSION['user_id']; 
-                                    echo '<div>here it is working at the level header 11 ...</div>';
+                                    echo '<div>here it is working at the level header 11 ...  The SQL is -  '.$sql.'</div>';
                                     $result = $conn->query($sql);
+                                    echo '<div>here it is working at the level header 12 ...  The SQL is -  '.$sql.'</div>';
                                     if ($result->num_rows > 0) {
                                         while($row = $result->fetch_assoc()) {
                                             echo '<div>here it is working at the level header 12 ...</div>';
                                             echo'
                                             <input type="hidden" class="form-control" name="user_id" value="'.$_SESSION['user_id'].'">';
                                             
-                                    echo '<div>here it is working at the level header 12 ...</div>
+                                    echo '<div>here it is working at the level header 13 ...</div>
                                             <div class="form-group">
                                                 <label>Prénom</label>
                                                 <input type="text" class="form-control" name="fname" value="'.$row['f_name'].'" required="required">
