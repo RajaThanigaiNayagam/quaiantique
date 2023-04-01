@@ -445,18 +445,21 @@
                                 <form action="includes/edit.profil.inc.php" method="post">
                                     <p class="hint-text">Modifier votre compte.</p>';
                                     //<!-- ------------------   EDIT PROFIL FORM -------------------------- -->
-                                    echo '<div>here it is working at the level header 10 ...</div>';
                                     
                                     require 'includes/dbh.inc.php';// connection to mySQL Server
                                     echo '<div>here it is working at the level header 10 ...</div>';
                                     //SQL query to read all datas from the table "schedule"    $_SESSION['user_id']
                                                 
                                     $sql = "SELECT * FROM users WHERE user_id=".$_SESSION['user_id']; 
+                                    echo '<div>here it is working at the level header 11 ...</div>';
                                     $result = $conn->query($sql);
                                     if ($result->num_rows > 0) {
                                         while($row = $result->fetch_assoc()) {
+                                            echo '<div>here it is working at the level header 12 ...</div>';
                                             echo'
-                                            <input type="hidden" class="form-control" name="user_id" value="'.$_SESSION['user_id'].'">
+                                            <input type="hidden" class="form-control" name="user_id" value="'.$_SESSION['user_id'].'">';
+                                            
+                                    echo '<div>here it is working at the level header 12 ...</div>
                                             <div class="form-group">
                                                 <label>Prénom</label>
                                                 <input type="text" class="form-control" name="fname" value="'.$row['f_name'].'" required="required">
