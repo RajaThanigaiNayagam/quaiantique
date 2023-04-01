@@ -50,7 +50,7 @@ if(isset($_SESSION['user_id'])){
             }   
         echo "</table>";
     }
-    else {    echo "<p class='text-white text-center bg-danger'>Your reservation list is empty!<p>"; }
+    else {    echo "<p class='text-white text-center bg-danger'>Votre réservation est vide !<p>"; }
     }
     
     

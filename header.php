@@ -128,6 +128,11 @@
                     //log out button when user is logged in
                     if(isset($_SESSION['user_id'])){    //    LOGOUT    //
                         echo '
+                        <form class="navbar-form navbar-right" action="index.php#myModal_edit" method="post">
+                            <button type="submit" name="logout-submit" class="btn btn-outline-dark">
+                            <a class="nav-link" data-toggle="modal" data-target="#myModal_edit" id="edit" style="padding:0;">Mon compte</a>
+                            </button>
+                        </form><div style="width:10px;text-align: right;"></div>
                         <form class="navbar-form navbar-right" action="includes/logout.inc.php" method="post">
                             <button type="submit" name="logout-submit" class="btn btn-outline-dark">Se déconnecter</button>
                         </form>' ;
@@ -296,7 +301,7 @@
                                     echo '<h5 class="bg-success text-center">L\'inscription a réussi ! Veuillez vous connecter!</h5>';
                                 }
                             }
-                            echo'<br>';
+                            //echo'<br>';
                             ?>
                             <!-- ------------------   SIGN-UP REGISTRATION FORM -------------------------- -->
                             <div class="signup-form">
@@ -343,6 +348,174 @@
                         <!-- Modal footer -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        
+        
+        <!--     *****************************************************************************     -->
+        <!--     ***********************    dialog box EDIT-PROFIL     ***********************     -->
+        <!--     **********   The Modal Bootstrap 4.1.0 display for EDIT-PROFIL     **********     -->
+        <!--     *****************************************************************************     -->
+        <div class="container">
+            <!--   dialog box EDIT-PROFIL   -->
+            <!--   The Modal Bootstrap 4.1.0 display for EDIT-PROFIL   -->
+            <div class="modal" id="myModal_edit">       <!-- Removing the class name "fade" because bs4 leads javascript error  -->
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!--   Modal Header in the dialog box EDIT-PROFIL   -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modifier profil</h4>
+                            <button type="button" class="close">  <!-- data-toggle="modal" data-dismiss="modal" data-target="#" >  -->
+                                <a class="navbar-brand" href="index.php" style="padding:0;"> &times; </a>
+                            </button>
+                        </div>      
+                        <!-- Modal body in the dialog box EDIT-PROFIL   -->
+                        <div class="modal-body">
+                            <?php
+                            if(isset($_GET['erroredit'])){
+                                //script for modal to appear when error
+                                echo"  
+                                    <script>
+                                        $(document).ready(function(){
+                                            $('#myModal_edit').modal('show');
+                                        });
+                                    </script>"
+                                ;
+                                //error handling for errors and success --  EDIT-PROFIL form
+                                if($_GET['erroredit'] == "emptyfields") {   
+                                    echo '<h5 class="bg-danger text-center">Remplissez tous les champs, veuillez réessayer !</h5>';
+                                }
+                                else if($_GET['erroredit'] == "nosubmitbutton") {   
+                                    echo '<h5 class="bg-danger text-center">Le formulaire de modification n\'est pas soumis !</h5>';
+                                }
+                                else if($_GET['erroredit'] == "usernameemailtaken") {   
+                                    echo '<h5 class="bg-danger text-center">Le nom d\'utilisateur ou l\'e-mail sont pris !</h5>';
+                                }
+                                else if($_GET['erroredit'] == "invalidemail") {   
+                                    echo '<h5 class="bg-danger text-center">E-mail invalide, veuillez réessayer !</h5>';
+                                }
+                                else if($_GET['erroredit'] == "invalidemailusername") {   
+                                    echo '<h5 class="bg-danger text-center">Le nom d\'utilisateur ou l\'e-mail n\'est pas pris, veuillez réessayer !</h5>';
+                                }
+                                else if($_GET['erroredit'] == "invalidusername") {   
+                                    echo '<h5 class="bg-danger text-center">Nom d\'utilisateur invalide, veuillez réessayer !</h5>';
+                                }
+                                else if($_GET['erroredit'] == "invalidpassword") {   
+                                    echo '<h5 class="bg-danger text-center">Mot de passe invalide, réessayez!</h5>';
+                                }
+                                else if($_GET['erroredit'] == "actuelpassworddontmatch") {   
+                                    echo '<h5 class="bg-danger text-center">Votre mot de passe actuel est erroné, veuillez réessayer !</h5>';
+                                }
+                                else if($_GET['erroredit'] == "passworddontmatch") {   
+                                    echo '<h5 class="bg-danger text-center">Le mot de passe doit correspondre, veuillez réessayer !</h5>';
+                                }
+                                else if($_GET['erroredit'] == "error1") {   
+                                    echo '<h5 class="bg-danger text-center">Une erreur1 s\'est produite, veuillez réessayez !</h5>';
+                                }
+                                else if($_GET['erroredit'] == "error2") {   
+                                    echo '<h5 class="bg-danger text-center">Une erreur2 s\'est produite, veuillez réessayez !</h5>';
+                                }
+                                //$_SESSION['user_id']=null;
+                                $_SESSION['erroredit']=null;
+                                
+                            }
+                            if(isset($_GET['edit'])) { 
+                                //success dialog box modal to appear when the subscription is success
+                                echo
+                                    '<script>
+                                        $(document).ready(
+                                            function(){
+                                                $("#myModal_edit").modal("show");
+                                            }
+                                        );
+                                    </script>'
+                                ;
+                                if($_GET['edit'] == "success"){ 
+                                    echo '<h5 class="bg-success text-center">Le modification a réussi ! Veuillez vous connecter!</h5>';
+                                }
+                            }
+                            //echo'<br>';
+                            ?>
+
+
+                            <div class="editprofil-form">
+                                <form action="includes/edit.profil.inc.php" method="post">
+                                    <p class="hint-text">Modifier votre compte.</p>
+                                    <!-- ------------------   EDIT PROFIL FORM -------------------------- -->
+                                    <?php
+                                    require 'includes/dbh.inc.php';// connection to mySQL Server
+                                    //SQL query to read all datas from the table "schedule"    $_SESSION['user_id']
+                                                
+                                    $sql = "SELECT * FROM users WHERE user_id=".$_SESSION['user_id']; 
+                                    $result = $conn->query($sql);
+                                    if ($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                            echo'
+                                            <input type="hidden" class="form-control" name="user_id" value="'.$_SESSION['user_id'].'">
+                                            <div class="form-group">
+                                                <label>Prénom</label>
+                                                <input type="text" class="form-control" name="fname" value="'.$row['f_name'].'" required="required">
+                                                <small class="form-text text-muted">Le prénom doit comporter entre 2 et 20 caractères</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                <input type="text" class="form-control" name="lname" value="'.$row['l_name'].'" required="required">
+                                                <small class="form-text text-muted">Le nom de famille doit comporter entre 2 et 20 caractères</small>
+                                            </div>   
+                                            <div class="form-group">
+                                                <input type="hidden" class="form-control" name="actueluid" value="'.$row['uidUsers'].'" required="required">
+                                                <input type="text" class="form-control" name="uid" value="'.$row['uidUsers'].'" required="required">
+                                                <small class="form-text text-muted">Le nom d\'utilisateur doit comporter entre 4 et 20 caractères</small>
+                                                <small class="form-text text-muted">Sans espace et sans caractère spécial</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="hidden" class="form-control" name="actuelmail" value="'.$row['emailUsers'].'">
+                                                <input type="email" class="form-control" name="mail" value="'.$row['emailUsers'].'" required="required">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="telephone" class="form-control" name="tele" value="'.$row['telephone'].'" required="required">
+                                                <small class="form-text text-muted">Le numéro de téléphone doit comporter entre 6 et 20 caractères</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="hidden" class="form-control" name="originalpwd" value="'.$row['pwdUsers'].'">
+                                                <input type="password" class="form-control" name="actuelpwd" placeholder="Entrer le mot de passe actuelle">
+                                                <small class="form-text text-muted">Le mot de passe doit comporter entre 6 et 20 caractères</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" name="pwd" placeholder="Entrer le nouveau mot de passe">
+                                                <small class="form-text text-muted">Le mot de passe doit comporter entre 6 et 20 caractères</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" name="pwd-repeat" placeholder="Confirmer le nouveau mot de passe">
+                                            </div>     
+                                            <div class="form-group">
+                                                <button type="submit" name="edituser-submit" class="btn btn-dark btn-lg btn-block">Modifier</button>
+                                            </div>';
+                                        }
+                                    }
+                                    //close connection
+                                    mysqli_close($conn);
+                                    ?>
+                                </form>
+                            </div> 	
+                        </div>        
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger">
+                                <a class="navbar-brand" href="index.php" style="padding:0;">
+                                    <strong><em>Fermer</em></strong>
+                                </a>
+                            </button>
                         </div> 
                     </div>
                 </div>

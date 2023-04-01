@@ -28,15 +28,15 @@ if(isset($_POST['signup-submit'])) {//very if the user clicked connexion button
         exit();
     }
     else if(!preg_match("/^[a-zA-Z0-9]*$/", $tele) || !between($tele,6,20)) {
-        header("Location: ../index.php?error3=invalidtele");
+        header("Location: ../index.php?error=invalidtele");
         exit();
     } 
     else if(!preg_match("/^[a-zA-Z ]*$/", $fname) || !between($fname,2,20)) {
-        header("Location: ../index.php?error3=invalidfname");
+        header("Location: ../index.php?error=invalidfname");
         exit();
     }
     else if(!preg_match("/^[a-zA-Z ]*$/", $lname) || !between($lname,2,40)) {
-        header("Location: ../index.php?error3=invalidlname");
+        header("Location: ../index.php?error=invalidlname");
         exit();
     }
     else if(!preg_match("/^[a-zA-Z0-9]*$/", $username) || !between($username,4,20)) {

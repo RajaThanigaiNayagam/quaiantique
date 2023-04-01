@@ -2,7 +2,7 @@
 require "header.php";
 ?> 
 <!-- end of nav bar -->
-<br><br>
+<br><br><br><br>
 <div class="container">
     <h4 class="text-center"><br>Nouvelle réservation<br></h4>   
     <div class="row">
@@ -53,11 +53,12 @@ require "header.php";
                         echo '<h5 class="bg-success text-center">Votre réservation a réussi !</h5>';
                     }
                 }
-                echo'<br>';
-
+                echo'<br>
+                <h6 class="text-center">Merci d\'avance de préciser en commentaire le nombre d\'enfants présent à table(si il y en a)!!  
+                Pour tout retard de plus de 20 min votre table sera donnée à d\'autre client!!</h6>';
 
                 //reservation form  
-                echo '   <div id="reservationform"></div><br><br><br>
+                echo '   <div id="reservationform"></div><br><br>
                 <div class="signup-form row formreservation">
                     <form action="includes/reservation.inc.php" method="post">
                     <div class="row formreservation">
@@ -71,7 +72,7 @@ require "header.php";
                             <input type="date" class="form-control" name="date" id="date" placeholder="Date" required="required">
                         </div>
                     </div>
-                    <label>Cliquez sur le bouton en-bas pour choisir l\'heur de reservation</label>
+                    <label>Cliquez sur le bouton en-bas pour choisir l\'heure de reservation</label>
                     <input name="time" type="text" id="reservresponse" value="">
                     <div class="row formreservation">';
                         require 'includes/dbh.inc.php';  // connection to mySQL Server

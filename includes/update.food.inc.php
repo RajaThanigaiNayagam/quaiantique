@@ -77,7 +77,7 @@ if(isset($_POST['submit-editfood'])) {//check whether the  submit button is clic
                 $sqlerror = $conn->error;
                 header("Location: ..\manage.food.inc.php?updatefood=sqlerror1&submit-editfood=1&sqlerror=".$sqlerror);
                 exit();
-              }
+            }
         }
     } 
 } else {

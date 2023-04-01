@@ -1,6 +1,5 @@
 
      Pour exécuter ce projet, vous devez avoir installé un serveur virtuel, c'est-à-dire XAMPP, sur votre PC (pour Windows). 
-Ce PHP avec code source est téléchargeable gratuitement, à utiliser uniquement à des fins éducatives !
 
 
 En machine localhost 
@@ -10,18 +9,18 @@ En machine localhost
 
 Création de compte Admin faite a la main. Pour ce faire, 
 --------------------------------------------------------
-   Ouvrez le page PHPmyadmin comme expliquée juste avant, et crée une base de données nommées "quaiantique" a l main. À l'intérieur de cette base de données "quaiantique" sur l'écran d'à droite, vous cliqué sur le bouton "Importer" juste en haut de l'écran. Sélectionné le fichier nommé "quaiantique" qui se trouve dans le répertoire "Dossier support/quaiantique" et lancer l'importation en cliquant sur le bouton "Importer" tout en bas de cette page.  
+   Ouvrez le page PHPmyadmin comme expliquée juste avant, et crée une base de données nommées "quaiantique" a la main. À l'intérieur de cette base de données "quaiantique" sur l'écran d'à droite, vous cliqué sur le bouton "Importer" juste en haut de l'écran. Sélectionné le fichier nommé "quaiantique.sql" qui se trouve dans le répertoire "Dossier support/quaiantique" et lancer l'importation en cliquant sur le bouton "Importer" tout en bas de cette page.  
 
 
 Après avoir démarré Apache et MySQL dans XAMPP, suivez les étapes suivantes.
 
 1ere étape : Ce projet est téléchargeable depuis le github.com 
 		 https://github.com/RajaThanigaiNayagam/quaiantique.git
-2ème étape : copiez le dossier principal du projet.
-3ème étape : coller dans xampp/htdocs/
+2ème étape : Créé un sous-répertoire nommé "quaiantique" a l'intérieure de la répertorier "xampp/htdocs/".   
+3ème étape : Coller tous les fichiers de projet dans la répertoire "xampp/htdocs/quaiantique"
 
 
-Après avoir créé la base de données, ouvrez un navigateur et accédez à l'URL "http://localhost/"
+Après avoir créé la base de données, ouvrez un navigateur et accédez à l'URL "http://localhost/quaiantique".  La, vous verrez la page d'accueil de Restaurant Quantique
 
 Admin
 ------

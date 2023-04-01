@@ -2,9 +2,9 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : mer. 22 mars 2023 à 21:04
--- Version du serveur : 10.4.24-MariaDB
+-- Hôte : us-cdbr-east-06.cleardb.net
+-- Généré le : sam. 01 avr. 2023 à 12:42
+-- Version du serveur : 5.6.50-log
 -- Version de PHP : 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `quaiantique`
+-- Base de données : `heroku_61c59e7dc604875`
 --
 
 -- --------------------------------------------------------
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `category` (
   `Id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `creationdate` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `creationdate` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -54,7 +54,7 @@ CREATE TABLE `foods` (
   `Id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `creationdate` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `creationdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `image` varchar(200) NOT NULL,
   `signature` tinyint(1) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL
@@ -69,18 +69,17 @@ INSERT INTO `foods` (`Id`, `name`, `price`, `creationdate`, `image`, `signature`
 (6, 'plat Double rosti burger', '9.99', '2023-03-20 16:02:20', 'img/plat Double rosti burger.jpg', 1, 2),
 (8, 'Veggieburger plat', '7.99', '2023-03-20 16:02:30', 'img/plat Veggieburger plat9.99.jpg', 1, 2),
 (9, 'Grande assiette de legumes', '6.99', '2023-03-20 15:22:57', 'img/plat Grande assiette de legumes 6.99.jpg', 1, 3),
-(10, 'Coca', '2.00', '2023-03-20 08:15:47', 'img/Boisson coca 2.00.jpg', NULL, 7),
-(11, 'fanta', '2.00', '2023-03-20 08:16:58', 'img/Boisson fanta 2.00.jpg', NULL, 7),
-(13, 'Pepsi', '2.00', '2023-03-20 08:18:51', 'img\\Boisson pepsi 2.00.jpg', NULL, 7),
+(10, 'Coca', '2.00', '2023-03-27 18:16:41', 'img/Boisson coca 2.00.jpg', 0, 7),
+(11, 'fanta', '2.00', '2023-03-27 18:16:46', 'img/Boisson fanta 2.00.jpg', 0, 7),
+(13, 'Pepsi', '2.00', '2023-03-27 18:16:53', 'img\\Boisson pepsi 2.00.jpg', 0, 7),
 (14, 'Piece du boucher marinee', '11.99', '2023-03-20 15:23:34', 'img/plat Piece du boucher marinee 11.99.jpg', 1, 3),
 (15, 'Quart poulet roti', '8.99', '2023-03-20 15:23:20', 'img/plat Quart poulet roti 8.99.jpg', 1, 3),
-(16, 'Steak-haché façon bouchère viande bovine française', '7.99', '2023-03-20 08:36:38', 'img\\plat Steak-haché façon bouchère viande bovine française 7.99.jpg', 0, 3),
+(16, 'Steak-hache facon bouchere viande bovine francaise', '7.99', '2023-03-27 18:48:00', 'img/plat Steak-hache facon bouchere viande bovine francaise 7.99.jpg', 1, 3),
 (17, 'Assiette de crostinis', '3.65', '2023-03-21 21:46:26', 'img/6.jpg', 1, 1),
 (18, 'Frite', '2.90', '2023-03-20 14:18:32', 'img/Entrer frites 2.99.jpg', 1, 1),
-(19, 'Filet de poisson pané sauce tartare', '7.95', '2023-03-20 14:17:43', 'img/plat Filet de poisson pané sauce tartare entrer 7.95.jpg', 1, 3),
-(20, 'Pancakes fourrés au caramel', '4.50', '2023-03-20 16:35:18', 'img/dessert5 Pancakes fourrés au caramel.jpeg', 1, 4),
-(21, 'pancakes au miel', '4.50', '2023-03-20 15:00:26', 'img/dessert6 pancakes au miel.jpeg', 1, 4),
-(22, 'Poireaux vinaigrette', '8.90', '2023-03-22 15:54:35', 'img/plat Poireaux vinaigrette.jpg', 1, 3);
+(19, 'plat Filet de poisson pane sauce tartare', '7.95', '2023-03-27 18:34:00', 'img/plat Filet de poisson pane sauce tartare entrer 7.95.jpg', 1, 3),
+(20, 'Pancakes fourres au caramel', '4.50', '2023-03-27 18:50:06', 'img/dessert5 Pancakes fourres au caramel.jpeg', 1, 4),
+(21, 'pancakes au miel', '4.00', '2023-03-20 15:00:26', 'img/dessert6 pancakes au miel.jpeg', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -92,7 +91,8 @@ CREATE TABLE `menu` (
   `Id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `creationdate` timestamp NULL DEFAULT NULL,
+  `menusession` varchar(100) DEFAULT NULL,
+  `creationdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `image` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Menu de Restaurant';
 
@@ -100,12 +100,13 @@ CREATE TABLE `menu` (
 -- Déchargement des données de la table `menu`
 --
 
-INSERT INTO `menu` (`Id`, `name`, `price`, `creationdate`, `image`) VALUES
-(8, 'Burger', '13.90', NULL, 'img/plat Double rosti burger.jpg..'),
-(9, 'Menu Beauf', '18.90', NULL, 'img\\10.jpg'),
-(10, 'Menu fruit de mer', '18.90', NULL, 'img\\7.jpg'),
-(11, 'Menu Végétarien', '12.90', NULL, 'plat Poireaux vinaigrette.jpg'),
-(12, 'tessgft', '25.00', NULL, 'img/plat Double rosti burger.jpg');
+INSERT INTO `menu` (`Id`, `name`, `price`, `menusession`, `creationdate`, `image`) VALUES
+(1, 'Formule Diner', '20.00', '(Du lundi au samedi midi)', '2023-03-31 06:06:35', 'img\\4.jpg'),
+(2, 'Formule Déjeuner', '16.00', '(Le midi du lundi au vendredi)', '2023-03-31 06:07:26', 'img\\5.jpg'),
+(8, 'Burger', '13.90', '(Du lundi au dimanche midi)', '2023-03-31 06:04:18', 'img/plat Double rosti burger.jpg'),
+(9, 'Menu Beauf', '18.90', '(Du lundi au dimanche midi)', '2023-03-31 06:05:13', 'img\\10.jpg'),
+(10, 'Menu fruit de mer', '18.90', '(Du lundi au dimanche midi)', '2023-03-31 06:07:42', 'img\\7.jpg'),
+(11, 'Menu VÃ©gÃ©tarien', '12.90', '(Du lundi au dimanche midi)', '2023-03-31 06:08:53', 'img\\plat Poireaux vinaigrette.jpg');
 
 -- --------------------------------------------------------
 
@@ -117,7 +118,7 @@ CREATE TABLE `menu_foods` (
   `id` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL,
   `food_id` int(11) DEFAULT NULL,
-  `creationdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `creationdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -125,16 +126,6 @@ CREATE TABLE `menu_foods` (
 --
 
 INSERT INTO `menu_foods` (`id`, `menu_id`, `food_id`, `creationdate`) VALUES
-(47, 9, 4, '2023-03-21 14:02:25'),
-(48, 9, 10, '2023-03-21 14:02:25'),
-(49, 9, 11, '2023-03-21 14:02:25'),
-(50, 9, 13, '2023-03-21 14:02:25'),
-(51, 9, 14, '2023-03-21 14:02:25'),
-(52, 9, 16, '2023-03-21 14:02:25'),
-(53, 9, 17, '2023-03-21 14:02:25'),
-(54, 9, 18, '2023-03-21 14:02:25'),
-(55, 9, 20, '2023-03-21 14:02:25'),
-(56, 9, 21, '2023-03-21 14:02:25'),
 (57, 10, 10, '2023-03-21 18:46:28'),
 (58, 10, 11, '2023-03-21 18:46:28'),
 (59, 10, 13, '2023-03-21 18:46:28'),
@@ -142,7 +133,15 @@ INSERT INTO `menu_foods` (`id`, `menu_id`, `food_id`, `creationdate`) VALUES
 (61, 10, 18, '2023-03-21 18:46:28'),
 (62, 10, 19, '2023-03-21 18:46:28'),
 (63, 10, 20, '2023-03-21 18:46:28'),
-(64, 10, 21, '2023-03-21 18:46:28');
+(64, 10, 21, '2023-03-21 18:46:28'),
+(1614, 8, 6, '2023-03-28 14:46:26'),
+(1624, 8, 8, '2023-03-28 14:46:26'),
+(1634, 8, 10, '2023-03-28 14:46:27'),
+(1644, 8, 11, '2023-03-28 14:46:27'),
+(1654, 8, 13, '2023-03-28 14:46:28'),
+(1664, 8, 17, '2023-03-28 14:46:28'),
+(1674, 8, 18, '2023-03-28 14:46:28'),
+(1684, 8, 21, '2023-03-28 14:46:28');
 
 -- --------------------------------------------------------
 
@@ -157,7 +156,7 @@ CREATE TABLE `reservation` (
   `rdate` date NOT NULL,
   `time_zone` text NOT NULL,
   `comment` mediumtext NOT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` varchar(30) NOT NULL,
   `user_fk` int(11) NOT NULL,
   `res_time_slot_id` int(11) NOT NULL
@@ -174,8 +173,9 @@ INSERT INTO `reservation` (`reserv_id`, `num_guests`, `num_tables`, `rdate`, `ti
 (81, 5, 2, '2023-03-24', '12:15:00', '', '2023-03-17 06:06:56', 'Annulée', 38, 2),
 (82, 2, 1, '2023-04-09', '12:30:00', '', '2023-03-17 09:57:08', 'Approuvée', 26, 3),
 (83, 4, 1, '2023-03-17', '20:15:00', '', '2023-03-17 15:37:36', 'Approuvée', 39, 13),
-(85, 5, 2, '2023-04-03', '19:30:00', '', '2023-03-17 19:42:37', 'Approuvée', 40, 10),
-(86, 4, 1, '2023-04-03', '20:15:00', '', '2023-03-17 19:43:01', 'Approuvée', 40, 13);
+(86, 4, 1, '2023-04-03', '20:15:00', '', '2023-03-17 19:43:01', 'Approuvée', 40, 13),
+(94, 6, 2, '2023-03-30', '13:15:00', '', '2023-03-29 07:14:18', 'ApprouvÃ©e', 36, 6),
+(104, 4, 1, '2023-03-31', '20:00:00', '', '2023-03-29 12:43:21', 'ApprouvÃ©e', 44, 12);
 
 -- --------------------------------------------------------
 
@@ -298,18 +298,6 @@ INSERT INTO `tables` (`tables_id`, `t_date`, `t_tables`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tables_timeslot`
---
-
-CREATE TABLE `tables_timeslot` (
-  `Id` int(11) NOT NULL,
-  `time_slot_id` int(11) NOT NULL,
-  `tables_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `users`
 --
 
@@ -321,8 +309,8 @@ CREATE TABLE `users` (
   `emailUsers` tinytext NOT NULL,
   `pwdUsers` longtext NOT NULL,
   `telephone` text NOT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `role_id` int(11) NOT NULL DEFAULT 1
+  `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `role_id` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -330,7 +318,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `f_name`, `l_name`, `uidUsers`, `emailUsers`, `pwdUsers`, `telephone`, `reg_date`, `role_id`) VALUES
-(26, '', '', 'admin', 'admin@in.com', '$2y$10$HblSqojYA9mVV4olpgMty.sP7GeqD4.9n4MeSvLtugukGTkhVAQWW', '', '2019-04-30 19:51:07', 2),
+(26, 'Admin', 'Admin', 'admin', 'admin@in.com', '$2y$10$HblSqojYA9mVV4olpgMty.sP7GeqD4.9n4MeSvLtugukGTkhVAQWW', '', '2019-04-30 19:51:07', 2),
 (27, '', '', 'kappa1', 'ka11pa@in.com', '$2y$10$/VK5CmjZavvC4gdv3WFk5u.Th5luQTfpzigiYPSryoVdULSE57A.a', '', '2019-04-30 20:18:57', 1),
 (28, '', '', 'kappa2', 'kappa2@hotmail.com', '$2y$10$jfiG7gFvyQo..Cx1ZwktaOcs.83Zhsn0fkvq.9CvQCRA4Ognb/cBK', '', '2019-04-30 20:46:20', 2),
 (29, '', '', 'ddsa', 'kapa@in.comq', '$2y$10$sH8sr2sI//qD5bg/D/sGeuDYb3COyUEwvNCKTLBfWUitVi2s/Z0ZG', '', '2019-05-01 00:25:37', 1),
@@ -339,13 +327,14 @@ INSERT INTO `users` (`user_id`, `f_name`, `l_name`, `uidUsers`, `emailUsers`, `p
 (32, '', '', 'fwtis', 'kappa1@in.gr', '$2y$10$3rZoKKI5idzOeRK.YUfcwe/7bL66dkU0o54w2uQ/PWpFPYR7T/Zk2', '', '2019-05-03 01:11:03', 1),
 (33, '', '', 'kopelitsoua', 'effgfdgfdg@hotmail.com', '$2y$10$Ha0vNgl399uQveyAsp.MyuKteq9ZXZRH1yZ7XY2KZXU1O0HiQ0.CK', '', '2019-05-03 18:05:05', 1),
 (34, '', '', 'lolas', 'lolas@in.gr', '$2y$10$Fgzedyphz9nYpLkXaGOc2u.K2SZby5m5t23Uo/3u/4kC8a6Uf9xTe', '', '2019-05-05 00:59:10', 1),
-(35, '', '', 'raja', 'test@test.com', '$2y$10$HblSqojYA9mVV4olpgMty.sP7GeqD4.9n4MeSvLtugukGTkhVAQWW', '', '2023-03-06 18:30:11', 2),
-(36, '', '', 'thanigai', 'thanigainayagam@yahoo.fr', '$2y$10$HblSqojYA9mVV4olpgMty.sP7GeqD4.9n4MeSvLtugukGTkhVAQWW', '', '2023-03-09 17:35:59', 2),
+(35, 'Raja', 'Thanigai', 'raja', 'test@test.com', '$2y$10$HblSqojYA9mVV4olpgMty.sP7GeqD4.9n4MeSvLtugukGTkhVAQWW', '', '2023-03-06 18:30:11', 2),
+(36, 'Raja Thanigai', 'Nayagam', 'thanigai', 'thanigainayagam@yahoo.fr', '$2y$10$HblSqojYA9mVV4olpgMty.sP7GeqD4.9n4MeSvLtugukGTkhVAQWW', '', '2023-03-09 17:35:59', 1),
 (37, 'Thanigai', 'Raja', 'test', 'test1@test.com', '$2y$10$G4l/yOULwzgR7eIiSgos5.lyAgNTU9xPv/jmJqAuM3GvLIu7YCxmW', '', '2023-03-13 21:13:47', 1),
 (38, 'Joseph', 'Ruben', 'ruben', 'ruben@test.com', '$2y$10$KDTjr93Hfd.kppCT8pRIlORP7GYgn8SiKFvAmIKLM/s9s38w7y8.6', '', '2023-03-14 06:11:48', 1),
 (39, 'Martin', 'Lucie', 'martin', 'lucie.martin@grouph.fr', '$2y$10$k7TKAJ6/VQL9lKBQchwxe.B9ghnIIRnjPnES2km/cHOZqWhS.Syj6', '', '2023-03-17 15:36:50', 1),
 (40, 'Xavier', 'saga', 'saga', 'xsaga@test.com', '$2y$10$zYdBnFeGumJb4gs2Ouk2guRXrzsCdbZaGCqpyn3rolJSVKX7/EZ1G', '1234567890', '2023-03-17 18:10:08', 1),
-(41, 'Raoul', 'Raja', 'RRR1006', 'test@gmail.com', '$2y$10$79IaU07z6cxfUHr1RLDLoO.7ihsXopOTZIStc.J9kmxf4iFqZx1Ca', '1234567890', '2023-03-17 19:37:01', 1);
+(41, 'Raoul', 'Raja', 'RRR1006', 'test@gmail.com', '$2y$10$79IaU07z6cxfUHr1RLDLoO.7ihsXopOTZIStc.J9kmxf4iFqZx1Ca', '1234567890', '2023-03-17 19:37:01', 1),
+(44, 'Raja test', 'Test', 'Rajatest', 'rajatest@test.com', '$2y$10$Q5MjX9ZA425QAXDZ2RzKD.IvHcsDerdf3U1hmPM3izkoP.0ludJ2e', '0123456789', '2023-03-29 06:25:41', 1);
 
 --
 -- Index pour les tables déchargées
@@ -362,8 +351,7 @@ ALTER TABLE `category`
 --
 ALTER TABLE `foods`
   ADD PRIMARY KEY (`Id`),
-  ADD UNIQUE KEY `name` (`name`),
-  ADD KEY `category_id` (`category_id`);
+  ADD KEY `foreignkey` (`category_id`);
 
 --
 -- Index pour la table `menu`
@@ -375,7 +363,9 @@ ALTER TABLE `menu`
 -- Index pour la table `menu_foods`
 --
 ALTER TABLE `menu_foods`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `menufk` (`menu_id`),
+  ADD KEY `fk` (`food_id`);
 
 --
 -- Index pour la table `reservation`
@@ -431,25 +421,25 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT pour la table `foods`
 --
 ALTER TABLE `foods`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT pour la table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT pour la table `menu_foods`
 --
 ALTER TABLE `menu_foods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1694;
 
 --
 -- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `reserv_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `reserv_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT pour la table `role`
@@ -473,7 +463,7 @@ ALTER TABLE `tables`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- Contraintes pour les tables déchargées
@@ -484,6 +474,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `foods`
   ADD CONSTRAINT `foreignkey` FOREIGN KEY (`category_id`) REFERENCES `category` (`Id`);
+
+--
+-- Contraintes pour la table `menu_foods`
+--
+ALTER TABLE `menu_foods`
+  ADD CONSTRAINT `fk` FOREIGN KEY (`food_id`) REFERENCES `foods` (`Id`),
+  ADD CONSTRAINT `menufk` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`Id`);
 
 --
 -- Contraintes pour la table `reservation`

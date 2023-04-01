@@ -264,6 +264,9 @@ a:link {
 	color: #392C1E !important;
 }
 
+.container .formreservation .form-group button:checked{
+	color: #B6AC97 !important;
+}
 
 .reservupdatebutton{
 	width: 80px;
@@ -329,12 +332,42 @@ a:link {
     font-family: 'Montserrat', sans-serif;
     font-size: 30px;
     font-weight: bold;
-	color: #3c3c3c;
+	color: #906427;
+	text-align: center;
+}
+
+
+.menusession, h5{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+	color: #B6AC97;
 	text-align: center;
 }
 
 /*------------------------------------------------------------*/
 
+
+
+/*------------------------------------------------------------*/
+/* ********************  EDIT USER FORM  ******************** */
+/*------------------------------------------------------------*/
+.editprofil-form .form-group .form-control, .editprofil-form .form-group label, .editprofil-form .form-group .form-text {
+	padding: 0;
+	margin: 0;
+}
+
+
+/* ********************  EDIT USER FORM  ******************** */
+.signup-form .form-group .form-control, .signup-form .form-group label, .signup-form .form-group .form-text {
+	padding: 0;
+	margin: 0;
+}
+
+.container .signup-form, .signup-form .formreservation .form-group, .signup-form .formreservation .form-group label, .signup-form .formreservation .form-group .form-control {
+	padding: 0;
+	margin: 0;
+}
 
 
 .header-button .btn{
