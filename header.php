@@ -448,52 +448,54 @@
                                     
                                     require 'includes/dbh.inc.php';// connection to mySQL Server
                                     //SQL query to read all datas from the table "schedule"    $_SESSION['user_id']
-                                    if ( is_null($_SESSION['user_id']) ){$userid=1;}else {$userid=$_SESSION['user_id'];}
-                                    $sql = "SELECT * FROM users WHERE user_id=".$userid; 
-                                    $result = $conn->query($sql);
-                                    if ($result->num_rows > 0) {
-                                        while($row = $result->fetch_assoc()) {
-                                            echo'
-                                            <input type="hidden" class="form-control" name="user_id" value="'.$_SESSION['user_id'].'">
-                                            <div class="form-group">
-                                                <label>Prénom</label>
-                                                <input type="text" class="form-control" name="fname" value="'.$row['f_name'].'" required="required">
-                                                <small class="form-text text-muted">Le prénom doit comporter entre 2 et 20 caractères</small>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input type="text" class="form-control" name="lname" value="'.$row['l_name'].'" required="required">
-                                                <small class="form-text text-muted">Le nom de famille doit comporter entre 2 et 20 caractères</small>
-                                            </div>   
-                                            <div class="form-group">
-                                                <input type="hidden" class="form-control" name="actueluid" value="'.$row['uidUsers'].'" required="required">
-                                                <input type="text" class="form-control" name="uid" value="'.$row['uidUsers'].'" required="required">
-                                                <small class="form-text text-muted">Le nom d\'utilisateur doit comporter entre 4 et 20 caractères</small>
-                                                <small class="form-text text-muted">Sans espace et sans caractère spécial</small>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="hidden" class="form-control" name="actuelmail" value="'.$row['emailUsers'].'">
-                                                <input type="email" class="form-control" name="mail" value="'.$row['emailUsers'].'" required="required">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="telephone" class="form-control" name="tele" value="'.$row['telephone'].'" required="required">
-                                                <small class="form-text text-muted">Le numéro de téléphone doit comporter entre 6 et 20 caractères</small>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="hidden" class="form-control" name="originalpwd" value="'.$row['pwdUsers'].'">
-                                                <input type="password" class="form-control" name="actuelpwd" placeholder="Entrer le mot de passe actuelle">
-                                                <small class="form-text text-muted">Le mot de passe doit comporter entre 6 et 20 caractères</small>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="password" class="form-control" name="pwd" placeholder="Entrer le nouveau mot de passe">
-                                                <small class="form-text text-muted">Le mot de passe doit comporter entre 6 et 20 caractères</small>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="password" class="form-control" name="pwd-repeat" placeholder="Confirmer le nouveau mot de passe">
-                                            </div>     
-                                            <div class="form-group">
-                                                <button type="submit" name="edituser-submit" class="btn btn-dark btn-lg btn-block">Modifier</button>
-                                            </div>';
+                                    //if ( is_null($_SESSION['user_id']) ){$userid=1;}else {$userid=$_SESSION['user_id'];}
+                                    if(isset($_SESSION['user_id'])) {
+                                        $sql = "SELECT * FROM users WHERE user_id=".$userid; 
+                                        $result = $conn->query($sql);
+                                        if ($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                echo'
+                                                <input type="hidden" class="form-control" name="user_id" value="'.$_SESSION['user_id'].'">
+                                                <div class="form-group">
+                                                    <label>Prénom</label>
+                                                    <input type="text" class="form-control" name="fname" value="'.$row['f_name'].'" required="required">
+                                                    <small class="form-text text-muted">Le prénom doit comporter entre 2 et 20 caractères</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Last Name</label>
+                                                    <input type="text" class="form-control" name="lname" value="'.$row['l_name'].'" required="required">
+                                                    <small class="form-text text-muted">Le nom de famille doit comporter entre 2 et 20 caractères</small>
+                                                </div>   
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" name="actueluid" value="'.$row['uidUsers'].'" required="required">
+                                                    <input type="text" class="form-control" name="uid" value="'.$row['uidUsers'].'" required="required">
+                                                    <small class="form-text text-muted">Le nom d\'utilisateur doit comporter entre 4 et 20 caractères</small>
+                                                    <small class="form-text text-muted">Sans espace et sans caractère spécial</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" name="actuelmail" value="'.$row['emailUsers'].'">
+                                                    <input type="email" class="form-control" name="mail" value="'.$row['emailUsers'].'" required="required">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="telephone" class="form-control" name="tele" value="'.$row['telephone'].'" required="required">
+                                                    <small class="form-text text-muted">Le numéro de téléphone doit comporter entre 6 et 20 caractères</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" name="originalpwd" value="'.$row['pwdUsers'].'">
+                                                    <input type="password" class="form-control" name="actuelpwd" placeholder="Entrer le mot de passe actuelle">
+                                                    <small class="form-text text-muted">Le mot de passe doit comporter entre 6 et 20 caractères</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" name="pwd" placeholder="Entrer le nouveau mot de passe">
+                                                    <small class="form-text text-muted">Le mot de passe doit comporter entre 6 et 20 caractères</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" name="pwd-repeat" placeholder="Confirmer le nouveau mot de passe">
+                                                </div>     
+                                                <div class="form-group">
+                                                    <button type="submit" name="edituser-submit" class="btn btn-dark btn-lg btn-block">Modifier</button>
+                                                </div>';
+                                            }
                                         }
                                     }
                                     //close connection

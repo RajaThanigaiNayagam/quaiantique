@@ -178,6 +178,7 @@ h4 {
 	height:250px;
 	margin-top:90px;
 	margin-bottom:40px;
+	border-radius: 10px;
 }
 a:link {
 	color: white;
