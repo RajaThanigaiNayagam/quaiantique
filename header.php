@@ -448,9 +448,10 @@
                                     
                                     require 'includes/dbh.inc.php';// connection to mySQL Server
                                     //SQL query to read all datas from the table "schedule"    $_SESSION['user_id']
-                                    //if ( is_null($_SESSION['user_id']) ){$userid=1;}else {$userid=$_SESSION['user_id'];}
                                     if(isset($_SESSION['user_id'])) {
+                                        if ( is_null($_SESSION['user_id']) ){$userid=1;}else {$userid=$_SESSION['user_id'];}
                                         $sql = "SELECT * FROM users WHERE user_id=".$userid; 
+                                        //echo '<h5 class="bg-danger text-center">The SQL is '.$sql.'  .</h5>';  // for debuging purpuse
                                         $result = $conn->query($sql);
                                         if ($result->num_rows > 0) {
                                             while($row = $result->fetch_assoc()) {
