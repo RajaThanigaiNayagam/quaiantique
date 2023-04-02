@@ -65,9 +65,8 @@ if(isset($_POST['edituser-submit'])) {//very if the user clicked connexion butto
         $sql = "SELECT uidUsers, emailUsers FROM users WHERE uidUsers=? OR emailUsers=?";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)){    
-            echo '<h5 class="bg-danger text-center">Votre mot de passe actuel est erroné... original pwd - '.$originalpwd.'  et le actuel pwd est - '.$hashedPwd.'</h5>';
-            //header("Location: ../index.php?erroredit=error1");
-            //exit();
+            header("Location: ../index.php?erroredit=error1");
+            exit();
         }
         else {
             if( ($username <> $actuelusername) ){
@@ -89,7 +88,7 @@ if(isset($_POST['edituser-submit'])) {//very if the user clicked connexion butto
                     exit();
                 }
             }
-            if  ( !( is_null($password) && is_null($passwordRepeat) && is_null($actuelpassword)  )  && ( !password_verify($actuelpassword, $originalpwd) )   ){
+            if  ( !( is_null($password) && is_null($passwordRepeat)   )  && ( !password_verify($actuelpassword, $originalpwd) )   ){    //&& is_null($actuelpassword)
                 $sqlupdate = "UPDATE users SET f_name = '$fname', l_name = '$lname' , uidUsers = '$username', telephone = '$tele', emailUsers = '$actuelemail' WHERE user_id = $user_id ";
                 //echo '<h5 class="bg-danger text-center">SQL - '.$sqlupdate.'</h5>';
                 if ($conn->query($sqlupdate) ) { 
@@ -102,7 +101,11 @@ if(isset($_POST['edituser-submit'])) {//very if the user clicked connexion butto
                 }
 
             } else {
-                $sqlupdate = "UPDATE users SET f_name = '$fname', l_name = '$lname' , uidUsers = '$username', telephone = '$tele', emailUsers = '$actuelemail', pwdUsers = '$hashedPwd' WHERE user_id = $user_id ";
+                if  ( ( is_null($password) && is_null($passwordRepeat)   )   ){    //&& is_null($actuelpassword)
+                    $sqlupdate = "UPDATE users SET f_name = '$fname', l_name = '$lname' , uidUsers = '$username', telephone = '$tele', emailUsers = '$actuelemail', pwdUsers = '$hashedPwd' WHERE user_id = $user_id ";
+                } else {                
+                    $sqlupdate = "UPDATE users SET f_name = '$fname', l_name = '$lname' , uidUsers = '$username', telephone = '$tele', emailUsers = '$actuelemail' WHERE user_id = $user_id ";
+                }
                 if ($conn->query($sqlupdate) ) {
                     header("Location: ../index.php?edit=success");
                     exit();
