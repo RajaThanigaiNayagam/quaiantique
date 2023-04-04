@@ -2,13 +2,12 @@
 require "header.php";
 ?>
     
-<br><br>
+<br><br><br><br>
 <div class="container">
     <h4 class="text-center  menuTitle"><br>Voir les réservations<br></h4>    
     <div class="col-md-12 offset-md-0"> 
     <?php
     if(isset($_SESSION['user_id'])){
-        echo '<p class="text-white bg-dark text-center">'. $_SESSION['username'] .', ici, vous pouvez consulter l\'historique de vos réservations</p><br>';
         if(isset($_GET['delete'])){
             if($_GET['update'] == "error") {   //Checking - delete reservation
                 echo '<h5 class="bg-danger text-center">Error!</h5>';
