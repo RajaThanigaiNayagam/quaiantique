@@ -42,7 +42,7 @@ mysqli_close($conn);
 <!--about us section   ************************  A propos de nous ************************ -->
 <section id="aboutus">
     <div class="container"><br><br>
-        <h3 class="text-center"><br><br>Quai Antique</h3>
+        <h3 class="text-center"><br><br>Quai Antique - À propos de nous</h3>
         <div class="row">
             <!--carousel-->
             <div class="col-sm"><br><br>

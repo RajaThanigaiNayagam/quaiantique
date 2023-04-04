@@ -29,7 +29,7 @@ h2{
 	font-family: 'Petit Formal Script', cursive;
     font-size: 40px;
     font-weight: bold;
-	color: #3c3c3c;
+	color: #392C1E;
 	text-align: center;
 }
 
@@ -38,7 +38,7 @@ h3{
 	font-family: 'Petit Formal Script', cursive;
     font-size: 30px;
     font-weight: bold;
-	color: #3c3c3c;
+	color: #392C1E;
 	text-align: center;
 }
 
@@ -47,7 +47,7 @@ h4 {
 	text-align: center;
 	font-family: 'Lora', serif;
     font-size: 35px;
-	color: #3c3c3c;
+	color: #392C1E;
 }
 
 
@@ -63,7 +63,7 @@ h4 {
 	margin: 0 !important;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 12px;
-	color: #3c3c3c;
+	color: #392C1E;
 	text-align: center;
 }
 
@@ -71,7 +71,7 @@ h4 {
 #service .card {
 	margin-top: 10px;
     border-radius: 10px;
-	border : 1px solid #3c3c3c !important;
+	border : 1px solid #392C1E !important;
 }
 
 
@@ -104,7 +104,7 @@ h4 {
     font-family: 'Montserrat', sans-serif;
     font-size: 35px;
     font-weight: bold;
-	color: #3c3c3c;
+	color: #392C1E;
 	text-align: center;
 }
 
@@ -112,14 +112,14 @@ h4 {
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     font-weight: bold;
-	color: #3c3c3c;
+	color: #392C1E;
 	text-align: right;
 }
 .sheduledaycenter{
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     font-weight: bold;
-	color: #3c3c3c;
+	color: #392C1E;
 	text-align: center;
 }
 
@@ -129,7 +129,7 @@ h4 {
 	margin: 0 !important;
     font-family: 'Montserrat', sans-serif;
     font-size: 12px;
-	color: #3c3c3c;
+	color: #392C1E;
 	text-align: center;
 }
 
@@ -193,20 +193,20 @@ a:link {
 	font-family: 'Petit Formal Script', cursive;
     font-size: 40px;
     font-weight: bold;
-	color: #3c3c3c;
+	color: #392C1E;
 }
 
 .navbar .container .navbar-form, .navbar .container .collapse, .navbar .container .authentification #signup, .navbar .container .authentification #signin {
 	font-family: 'Hind Madurai', sans-serif;
     font-size: 12px;
     font-weight: bold;
-	color: #3c3c3c;
+	color: #392C1E;
 	text-align: center;
 }
 
 
 .navbar .navbar-nav .active{
-	border-bottom:1px solid  #3c3c3c;
+	border-bottom:1px solid  #392C1E;
 }
 
 .navbar .navbar-nav .nav-item a{
@@ -220,7 +220,7 @@ a:link {
 	font-family: 'Hind Madurai', sans-serif !important;
     font-size: 12px !important;
     font-weight: bold !important;
-	color: #3c3c3c;
+	color: #392C1E;
 	text-align: center !important;
 }
 
@@ -228,7 +228,7 @@ a:link {
 	font-family: 'Hind Madurai', sans-serif !important;
     font-size: 12px !important;
     font-weight: bold !important;
-	color: #3c3c3c !important;
+	color: #392C1E !important;
 	text-align: center !important;
 }
 
@@ -251,7 +251,7 @@ a:link {
 	margin: auto;
 	font-family: 'Lora', serif;
     font-size: 14px;
-	color: #3c3c3c;
+	color: #392C1E;
 	text-align: center;
 	justify-content: center;
 }
@@ -265,10 +265,15 @@ a:link {
 	color: #392C1E !important;
 }
 
-.container .formreservation .form-group button:checked{
+.container .formreservation .signup-form .form-group .btn:checked{
+	margin-top: 10px;
 	color: #B6AC97 !important;
 }
 
+
+.container .formreservation .form-group  .btn {
+	margin-top: 10px;
+}
 .reservupdatebutton{
 	width: 80px;
 	color: #906427 !important;
@@ -324,7 +329,7 @@ a:link {
     font-family: 'Montserrat', sans-serif;
     font-size: 35px;
     font-weight: bold;
-	color: #3c3c3c;
+	color: #392C1E;
 	text-align: center;
 }
 

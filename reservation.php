@@ -54,8 +54,9 @@ require "header.php";
                     }
                 }
                 echo'<br>
-                <h6 class="text-center">Merci d\'avance de préciser en commentaire le nombre d\'enfants présent à table(si il y en a)!!  
-                Pour tout retard de plus de 20 min votre table sera donnée à d\'autre client!!</h6>';
+                <h6 class="text-center">Merci d\'avance de préciser en commentaire le nombre d\'enfants présent à table (s\'il y en a)!! 
+                    Pour tout retard de plus de 20 min, votre table sera donnée à d\'autres clients !! Et aussi merci de nous indiquer 
+                    si certains d\'entre vous ont des allergies a des aliments particuliers.</h6>';
 
                 //reservation form  
                 echo '   <div id="reservationform"></div><br><br>
@@ -66,7 +67,7 @@ require "header.php";
                             <label>Entrez le nombre de Couverts</label>
                             <input type="number" class="form-control" min="1" name="num_guests" placeholder="Nombres des personnes" required="required">
                             <small class="form-text text-muted">La valeur minimale est 1</small>
-                        </div>
+                        </div><div style="width : 20px ;"></div>
                         <div class="form-group col-md-4">
                             <label>Entrez la date de reservation</label>
                             <input type="date" class="form-control" name="date" id="date" placeholder="Date" required="required">

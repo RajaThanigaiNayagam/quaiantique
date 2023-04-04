@@ -38,62 +38,58 @@ pwd: Test@123
          
          
          
-         Gestion de réservation de réstaurant
-         ------------------------------------
-Nom du projet                     : Gestion des réservations de table de réstaurant Quai Antique.
-Langue utilisée                   : PHP
-Base de données                   : MySQL
+Résumé du projet
+Gestion de réservation de restaurant
+------------------------------------
+Nom du projet : Gestion des réservations de table de réstaurant Quai Antique.
+Langue utilisée : PHP
+Base de données : MySQL
 Design de l’interface utilisateur : HTML, AJAX, JQUERY, JAVASCRIPT
-Navigateur Web                    : Mozilla, Google Chrome, IE8, OPERA
-Logiciel                          : XAMPP
+Navigateur Web : Mozilla, Google Chrome, IE8, OPERA
+Logiciel : XAMPP
 
-Dans le système de gestion des réservations de table, j’utilisé PHP et la base de données
+Dans le système de gestion des réservations de table, j’utilisais PHP et la base de données.
 MySQL. Ce projet enregistre des réservations, des clients et des services hôteliers. Le système
-de gestion des réservations d’hôtel comprend deux modules : administrateur et utilisateur.
+De gestion, des réservations d’hôtel comprennent deux modules : administrateur et utilisateur.
 
 
 Module Admin
 ------------
 
-1. Accueil : L’administrateur peut afficher brièvement le total des nouvelles réservations, les
-   réservations approuvées, les réservations annulées, le nombre total d’utilisateurs enregistrés,
-   le total des demandes de lecture et le total des demandes non lues.
+1. Accueil : l’administrateur peut afficher brièvement le total des nouvelles réservations, les
+réservations approuvées, les réservations annulées, le nombre total d’utilisateurs enregistrés,
+Le total des demandes de lecture et le total des demandes non lues.
 
-2. Gestion de Catégorie de plat : L’administrateur peut gérer la catégorie (ajouter / mettre à jour / supprimer).
+2. Gestion de Catégorie de plat : l’administrateur peut gérer la catégorie (ajouter/mettre à jour/supprimer).
 
-3. Gestion de plat : L’l’administrateur peut gérer les plat (ajouter / mettre à jour / supprimer).
+3. Gestion de plat : L’l'administrateur peut gérer peut gérer les plat (ajouter / mettre à jour / supprimer).
 
-4. Gestion de menu : L’administrateur peut gérer les menu.  Il peut ajout, modifier et supprimer Entrer, 
-   plat et dessert dans un menu
+4. Gestion de menu : l’administrateur peut gérer les menus. Il peut ajout, modifier et supprimer entrer Plat et dessert dans un menu
 
-5. Gestion de Réservation : L’administrateur peut afficher les nouvelles réservations et
-   annulées et également faire une remarque.
+5. Gestion de Réservation : l’administrateur peut afficher les nouvelles réservations,
+Annulées et également faire une remarque.
 
-6. Utilisateurs  : L’administrateur peut afficher les détails des utilisateurs enregistrés.
-
+6. Utilisateurs : l’administrateur peut afficher les détails des utilisateurs enregistrés.
 
 
-   Module utilisateur
-   ------------------
 
-1. Accueil : C’est une page d’accueil pour les utilisateurs.
+Module utilisateur
+------------------
 
-2. À propos de nous : Il s’agit d’une page de site web sur le restaurant Quai Antique et affiche les images plates importantes. Il se trouve sur la   même page d'accueil un peu plus bas. 
+1. Accueil : c’est une page d’accueil pour les utilisateurs.
 
-3. Services : Les utilisateurs peuvent afficher les services fournis par l’organisation.
+2. Notre carte : c'est une page qui affiche les menus et les restaurants.
 
-4. Galerie : Les utilisateurs peuvent voir toutes les images de plat et menu disponible dans le restaurant.
+3. À propos de nous : il s’agit d’une page de site web sur le restaurant Quai Antique et affiche les images plates importantes. Il se trouve sur la même page d'accueil un peu plus bas.
 
-5. categorie des chambres : L’utilisateur peut voir la plusieur categories des chambres de l’hôtel.
+4. Galerie : les utilisateurs peuvent voir toutes les images de plat et menu disponible dans le restaurant.
 
-6. Réserver une chambre : Dans cette section, l’utilisateur peut réserver la chambre d’hôtel
-   en s’inscrivant auprès des hôtels.
+5. Réserver une table : dans cette section, l’utilisateur peut réserver la table en s’inscrivant auprès des sites web de restaurant.
 
-7. Contact : C’est une page contactez-nous où les utilisateurs peuvent envoyer les requêtes à
-   l’hôtel.
+6. Nos horaires : l'utilisateur peut consulter l'horaire d'ouverture de restaurant.
 
-8. Inscrivez-vous : Les utilisateurs peuvent s’inscrire via le signe signup.
+7. S'inscrire : les utilisateurs peuvent s’inscrire via le bouton S'inscrire.
 
-9. Connexion : C’est la page de connexion.
+8. Connexion : c’est la page de connexion.
 
-10. Mon compte : Après l’inscription, l’utilisateur peut avoir son propre compte   où  il peut mettre à jour son profil, changer son mot de passe, récupérer son mot de passe et voir les détails de la réservation de la chambre d’hôtel.
+9. Mon compte : après l’inscription, l’utilisateur peut avoir son propre compte où il peut mettre à jour son profil, changer son mot de passe et voir les détails de la réservation de la table.
