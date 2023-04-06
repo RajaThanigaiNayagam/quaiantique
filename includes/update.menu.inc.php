@@ -67,7 +67,6 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
         exit();
     } else {
         /* ******************************** checking whether the true  ******************************** */
-            var_dump($menufood);
             $sql = "UPDATE menu SET name = '$menuname', price = '$menuprice' , image = '$menuimage' WHERE Id = $menu_id ";
             if ($conn->query($sql) ) {
                 if (!empty($menufood)){
@@ -89,7 +88,6 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                             $foodid = $menufood[$i];  //intval($menufood[$i]); 
                             inserttable( $tables, $dataname, $menuid, $foodid) ;
                         }
-                        echo '<h5 class="bg-danger text-center">success  exiting update menu ...</h5>';
                         mysqli_close($conn);
                         header("Location: ..\manage.menu.inc.php?updatemenu=success&submit-editmenu=1"); 
                         exit();
