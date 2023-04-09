@@ -55,7 +55,7 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
             }
         } else {
             echo '<h5 class="bg-success text-center">0 datavalue is = '. $datavalue .'</h5>';
-            if ( is_int($datavalue) ) {$datavalues = $datavalues . $datavalue;
+            if ( is_int($datavalue) ) {$datavalues = $datavalues . $datavalue;}
         }
         $datavalues = $datavalues . ' ';
     }                            
