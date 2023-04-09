@@ -200,8 +200,6 @@ mysqli_close($conn);
                             </table>";
                         }
                         echo"</div>";
-                        //close connection
-                        mysqli_close($conn);
                         ?>
                 </div><br>
             </div>
@@ -216,4 +214,6 @@ mysqli_close($conn);
 <?php
 require "footer.php";
 echo'<div>here it is working at the level lost ...</div>';
+//close connection
+mysqli_close($conn);
 ?>
