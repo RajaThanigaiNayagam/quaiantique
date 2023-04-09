@@ -88,23 +88,19 @@ if(isset($_POST['submit-editmenu'])) {//check whether the  submit button is clic
                             $foodid = $menufood[$i];  //intval($menufood[$i]); 
                             inserttable( $tables, $dataname, $menuid, $foodid) ;
                         }
-                        mysqli_close($conn);
                         header("Location: ..\manage.menu.inc.php?updatemenu=success&submit-editmenu=1"); 
                         exit();
                     }
                 }
-                mysqli_close($conn);
                 header("Location: ..\manage.menu.inc.php?updatemenu=success&submit-editmenu=1");   //&signature=".$_POST['menusignature']);
                 exit();
             } else {
                 $sqlerror = $conn->error;
-                mysqli_close($conn);
                 header("Location: ..\manage.menu.inc.php?updatemenu=sqlerror1&submit-editmenu=1&sqlerror=".$sqlerror);
                 exit();
             }
     } 
 } else {
-    mysqli_close($conn);
     header("Location: ..\manage.menu.inc.php?updatemenu=notsubmitted&submit-editmenu=1");
     exit();
 }

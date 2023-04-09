@@ -48,7 +48,6 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
             for ($i=0; $i<$countdatavalues; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
                 if ( ( !empty($datavalue[$i]) ) && is_int($datavalue[$i])){
                     if ($i<$countdatavalues-1){$datavalues = $datavalues ."'". $datavalue[$i]."', "; } else {$datavalues = $datavalues ."'".  $datavalue[$i]."'";}
-                    //$datavalueq=$datavalueq.'?';
                 }
             }
         } else {
