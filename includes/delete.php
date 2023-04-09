@@ -22,6 +22,7 @@ function deletemenufoods($menufoodsid){
 //Insert into any table by sending table as array, data name as array and data values as array
 function inserttable( $table, $dataname, $menuid, $datavalue){   
     require 'dbh.inc.php';    
+    $theFoodIsNotInteger=true;
     if (!empty($table)){
         $tables="";
         $counttables=sizeof($table);
@@ -55,14 +56,15 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
             }
         } else {
             echo '<h5 class="bg-success text-center">0 datavalue is = '. $datavalue .'</h5>';
-            if ( is_int($datavalue) ) {$datavalues = $datavalues . $datavalue;}
+            if ( is_int($datavalue) ) {$datavalues = $datavalues . $datavalue;} else {$theFoodIsNotInteger=false;}
+            echo '<h5 class="bg-success text-center">0 theFoodIsNotInteger is = '. $theFoodIsNotInteger .'</h5>';
         }
         $datavalues = $datavalues . ' ';
     }                            
     
     echo '<h5 class="bg-success text-center">2 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
 
-    if ( (!empty($tables)) && (!empty($datanames)) && (!empty($datavalues))  && (!empty($datavalue))){
+    if ( (!empty($tables)) && (!empty($datanames)) && (!empty($datavalues)) && $theFoodIsNotInteger ){
         $insertsql = 'INSERT INTO ' . $tables . '(' . $datanames . ') VALUES('.  $datavalues .')';
         echo '<h5 class="bg-success text-center">1 The insertsql = '. $insertsql .'</h5>';
         $conn->query($insertsql);
