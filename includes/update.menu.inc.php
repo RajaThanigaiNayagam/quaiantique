@@ -1,7 +1,7 @@
 <?php
 //require "../header.php";
 //session_start();
-error_reporting(0);   //Désactiver tous les rapports d'erreurs
+//error_reporting(0);   //Désactiver tous les rapports d'erreurs
 
 //php function to check, if the characters of the variable "$val" are within the limits of "$x" and "$y"
 function between($val, $x, $y){
