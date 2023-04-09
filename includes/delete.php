@@ -44,9 +44,6 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
     if (!empty($datavalue)){
         if ( $menuid <>"" ) {$datavalues = $menuid. ", ";}
         if (is_array( $datavalue ) ) {$countdatavalues=sizeof($datavalue);} else {$countdatavalues=1;}
-
-        echo '<h5 class="bg-success text-center">0 countdatavalues is = '. $countdatavalues .'</h5>';
-                
         if ($countdatavalues <> 1){
             for ($i=0; $i<$countdatavalues; $i++) {  //****** multiple food inserted for a menu.   One menu contains different varieties of foods*/
                 if ( ( !empty($datavalue[$i]) ) && is_int($datavalue[$i])){
@@ -55,23 +52,20 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
                 }
             }
         } else {
-            echo '<h5 class="bg-success text-center">0 datavalue is = '. $datavalue .'</h5>';
-            echo '<h5 class="bg-success text-center">0 theFoodIsNotInteger is = '. $theFoodIsNotInteger .'</h5>';
             if ( !empty(intval($datavalue)) ) {
                 $datavalues = $datavalues . $datavalue;
             } else {
                 $theFoodIsNotInteger=false;
-                echo '<h5 class="bg-success text-center">1 theFoodIsNotInteger is = '. $theFoodIsNotInteger .'</h5>';
             }
         }
         $datavalues = $datavalues . ' ';
     }                            
     
-    echo '<h5 class="bg-success text-center">1 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
+    //echo '<h5 class="bg-success text-center">1 The table = '. $table .'  dataname = '. $dataname .' datavalue = '. $datavalue .' menuid = '. $menuid .'</h5>';
 
     if ( (!empty($tables)) && (!empty($datanames)) && (!empty($datavalues)) && $theFoodIsNotInteger ){
         $insertsql = 'INSERT INTO ' . $tables . '(' . $datanames . ') VALUES('.  $datavalues .')';
-        echo '<h5 class="bg-success text-center">5 The insertsql = '. $insertsql .'</h5>';
+        //echo '<h5 class="bg-success text-center">5 The insertsql = '. $insertsql .'</h5>';
         $conn->query($insertsql);
         return true;
     } else {
