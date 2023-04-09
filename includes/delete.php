@@ -57,7 +57,7 @@ function inserttable( $table, $dataname, $menuid, $datavalue){
         } else {
             echo '<h5 class="bg-success text-center">0 datavalue is = '. $datavalue .'</h5>';
             echo '<h5 class="bg-success text-center">0 theFoodIsNotInteger is = '. $theFoodIsNotInteger .'</h5>';
-            if ( is_int($datavalue) ) {
+            if ( !empty(intval($datavalue)) ) {
                 $datavalues = $datavalues . $datavalue;
             } else {
                 $theFoodIsNotInteger=false;
