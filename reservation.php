@@ -68,9 +68,10 @@ require "header.php";
                             <input type="number" class="form-control" min="1" name="num_guests" placeholder="Nombres des personnes" required="required">
                             <small class="form-text text-muted">La valeur minimale est 1</small>
                         </div><div style="width : 20px ;"></div>
-                        <div class="form-group col-md-4">
-                            <label>Entrez la date de reservation</label>
-                            <input type="date" class="form-control" name="date" id="date" placeholder="Date" required="required">
+                        <div class="form-group col-md-4">';
+                            $currentDate = date('Y-m-d');
+                            echo'<label>Entrez la date de reservation</label>
+                            <input type="date" class="form-control" name="date" id="date" min="'.$currentDate.'" placeholder="Date" required="required">
                         </div>
                     </div>
                     <label>Cliquez sur le bouton en-bas pour choisir l\'heure de reservation</label>
@@ -118,7 +119,7 @@ require "header.php";
                     </div>
                     <div class="row formreservation">
                         <div class="form-group">
-                            <button type="submit" name="reserv-submit" class="btn btn-dark">Soumettre la réservation</button>
+                            <button type="submit" name="reserv-submit" id="reserv-submit" class="btn btn-dark">Soumettre la réservation</button>
                         </div>
                     </div>
                     </div>

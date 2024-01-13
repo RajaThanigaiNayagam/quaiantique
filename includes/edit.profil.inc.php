@@ -90,7 +90,7 @@ if(isset($_POST['edituser-submit'])) {//very if the user clicked connexion butto
             }
             if  ( !( is_null($password) && is_null($passwordRepeat)   )  && ( !password_verify($actuelpassword, $originalpwd) )   ){    //&& is_null($actuelpassword)
                 $sqlupdate = "UPDATE users SET f_name = '$fname', l_name = '$lname' , uidUsers = '$username', telephone = '$tele', emailUsers = '$actuelemail' WHERE user_id = $user_id ";
-                //echo '<h5 class="bg-danger text-center">SQL - '.$sqlupdate.'</h5>';
+                echo '<h5 class="bg-danger text-center">SQL - '.$sqlupdate.'</h5>';
                 if ($conn->query($sqlupdate) ) { 
                     header("Location: ../index.php?edit=success");
                     exit();
@@ -106,6 +106,7 @@ if(isset($_POST['edituser-submit'])) {//very if the user clicked connexion butto
                 } else {                
                     $sqlupdate = "UPDATE users SET f_name = '$fname', l_name = '$lname' , uidUsers = '$username', telephone = '$tele', emailUsers = '$actuelemail' WHERE user_id = $user_id ";
                 }
+                echo '<h5 class="bg-danger text-center">SQL - '.$sqlupdate.'</h5>';
                 if ($conn->query($sqlupdate) ) {
                     header("Location: ../index.php?edit=success");
                     exit();
